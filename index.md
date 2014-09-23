@@ -1,0 +1,37 @@
+---
+layout: layout
+title: Hideyuki Tachibana's web 
+---
+
+
+# Hideyuki Tachibana's web page
+
+## Personal Info 
+
+### Job 
+I am currently working as a Post Doc at Meiji University, Tokyo, Japan.
+
+### Name 
++ Given Name: Hideyuki [pronounced as: hea(t) de(sk) you key] (a popular Japanese male name.) 
++ Family Name: TACHIBANA [pronounced as: ta(basco) chee(se) bana(na)] ("tachibana" is a kind of citrus, which is sometimes translated as "mandarine orange." Tachibana is a popular surname in Japan)
+
+
+## My Research Interests 
+The topics I am interested in are ...
++ Artificial Intelligence; especially AI that understands music
++ Signal Processing; including Time-frequency Analysis, Compressed Sensing, etc.
++ Machine Learning
++ Applied Math
+If an opportunity offers, I would like to try some other new research fields including natural language processing,
+game AI, etc.
+
+
+## My SNS accounts 
+More detailed info on me and my works will be found at the following sites.
+
++ <a href="https://github.com/tachi-hi"> GitHub </a>
++ <a href="http://jp.linkedin.com/pub/hideyuki-tachibana/51/134/5a5"> LinkedIn </a>
++ <a href="http://www.researchgate.net/profile/Hideyuki_Tachibana"> ResearchGate </a>
++ <a href="http://www.facebook.com/hideyuki.tachibana"> Facebook </a>
+
+
