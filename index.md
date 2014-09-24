@@ -16,6 +16,9 @@ I am currently working as a Post Doc at Meiji University, Tokyo, Japan.
 + Given Name: Hideyuki [pronounced as: hea(t) de(sk) you key] (a popular Japanese male name.) 
 + Family Name: TACHIBANA [pronounced as: ta(basco) chee(se) bana(na)] ("tachibana" is a kind of citrus, which is sometimes translated as "mandarine orange." Tachibana is a popular surname in Japan)
 
+## Publications
+
+[List of Publications](publications.html)
 
 ## My Research Interests 
 The topics I am interested in are ...
