@@ -11,7 +11,7 @@ title: Publications
 1. **Hideyuki Tachibana**, Nobutaka Ono, Hirokazu Kameoka, Shigeki Sagayama, 
 **"Harmonic Percussive Sound Separation Based on Anisotropic Smoothness of Spectrograms,"** 
 *IEEE/ACM Trans. Audio, Speech and Language Processing*, 
-Vol. 22, No. 12, Dec. 2014. (to appear) *IF: 2.625*
+Vol. 22, No. 12, pp. 2059--2073, Dec. 2014. (to appear) *IF: 2.625*
 
 2. **Hideyuki Tachibana**, Nobutaka Ono, Shigeki Sagayama, 
 **"Singing Voice Enhancement in Monaural Music Signals Based on Two-stage Harmonic/Percussive Sound Separation on Multiple Resolution Spectrograms,"** 
@@ -22,7 +22,7 @@ Vol. 22, No. 1, pp. 228--237, Jan., 2014. *IF: 2.625*
 **"Estimating Isometric Tension of Finger Muscle Using Needle EMG Signals and the Twitch Contraction Model,"** 
 *IEEJ Trans. Electronics, Information and Systems*,
 Vol. 130, No. 2, pp. 254-260, Feb., 2010. *IF: ---* *(in Japanese)*
-   + **橘 秀幸**, 鈴木 隆文, 満渕 邦彦, **"針筋電信号と単収縮畳み込みモデルによる手指筋の等尺性収縮時張力の推定"** *電気学会論文誌 C* 
+   + **橘 秀幸**, 鈴木 隆文, 満渕 邦彦, **"針筋電信号と単収縮畳み込みモデルによる手指筋の等尺性収縮時張力の推定"** *電気学会論文誌 C*, Vol. 130, No. 2, pp. 254-260, Feb., 2010.
 	
 ## Refereed Conference Papars
 1. **Hideyuki Tachibana**, Hirokazu Kameoka, Nobutaka Ono, Shigeki Sagayama, 
