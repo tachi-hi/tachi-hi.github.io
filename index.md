@@ -40,4 +40,7 @@ More detailed info on me and my works will be found at the following sites.
 + [ResearchGate](http://www.researchgate.net/profile/Hideyuki_Tachibana)
 + [Facebook](http://www.facebook.com/hideyuki.tachibana)
 
+## Others
+
+[Memorandum](memo.html)
 
