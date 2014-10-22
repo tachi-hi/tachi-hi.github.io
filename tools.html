@@ -1,0 +1,402 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//JP">
+<html>
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+<title>Tachibana Memo</title>
+<base target = "_parent">
+<link rel="stylesheet" href="mystyle.css" type="text/css"/>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  // 文字数のカウント用=============================================
+  $("#moji_count").keyup(function(){
+      var len = $(this).val().length;
+      $("#wcharCount").text((len != 0 ? len : 0)+"文字");
+
+      var words = $(this).val().split(/[\s,]+/);
+      len = words.length; 
+      len = (len > 0 && words[len-1].length == 0) ? (len - 1) : len;
+      $("#wordCount").text((len != 0 ? len : 0)+"単語");
+  });
+
+  $("#wcharCount").css("font-size", "xx-large");
+  $("#wordCount").css("font-size", "xx-large");
+
+  // lastupdate ====================================================
+  $("#lastUpdate").text("Last Update: "+document.lastModified);
+
+  // toggle ========================================================
+  $("#topic > h2").click( function(){
+     $(this).parent().find("#toggle").toggle("fast");
+  });
+
+  $("#subtopic > h3").click( function(){
+     $(this).parent().find("#subtoggle").toggle("fast");
+  });
+
+  $("#topic > #toggle").css("display", "none");
+  $("#subtopic > #subtoggle").css("display", "none");
+
+  $("h2").hover(
+    function(){
+      $(this).css("background-color", "green");
+      $(this).css("color", "white");
+      $(this).css("cursor", "pointer");
+    },
+    function(){
+      $(this).css("background-color","");
+      $(this).css("color", "");
+    }
+  );
+
+  // 和暦・西暦変換 ========================================================
+  var seireki;
+  $("#seireki").keyup(function(){
+      seireki = $(this).val();
+      var wareki_text = "";
+      var wareki = ["", "平成", "昭和", "大正","明治"];
+      var start = [2100, 1989, 1926, 1912, 1868];
+      for(i = 0; i < wareki.length; i++){
+        if(seireki >= start[i] && seireki <= start[i - 1]){
+           wareki_text += (wareki[i] + (seireki == start[i] ? "元" : (seireki - start[i] + 1)) + "年 ");
+        }
+      }
+      $("#wareki").text(wareki_text);
+  });
+  $("#wareki").css("font-size", "xx-large");
+
+  // 和暦・西暦変換 ========================================================
+
+
+});
+</script>
+</head>
+
+<body>
+<h1>公開備忘録</h1>
+
+注意：
+このページは著者の私的なメモを外出時等に手軽に参照できるように設けたチートシートです。
+このページから得た情報によって生じたいかなる不利益に関しても著者は責任を負わないものとします。
+
+<div id="topic"><h2>文字数・単語数カウント</h2><div id="toggle">
+<h3>今すぐこの場で（簡易版）</h3>
+<textarea id = "moji_count", type="text" cols="150" rows="10" id="input-up"></textarea>
+<div>
+  <span id="wcharCount">0文字</span> 
+  <span id="wordCount">0単語</span> 
+</div>
+
+<h3>wc</h3>
+<pre>
+wc --chars # 文字数
+wc --words # 単語数
+</pre>
+
+</div></div>
+
+<div id="topic"><h2>西暦・和暦</h2><div id="toggle">
+西暦<textarea id = "seireki", type="text" cols="3" rows="1" id="input-up"></textarea>年
+<span id="wareki">平成 ?? 年</span>
+
+</div></div>
+
+<div id = "topic"><h2>SSH</h2><div id = "toggle">
+<h3>SSHFS: SSHで入れるディレクトリをローカルマシンにマウント</h3>
+<pre>
+mkdir ~/mnt/hoge
+sshfs user@server:/hoge ~/mnt/hoge
+ln -s ~/mnt/hoge . # シンボリックリンク
+fusermount -u ~/mnt/hoge #アンマウント
+</pre>
+リブートすると無効になる。/etc/fstabに書いておく。
+
+</div>
+</div>
+
+<div id = "topic"><h2>sox</h2><div id = "toggle">
+<h3>一括してリサンプリング</h3>
+<pre>
+for file in `ls *.wav`
+do
+  sox $file -r 8000 -c 1 --norm ${file%.wav}_8k.wav trim 0 10
+done
+</pre>
+r: rate, c: channel, norm正規化
+<h3>右のチャンネルの抽出</h3>
+<pre>
+sox input.wav -c 1 -r 16000 output.wav mixer -r channels 1
+</pre>
+<h3>ファイルの長さを調べる</h3>
+-n statで出てくる情報から適当に抽出
+<pre>
+len=`sox input.wav -n stat 2>&1 | sed -n 's/^Length (seconds):[^0-9]*\([0-9.]*\)$/\1/p`
+</pre>
+
+</div>
+</div>
+
+
+<div id = "topic"><h2>R</h2><div id = "toggle">
+<pre>
+paste("test", 1:10, ".txt", sep="")
+</pre>
+<pre>gzfile, bzfile # 圧縮ファイルを直接読み書き</pre>
+<pre>
+is.na(x) # xのうちNAのインデックスを返す
+x <- x[!is.na(x)]
+</pre>
+他のスコープに強制的に変数を作成
+<pre>
+x <<- 1
+assign("y", 100, pos = ".GlobalEnv");
+</pre>
+
+<pre>
+rm(list=ls())
+</pre>
+
+<div id = "subtopic"><h3>行列</h3><div id = "subtoggle">
+<pre>
+A %*% B; solve(X):
+outer(x,y); kronecker(x,y);
+colSums, rowSums, colMeans, rowMeans # 行と列のそれぞれの総和，平均
+apply(X, margin, func) # 行列Xの行(margin=1)または列(margin=2)に関数funcを適用
+</pre>
+</div></div>
+
+<div id = "subtopic"><h3>集合</h3><div id = "subtoggle">
+<pre>
+union(a, b) #和集合， c (a, b)とは異なるふるまい
+setdiff(a, b) #差集合, bはスカラーでも可
+</pre>
+</div></div>
+
+<div id = "subtopic"><h3>プロット備忘録</h3><div id = "subtoggle">
+ヒストグラムをepsに
+<pre>
+postscript("data.eps", horizontal = FALSE, onefile = FALSE, paper = "special", height = 9, width = 18, pointsize = 36);
+par(mgp = c(2.2, 1.2, 0)) # 軸のラベルの配置
+par(mar = c(4, 4, 1, 1)) #マージン左下上右，左と下を0にするとラベルが消える
+hist(data, main="", axes=FALSE, col="gray");
+axis(1, pos=0); # pos=0にするとぴったりくっつく
+axis(2, pos=0);
+dev.off();
+</pre>
+</div></div>
+
+<div id = "subtopic"><h3>備忘録</h3><div id = "subtoggle">
+
+<pre>
+P <- list()
+for(i in 1:10){
+  P[[i]] <- ...
+}
+</pre>
+
+<pre>
+func <- function(){
+  a <- ...
+  b <- ...
+  return(list(a = a, b = b));
+}
+a <- func()$a
+</pre>
+</div></div>
+
+</div>
+</div>
+
+
+<div id = "topic"><h2>バージョン管理</h2><div id = "toggle">
+<h3>最初にすること等</h3>
+Mercurial
+<pre>
+hg init
+hg add filename # ディレクトリを指定するとそれ以下のファイル全部
+hg remove filename # リポジトリから除去する
+</pre>
+
+<h3>コミット</h3>
+<pre>
+hg commit # viが起動
+hg commit -m 'message'
+hg commit -l hoge.txt
+</pre>
+
+<h3>チェックアウト</h3>
+
+<pre>
+hg clone
+</pre>
+
+<h3>ログを見る</h3>
+<pre>
+hg log -r n # n番目のリビジョン
+hg log -l n # 最近のn個のリビジョン
+hg log -p # 詳細を表示 # どこのリビジョンで修正された行か
+hg annotate
+</pre>
+
+<h3>SSH経由</h3>
+<pre>
+hg clone ssh://user@host:/path
+</pre>
+
+<h3>最新の番号のファイルを探す</h3>
+<pre>
+data_v20080821.txt data_v20101125.txt 
+</pre>
+というような方式でファイルを管理しているときの最新版の番号の抽出
+<pre>
+ ls *.txt | sed -e 's/.*_v\([0-9]*\).*/\1/g' | sort -n | tail -n 1 
+</pre>
+
+<pre>
+LATEX = latex
+BIBTEX = bibtex
+DVIPDF = dvipdfmx
+RM = rm -f
+
+VERSION := $(shell ls *.tex | sed -e 's/.*_v\([0-9]*\).*/\1/g' | sort -n | tail -n 1)
+TEXFILE := $(shell ls *_v$(VERSION).tex)
+FILE := $(shell echo $(TEXFILE) | sed -e 's/\.tex//g')
+DVIFILE := $(shell echo $(TEXFILE) | sed -e 's/tex/dvi/g')
+PDFFILE := $(shell echo $(TEXFILE) | sed -e 's/tex/pdf/g')
+
+all: ${TEXFILE}
+	$(RM) *.bbl
+	$(LATEX) ${TEXFILE} > /dev/null
+	$(BIBTEX) ${FILE}
+	$(LATEX) ${TEXFILE} > /dev/null
+	$(LATEX) ${TEXFILE}
+	@$(RM) *.aux *.log
+
+pdf:
+	$(DVIPDF) $(FILE)
+
+.PHONY: clean
+clean:
+	$(RM) *.aux *.toc *.lot *.log *.bbl *.blg *.pbm
+</pre>
+
+
+</div>
+</div>
+
+
+<div id = "topic"><h2>ビット演算</h2><div id = "toggle">
+<h3>ある整数が2のべき乗かどうか調べる</h3>
+xが2のべき乗 ⇔ x&(x-1)==0が真。
+<h3>XOR swap</h3>
+x と yの入れ替え： x ^= y ^= x ^= y; (ただし &x != &y)
+<pre>
+x = 0101
+y = 1001
+のとき
+x = x ^ y = 1100 -> x = 1100, y = 1001
+y = y ^ x = 0101 -> x = 1100, y = 0101
+x = x ^ y = 1001 -> x = 1001, y = 0101
+</pre>
+
+<h3>3～5ビットが全部1かどうか</h3>
+下位3～5が全部1  ⇔ (32 - 4) & ~x == 0
+
+</div>
+</div>
+
+<div id = "topic">
+<h2>英語</h2>
+<div id = "toggle">
+<h3>Aspell (スペルチェック)</h3>
+<pre>
+aspell -c -t xxxx.tex
+</pre>
+チェックできるのはスペルミスのみ。
+</div>
+</div>
+
+
+<div id = "topic">
+<h2>TeX</h2>
+<div id = "toggle">
+<h3>newcommand</h3>
+<pre>
+\newcommand{\argmax}{\mathop{\mathrm argmax}\limits}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\expect}[2][]{ \mathbb_{ #1 } \left[ #2 \right] } % 期待値
+\newcommand{\defeq}{\stackrel{\mbox{\footnotesize def}}{=}}
+</pre>
+
+</div>
+</div>
+
+<div id = "topic">
+<h2>時間の計測</h2>
+<div id = "toggle">
+<h3>C言語: time.h</h3>
+<pre>
+#include &lt;time.h&gt;
+...
+  clock_t start, end;
+  start = clock();
+...
+  end = clock();
+  printf("%f [s]\n",(float)(end - start)/CLOCKS_PER_SEC);
+...
+</pre>
+
+<h3>C++: boost::timer</h3>
+timer: メンバ関数elapsedは，コンストラクタが呼ばれたタイミングからの時間を返す。restartでリセット。
+progress_timer: デストラクタが呼ばれたら経過時間を表示
+
+<h3>R</h3>
+計測したい関数をsystem.time関数の引数にする。
+proc.timeはRが起動されてからの時間。
+
+</div>
+</div>
+
+<div id = "topic"><h2>Octave</h2><div id = "toggle">
+バッチ
+octave -q file.m
+
+</div>
+</div>
+
+<div id = "topic"><h2>cmd.exe</h2><div id = "toggle">
+<table border=1 align="center">
+<tr><th>Unix<th>DOS</tr>
+<tr><td>cd<td>cd</tr>
+<tr><td>chmod<td>attrib</tr>
+<tr><td>cp<td>copy</tr>
+<tr><td>ls<td>dir</tr>
+<tr><td>mkdir<td>md</tr>
+<tr><td>mv<td>move</tr>
+<tr><td>reboot<td>shutdown -r</tr>
+<tr><td>rm<td>del</tr>
+<tr><td>rmdir<td>rd</tr>
+</table>
+
+
+</div>
+</div>
+
+<div id = "topic"><h2>プロファイラ</h2><div id = "toggle">
+<pre>
+g++ -pg -o program.out source.cpp
+gprof program.out
+</pre>
+
+</div>
+</div>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<hr>
+<a href="index.html">戻る</a>
+<span id="lastUpdate"></span> 
+</body>
+
