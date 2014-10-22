@@ -1,4 +1,38 @@
-p {
-    font-family: "Times New Roman", Times, serif;
-} 
+
+h2{
+color: #223322;
+font-style: bold;
+background: #AADDAA;
+}
+
+h3{
+aaacolor: #990033;
+color: #BB0055;
+font-style: bold;
+text-decoration:underline;
+aaabackground: #EECC88;
+}
+
+h4{
+color: #110033;
+font-style: bold;
+background: #AAFFEE;
+}
+
+h5{
+color: #990033;
+font-style: bold;
+background: #EEEEDD;
+}
+
+pre{
+color: #222222;
+font-style: normal;
+background: #EEEEEE;
+margin-left: 1em;
+margin-right: 1em;
+padding-left: 1em
+}
+
+body {     font-family: "Times New Roman", Times, serif, 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック'; }
 
