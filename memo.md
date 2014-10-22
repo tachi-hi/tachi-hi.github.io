@@ -17,6 +17,13 @@ title: Memorandum
 
 pptx, docx, xlsx など MS Office 2010 のファイルは実体としては色々なデータを固めた zip ファイルなので unzip すれば中身を取り出せる．
 
+## Linux関連
+
++ 個別の言語等に関するメモは sandbox に適宜追加
++ PATHは通っているはずなのにcommand not foundなどとなるとき（pycudaのconfigure.pyがnvccを認識しない問題など）
+	+ rootのPATHも調べてみる。sudo pip ... などとするのではなくrootで作業する。
+
+
 ## Math
 $$m (\mathrm{nrow}) \times n (\mathrm{ncol})$$ matrix
 
