@@ -22,6 +22,7 @@ pptx, docx, xlsx など MS Office 2010 のファイルは実体としては色�
 + 個別の言語等に関するメモは sandbox に適宜追加
 + PATHは通っているはずなのにcommand not foundなどとなるとき（pycudaのconfigure.pyがnvccを認識しない問題など）
 	+ rootのPATHも調べてみる。sudo pip ... などとするのではなくrootで作業する。
+
 ### ntp
 `ntpdate -u ntp.ubuntu.com`
 
