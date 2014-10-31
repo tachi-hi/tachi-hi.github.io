@@ -13,8 +13,12 @@ I am currently working as a Post Doc at Meiji University, Tokyo, Japan.
 
 ### Name 
 
-+ Given Name: Hideyuki [pronounced as: hea(t) de(sk) you key] (a popular Japanese male name.) 
-+ Family Name: TACHIBANA [pronounced as: ta(basco) chee(se) bana(na)] ("tachibana" is a kind of citrus, which is sometimes translated as "mandarine orange." Tachibana is a popular surname in Japan)
+
+| Name |Pronounciation | Meaning |
+| ----------- |-------------- | ----- |
+| *Hideyuki*  (Given Name) | hea(t) de(sk) you key  |  a popular Japanese male name (rather old fasioned) |
+| *TACHIBANA* (Family Name) | ta(basco) chee(se) bana(na) | "Tachibana" is a kind of citrus, which is sometimes translated as "mandarine orange." Tachibana is a popular surname in Japan. |
+
 
 ## Publications
 
@@ -28,8 +32,13 @@ The topics I am interested in are ...
 + Machine Learning
 + Applied Math
 
-If an opportunity offers, I would like to try some other new research fields including natural language processing,
-game AI, etc.
+If an opportunity offers, I would like to try some other new research fields including ...
++ Natural language processing (especially sentence generation)
++ Game AI, 
++ Legal reasoning,
++ Applications of the quantum annealing,
+
+etc.
 
 
 ## My SNS accounts 
