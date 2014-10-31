@@ -33,6 +33,7 @@ The topics I am interested in are ...
 + Applied Math
 
 If an opportunity offers, I would like to try some other new research fields including ...
+
 + Natural language processing (especially sentence generation)
 + Game AI, 
 + Legal reasoning,
