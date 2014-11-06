@@ -38,5 +38,6 @@ body {     font-family: "Times New Roman", Times, serif, 'ヒラギノ角ゴ Pro
 
 
 table, td, th {
-border: 1px #888888;
+border: 1px #888888 solid;
+border-collapse: collapse;
 }
