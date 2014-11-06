@@ -36,3 +36,7 @@ padding-left: 1em
 
 body {     font-family: "Times New Roman", Times, serif, 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック'; }
 
+
+table, td, th {
+border: 2px #ff0000 solid;
+}
