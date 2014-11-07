@@ -52,5 +52,6 @@ More detailed info on me and my works will be found at the following sites.
 
 ## Others
 
-[Memorandum](memo.html)
-[Tools and memo](tools.html)
++ [Memorandum](memo.html)
++ [Tools and memo](tools.html)
++ [Bookmarks](bookmarks.html)
