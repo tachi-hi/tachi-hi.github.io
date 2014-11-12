@@ -49,6 +49,8 @@ More detailed info on me and my works will be found at the following sites.
 + [LinkedIn](http://jp.linkedin.com/pub/hideyuki-tachibana/51/134/5a5)
 + [ResearchGate](http://www.researchgate.net/profile/Hideyuki_Tachibana)
 + [Facebook](http://www.facebook.com/hideyuki.tachibana)
++ [Google Scholar](http://scholar.google.co.jp/citations?user=wAXtttwAAAAJ)
+
 
 ## Others
 
