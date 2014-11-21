@@ -34,7 +34,7 @@ The topics I am interested in are ...
 
 If an opportunity offers, I would like to try some other new research fields including ...
 
-+ Natural Language Processing (especially sentence generation)
++ Natural Language Processing (especially sentense generation)
 + Game AI
 + Legal Expert Systems, Legal Reasoning,
 + Applications of the Quantum Annealing,
