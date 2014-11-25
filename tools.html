@@ -67,7 +67,15 @@ $(function(){
   });
   $("#wareki").css("font-size", "xx-large");
 
-  // 和暦・西暦変換 ========================================================
+  // MIDI to Freq ========================================================
+  var midi;
+  $("#midi2freq").keyup(function(){
+      midi = $(this).val();
+      var notenames = ["C", "Cis", "D", "Dis", "E", "F", "Fis", "G", "Gis", "A", "Ais", "B"];
+      var freqText = "" + notenames[midi % 12] + "" + Math.floor(midi/12 - 1) + ", " + 440 * Math.pow(2, (midi - 69)/12) + "Hz");
+      $("#notefreq").text(freqText);
+  });
+  $("#notefreq").css("font-size", "xx-large");
 
 
 });
@@ -102,6 +110,13 @@ wc --words # 単語数
 <span id="wareki">平成 ?? 年</span>
 
 </div></div>
+
+<div id="topic"><h2>MIDI to 周波数</h2><div id="toggle">
+MIDI note number: <textarea id = "midi2freq", type="text" cols="3" rows="1" id="input-up"></textarea>
+<span id="notefreq">音名・周波数</span>
+
+</div></div>
+
 
 <div id = "topic"><h2>SSH</h2><div id = "toggle">
 <h3>SSHFS: SSHで入れるディレクトリをローカルマシンにマウント</h3>
