@@ -72,7 +72,7 @@ $(function(){
   $("#midi2freq").keyup(function(){
       midi = $(this).val();
       var notenames = ["C", "Cis", "D", "Dis", "E", "F", "Fis", "G", "Gis", "A", "Ais", "B"];
-      var freqText = "" + notenames[midi % 12] + "" + Math.floor(midi/12 - 1) + ", " + 440 * Math.pow(2, (midi - 69)/12) + "Hz");
+      var freqText = ("" + notenames[midi % 12] + "" + Math.floor(midi/12 - 1) + ", " + 440 * Math.pow(2, (midi - 69)/12) + "Hz");
       $("#notefreq").text(freqText);
   });
   $("#notefreq").css("font-size", "xx-large");
