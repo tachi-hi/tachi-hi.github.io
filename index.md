@@ -8,9 +8,6 @@ title: Hideyuki Tachibana's web
 
 ## Personal Info 
 
-### Job 
-I am currently working as a Post Doc at Meiji University, Tokyo, Japan.
-
 ### Name 
 
 
@@ -29,7 +26,7 @@ The topics I am interested in are ...
 
 + Artificial Intelligence; especially AI that understands music
 + Signal Processing; including Time-frequency Analysis, Compressed Sensing, etc.
-+ Machine Learning; especially Statistical Relarional Learning
++ Machine Learning; especially Statistical Relational Learning
 + Applied Math
 
 If an opportunity offers, I would like to try some other new research fields including ...
