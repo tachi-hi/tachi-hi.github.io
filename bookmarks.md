@@ -32,6 +32,12 @@ title: Bookmarks
 + [ACL Anthology](http://www.aclweb.org/anthology/index.html)
 + [IPDL 特許電子図書館](http://www.ipdl.inpit.go.jp/homepg.ipdl)
 
+## Intellectual Property Law
+
++ [工業所有権法（産業財産権法）逐条解説](http://www.jpo.go.jp/shiryou/hourei/kakokai/cikujyoukaisetu.htm)
++ [基準・便覧・ガイドライン](http://www.jpo.go.jp/seido/houritu_jouyaku/guideline/index.html)
++ [不正競争防止法の概要と改正](http://www.meti.go.jp/policy/economy/chizai/chiteki/unfair-competition.html)
+
 ## Conferences
 
 + [Meeting - 機械学習の「朱鷺の杜Wiki」](http://ibisforest.org/index.php?Meeting)
