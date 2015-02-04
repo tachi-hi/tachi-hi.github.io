@@ -5,10 +5,13 @@ title: Bookmarks
 
 [[Back]](index.html)
 
-## Audio Programming
+## Papers
 
++ [ACL Anthology](http://www.aclweb.org/anthology/index.html)
+
+## Programming
+### Audio
 + [JUCE for VST Plugin Development](http://www.redwoodaudio.net/Tutorials/juce_for_vst_development__intro.html)
-
 
 ## Data
 
@@ -26,14 +29,11 @@ title: Bookmarks
 ### Law
 
 + [法令データ提供システム](http://law.e-gov.go.jp/cgi-bin/idxsearch.cgi)
++ [日本法令外国語訳データベースシステム](http://www.japaneselawtranslation.go.jp/)
 
-## Papers and Patents
+### Intellectual Property Law
 
-+ [ACL Anthology](http://www.aclweb.org/anthology/index.html)
 + [IPDL 特許電子図書館](http://www.ipdl.inpit.go.jp/homepg.ipdl)
-
-## Intellectual Property Law
-
 + [工業所有権法（産業財産権法）逐条解説](http://www.jpo.go.jp/shiryou/hourei/kakokai/cikujyoukaisetu.htm)
 + [基準・便覧・ガイドライン](http://www.jpo.go.jp/seido/houritu_jouyaku/guideline/index.html)
 + [不正競争防止法の概要と改正](http://www.meti.go.jp/policy/economy/chizai/chiteki/unfair-competition.html)
