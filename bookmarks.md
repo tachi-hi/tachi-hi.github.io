@@ -26,7 +26,7 @@ title: Bookmarks
 + LabROSA
     + [Polyphonic Melody Extraction](http://labrosa.ee.columbia.edu/projects/melody/)
 
-### Law
+## Law
 
 + [法令データ提供システム](http://law.e-gov.go.jp/cgi-bin/idxsearch.cgi)
 + [日本法令外国語訳データベースシステム](http://www.japaneselawtranslation.go.jp/)
