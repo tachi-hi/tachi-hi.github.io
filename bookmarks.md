@@ -5,11 +5,19 @@ title: Bookmarks
 
 [[Back]](index.html)
 
-## Papers
+## Papers and Conferences
+
+### Papers
 
 + [ACL Anthology](http://www.aclweb.org/anthology/index.html)
 
+### Conferences
+
++ [Meeting - 機械学習の「朱鷺の杜Wiki」](http://ibisforest.org/index.php?Meeting)
+
+
 ## Programming
+
 ### Audio
 + [JUCE for VST Plugin Development](http://www.redwoodaudio.net/Tutorials/juce_for_vst_development__intro.html)
 
@@ -31,13 +39,20 @@ title: Bookmarks
 + [法令データ提供システム](http://law.e-gov.go.jp/cgi-bin/idxsearch.cgi)
 + [日本法令外国語訳データベースシステム](http://www.japaneselawtranslation.go.jp/)
 
-### Intellectual Property Law
+## Intellectual Property Law
+
+### Patent Search
 
 + [IPDL 特許電子図書館](http://www.ipdl.inpit.go.jp/homepg.ipdl)
++ [Espacenet](http://ep.espacenet.com/)
++ [UPSTO Patent Full-text Database](http://patft.uspto.gov/)
+
+### IPL Portal Site
+
++ [知財ポータルサイト IP Force](http://ipforce.jp/)
+
+### Japan Patent Office
 + [工業所有権法（産業財産権法）逐条解説](http://www.jpo.go.jp/shiryou/hourei/kakokai/cikujyoukaisetu.htm)
 + [基準・便覧・ガイドライン](http://www.jpo.go.jp/seido/houritu_jouyaku/guideline/index.html)
 + [不正競争防止法の概要と改正](http://www.meti.go.jp/policy/economy/chizai/chiteki/unfair-competition.html)
 
-## Conferences
-
-+ [Meeting - 機械学習の「朱鷺の杜Wiki」](http://ibisforest.org/index.php?Meeting)
