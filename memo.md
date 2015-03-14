@@ -36,4 +36,5 @@ a\_{21} & a\_{22} & \dots & a\_{2n} \\\\ \
 a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 \\]
 
-
+## TeX メモ
+文字を消す： \phantom{}
