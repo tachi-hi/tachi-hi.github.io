@@ -11,12 +11,14 @@ title: Publications
 1. **Hideyuki Tachibana**, Nobutaka Ono, Hirokazu Kameoka, Shigeki Sagayama, 
 **"Harmonic Percussive Sound Separation Based on Anisotropic Smoothness of Spectrograms,"** 
 *IEEE/ACM Trans. Audio, Speech and Language Processing*, 
-Vol. 22, No. 12, pp. 2059--2073, Dec. 2014. (to appear) *IF: 2.625*
+Vol. 22, No. 12, pp. 2059--2073, Dec. 2014. *IF: 2.625*
+... [Codes](https://github.com/tachi-hi/HPSS)
 
 2. **Hideyuki Tachibana**, Nobutaka Ono, Shigeki Sagayama, 
 **"Singing Voice Enhancement in Monaural Music Signals Based on Two-stage Harmonic/Percussive Sound Separation on Multiple Resolution Spectrograms,"** 
 *IEEE/ACM Trans. Audio, Speech and Language Processing*, 
 Vol. 22, No. 1, pp. 228--237, Jan., 2014. *IF: 2.625*
+... [Codes](https://github.com/tachi-hi/slidingHPSS)
 
 3. **Hideyuki Tachibana**, Takafumi Suzuki, Kunihiko Mabuchi, 
 **"Estimating Isometric Tension of Finger Muscle Using Needle EMG Signals and the Twitch Contraction Model,"** 
