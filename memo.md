@@ -38,3 +38,7 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 
 ## TeX メモ
 文字を消す： \phantom{}
+
+## ランダムページ
+
+- [Wikipedia Random page](http://ja.wikipedia.org/wiki/Special:Randompage)
