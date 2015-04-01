@@ -77,6 +77,20 @@ $(function(){
   });
   $("#notefreq").css("font-size", "xx-large");
 
+  // BMI ========================================================
+  var bmi_height = 1;
+  var bmi_weight = 1;
+  $("#bmi_height").keyup(function(){
+      bmi_height = $(this).val();
+      bmi = bmi_weight / (bmi_height/100)
+      $("#bmi").text("BMI = " + bmi);
+  });
+  $("#bmi_weight").keyup(function(){
+      bmi_weight = $(this).val();
+      bmi = bmi_weight / (bmi_height/100)
+      $("#bmi").text("BMI = " + bmi);
+  });
+  $("#bmi").css("font-size", "xx-large");
 
 });
 </script>
@@ -117,6 +131,12 @@ MIDI note number: <textarea id = "midi2freq", type="text" cols="3" rows="1" id="
 
 </div></div>
 
+<div id="topic"><h2>BMI</h2><div id="toggle">
+身長: <textarea id = "bmi_height", type="text" cols="3" rows="1" id="input-up"></textarea> cm
+体重: <textarea id = "bmi_weight", type="text" cols="3" rows="1" id="input-up"></textarea> kg
+<span id="bmi">BMI</span>
+
+</div></div>
 
 <div id = "topic"><h2>SSH</h2><div id = "toggle">
 <h3>SSHFS: SSHで入れるディレクトリをローカルマシンにマウント</h3>
