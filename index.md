@@ -24,17 +24,19 @@ title: Hideyuki Tachibana's web
 ## My Research Interests 
 The topics I am interested in are ...
 
-+ Artificial Intelligence; especially AI that understands music
++ Artificial Intelligence
+   + especially AI that understands music.
 + Signal Processing; including Time-frequency Analysis, Compressed Sensing, etc.
-+ Machine Learning; especially Statistical Relational Learning
-+ Applied Math
++ Machine Learning; especially Statistical Relational Learning.
++ Applied Math.
 
 If an opportunity offers, I would like to try some other new research fields including ...
 
-+ Natural Language Processing (especially sentense generation)
-+ Game AI
-+ Legal Expert Systems, Legal Reasoning,
-+ Applications of the Quantum Annealing,
++ Natural Language Processing 
+   + especially Natural Language Generation.
++ Legal Expert Systems, Legal Reasoning, and others
++ Program Synthesis
++ Media Summarization
 
 etc.
 
