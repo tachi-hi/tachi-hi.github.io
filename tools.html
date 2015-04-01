@@ -82,14 +82,12 @@ $(function(){
   var bmi_weight = 1;
   $("#bmi_height").keyup(function(){
       bmi_height = $(this).val();
-      bmi = bmi_weight / (bmi_height/100)
-      $("#bmi").text("BMI = " + bmi);
   });
   $("#bmi_weight").keyup(function(){
       bmi_weight = $(this).val();
-      bmi = bmi_weight / (bmi_height/100)
-      $("#bmi").text("BMI = " + bmi);
   });
+  var bmi = bmi_weight / ((bmi_height/100) * (bmi_height/100))
+  $("#bmi").text("BMI = " + bmi);
   $("#bmi").css("font-size", "xx-large");
 
 });
