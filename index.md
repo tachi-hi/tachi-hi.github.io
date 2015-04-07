@@ -34,8 +34,8 @@ If an opportunity offers, I would like to try some other new research fields inc
 
 + Natural Language Processing 
    + especially Natural Language Generation.
-+ Legal Expert Systems, Legal Reasoning, and others
-+ Program Synthesis
++ Legal Technologies (Legal Expert Systems, Legal Reasoning, and others)
++ Program Synthesis (especially from the specification written in natural language or an image)
 + Media Summarization
 
 etc.
