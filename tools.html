@@ -103,16 +103,18 @@ $(function(){
 	west = (utc - 8) % 24;
 	west_summer = (utc - 7) % 24;
 	hawaii = (utc - 10) % 24;
-	$("#timelist").text(
-		"中央ヨーロッパ（夏時間）：" + cet_summer + "時\n" +
-		"中央ヨーロッパ：" + cet + "時\n" +
-		"世界標準時：" + utc + "時\n" +
-		"アメリカ東海岸（夏時間）：" + east_summer + "時\n" +
-		"アメリカ東海岸：" + east + "時\n" +
-		"アメリカ西海岸（夏時間）：" + west_summer + "時\n" +
-		"アメリカ西海岸：" + west + "時<br/>" +
-		"ハワイ：" + hawaii + "時\n"
-	);
+	output = 
+		"<table>" + 
+		"<tr><td>中央ヨーロッパ（夏時間）</td><td>" + cet_summer + "時</td></tr>" +
+		"<tr><td>中央ヨーロッパ</td><td>" + cet + "時</td></tr>" +
+		"<tr><td>世界標準時</td><td>" + utc + "時</td></tr>" +
+		"<tr><td>アメリカ東海岸（夏時間）</td><td>" + east_summer + "時</td></tr>" +
+		"<tr><td>アメリカ東海岸</td><td>" + east + "時</td></tr>" +
+		"<tr><td>アメリカ西海岸（夏時間）</td><td>" + west_summer + "時</td></tr>" +
+		"<tr><td>アメリカ西海岸</td><td>" + west + "時</td></tr>" +
+		"<tr><td>ハワイ</td><td>" + hawaii + "時</td></tr>" +
+		"</table>";
+	$("#timelist").html(output);
   });
 });
 </script>
