@@ -92,6 +92,28 @@ $(function(){
   });
   $("#bmi").css("font-size", "xx-large");
 
+  // JSTtoWorldTime ==============================================
+  $("#jst_to_worldtime").keyup(function(){
+  	jst = $(this).val();
+  	utc = (jst - 9) % 24;
+	cet = (utc + 1) % 24;
+	cet_summer = (utc + 2) %24;
+	east = (utc - 5) % 24;
+	east_summer = (utc - 4) % 24;
+	west = (utc - 8) % 24;
+	west_summer = (utc - 7) % 24;
+	hawaii = (utc - 10) % 24;
+	$("#timelist").text(
+		"世界標準時：" + utc + "時<br/>" +
+		"中央ヨーロッパ：" + cet + "時<br/>" +
+		"中央ヨーロッパ（夏時間）：" + cet_summer + "時<br/>" +
+		"アメリカ東海岸：" + east + "時<br/>" +
+		"アメリカ東海岸（夏時間）：" + east_summer + "時<br/>" +
+		"アメリカ西海岸：" + west + "時<br/>" +
+		"アメリカ西海岸（夏時間）：" + west_summer + "時<br/>" +
+		"ハワイ：" + hawaii + "時<br/>"
+	);
+  }
 });
 </script>
 </head>
@@ -135,6 +157,12 @@ MIDI note number: <textarea id = "midi2freq", type="text" cols="3" rows="1" id="
 身長: <textarea id = "bmi_height", type="text" cols="3" rows="1" id="input-up"></textarea> cm
 体重: <textarea id = "bmi_weight", type="text" cols="3" rows="1" id="input-up"></textarea> kg
 <span id="bmi">BMI</span>
+
+</div></div>
+
+<div id="topic"><h2>世界時計</h2><div id="toggle">
+日本時間：<textarea id = "jst_to_worldtime", type="text" cols="3" rows="1" id="input-up"></textarea> 時間</br>
+<span id="timelist">世界の時刻</span>
 
 </div></div>
 
