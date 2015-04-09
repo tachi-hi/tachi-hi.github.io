@@ -96,13 +96,13 @@ $(function(){
   $("#jst_to_worldtime").keyup(function(){
   	jst = $(this).val();
   	utc = (jst - 9 + 24) % 24;
-	cet = (utc + 1) % 24;
-	cet_summer = (utc + 2) %24;
-	east = (utc - 5) % 24;
-	east_summer = (utc - 4) % 24;
-	west = (utc - 8) % 24;
-	west_summer = (utc - 7) % 24;
-	hawaii = (utc - 10) % 24;
+	cet = (utc + 1 + 24) % 24;
+	cet_summer = (utc + 2 + 24) %24;
+	east = (utc - 5 + 24) % 24;
+	east_summer = (utc - 4 + 24) % 24;
+	west = (utc - 8 + 24) % 24;
+	west_summer = (utc - 7 + 24) % 24;
+	hawaii = (utc - 10 + 24) % 24;
 	output = 
 		"<table>" + 
 		"<tr><td>中央ヨーロッパ（夏時間）</td><td>" + cet_summer + "時</td></tr>" +
