@@ -34,6 +34,10 @@ title: Bookmarks
 + LabROSA
     + [Polyphonic Melody Extraction](http://labrosa.ee.columbia.edu/projects/melody/)
 
+
+## Books
++ [Paradigms of Artificial Intelligence Programming: Case Studies in Common Lisp](http://norvig.com/paip.html)
+
 ## Law
 
 + [法令データ提供システム](http://law.e-gov.go.jp/cgi-bin/idxsearch.cgi)
