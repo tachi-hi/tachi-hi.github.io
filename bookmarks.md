@@ -9,6 +9,7 @@ title: Bookmarks
 
 ### Papers
 
++ [arXiv (mirror)](http://jp.arxiv.org/)
 + [ACL Anthology](http://www.aclweb.org/anthology/index.html)
 
 ### Conferences
