@@ -9,6 +9,7 @@ title: Bookmarks
 
 ### Papers
 
++ [Google Scholar](https://scholar.google.co.jp/)
 + [arXiv (mirror)](http://jp.arxiv.org/)
 + [ACL Anthology](http://www.aclweb.org/anthology/index.html)
 
