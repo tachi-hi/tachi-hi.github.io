@@ -77,6 +77,20 @@ $(function(){
   });
   $("#notefreq").css("font-size", "xx-large");
 
+  // BPS and n_beats to time ========================================================
+  var bps;
+  var n_beats;
+  function bps_and_n_beats_2_time(bps, n_beats){ return (60.0 / bps * n_beats);}
+  $("#bps").keyup(function(){
+      var bps = $(this).val();
+      $("#bps_nbeats_2_time").text( bps_and_n_beats_2_time(bps, n_beats) + " 秒");
+  });
+  $("#n_beats").keyup(function(){
+      var n_beats = $(this).val();
+      $("#bps_nbeats_2_time").text( bps_and_n_beats_2_time(bps, n_beats) + " 秒");
+  });
+  $("#bps_nbeats2_time").css("font-size", "xx-large");
+
   // BMI ========================================================
   var bmi_height = 1;
   var bmi_weight = 1;
@@ -155,6 +169,12 @@ MIDI note number: <textarea id = "midi2freq", type="text" cols="3" rows="1" id="
 
 </div></div>
 
+<div id="topic"><h2>BPS and Beats to Time</h2><div id="toggle">
+BPS (beats per second): <textarea id = "bps", type="text" cols="3" rows="1" id="input-up"></textarea>
+Beats: <textarea id = "n_beats", type="text" cols="3" rows="1" id="input-up"></textarea>
+<span id="bps_nbeats_2_time">時間</span>
+
+</div></div>
 <div id="topic"><h2>BMI</h2><div id="toggle">
 身長: <textarea id = "bmi_height", type="text" cols="3" rows="1" id="input-up"></textarea> cm
 体重: <textarea id = "bmi_weight", type="text" cols="3" rows="1" id="input-up"></textarea> kg
