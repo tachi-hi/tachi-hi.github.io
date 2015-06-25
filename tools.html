@@ -82,14 +82,14 @@ $(function(){
   var n_beats;
   function bps_and_n_beats_2_time(bps, n_beats){ return (60.0 / bps * n_beats);}
   $("#bps").keyup(function(){
-      var bps = $(this).val();
+      bps = $(this).val();
       $("#bps_nbeats_2_time").text( bps_and_n_beats_2_time(bps, n_beats) + " 秒");
   });
   $("#n_beats").keyup(function(){
-      var n_beats = $(this).val();
+      n_beats = $(this).val();
       $("#bps_nbeats_2_time").text( bps_and_n_beats_2_time(bps, n_beats) + " 秒");
   });
-  $("#bps_nbeats2_time").css("font-size", "xx-large");
+  $("#bps_nbeats_2_time").css("font-size", "xx-large");
 
   // BMI ========================================================
   var bmi_height = 1;
