@@ -66,3 +66,7 @@ title: Bookmarks
 
 + [職業性ストレス簡易調査票 - 東京大学](https://mental.m.u-tokyo.ac.jp/jstress/BJSQ/)
 
+## Text
+
++ [東京外国語大学言語モジュール](http://www.coelang.tufs.ac.jp/mt/)
+
