@@ -44,3 +44,13 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 ## ランダムページ
 
 - [Wikipedia Random page](http://ja.wikipedia.org/wiki/Special:Randompage)
+
+## 忘れやすいLinuxコマンド
+### ps, kill
+
+    ps
+    kill -9 <process number>
+
+### nohup
+
+
