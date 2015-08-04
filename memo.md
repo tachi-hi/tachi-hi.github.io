@@ -51,6 +51,6 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
     ps
     kill -9 <process number>
 
-### nohup
+### nohup系
 
-
+`nohup` `bg` `jobs` `disown`
