@@ -54,3 +54,13 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 ### nohup系
 
 `nohup` `bg` `jobs` `disown`
+
+### wc 系
+
+ファイルの行数を取得するときは
+
+    L=`wc -l file.txt`
+
+ではだめで
+
+    L=`cat file.txt | wc -l`
