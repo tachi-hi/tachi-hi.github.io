@@ -46,6 +46,7 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 - [Wikipedia Random page](http://ja.wikipedia.org/wiki/Special:Randompage)
 
 ## 忘れやすいLinuxコマンド
+
 ### ps, kill
 
     ps
@@ -64,3 +65,7 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 ではだめで
 
     L=`cat file.txt | wc -l`
+
+## git
+
+    git commit --author="name <mail@address>"
