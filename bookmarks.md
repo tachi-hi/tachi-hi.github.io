@@ -7,7 +7,7 @@ title: Bookmarks
 
 ## AI
 
-+ http://deeplearning.jp/
++ [deeplearning.jp](http://deeplearning.jp/)
 
 
 ## Papers and Conferences
@@ -31,6 +31,9 @@ title: Bookmarks
 ## Data
 
 + [情報学研究データリポジトリ データセット一覧](http://www.nii.ac.jp/cscenter/idr/datalist.html)
++ Wikipedia dump
+    + [Japanese](http://dumps.wikimedia.org/jawiki/)
+    + [English](http://dumps.wikimedia.org/enwiki/)
 
 ### Music
 
