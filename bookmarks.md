@@ -34,6 +34,8 @@ title: Bookmarks
 + Wikipedia dump
     + [Japanese](http://dumps.wikimedia.org/jawiki/)
     + [English](http://dumps.wikimedia.org/enwiki/)
++ [Category:Corpora, Wikipedia](https://en.wikipedia.org/wiki/Category:Corpora)
+    + [English](https://en.wikipedia.org/wiki/Category:English_Corpora)
 
 ### Music
 
