@@ -130,7 +130,86 @@ $(function(){
 		"</table>";
 	$("#timelist").html(output);
   });
+  // Count down timer ==============================================
+  $("#jst_to_worldtime").keyup(function(){
+  	jst = $(this).val();
+  	utc = (jst - 9 + 24) % 24;
+	cet = (utc + 1 + 24) % 24;
+	cet_summer = (utc + 2 + 24) %24;
+	east = (utc - 5 + 24) % 24;
+	east_summer = (utc - 4 + 24) % 24;
+	west = (utc - 8 + 24) % 24;
+	west_summer = (utc - 7 + 24) % 24;
+	hawaii = (utc - 10 + 24) % 24;
+	output = 
+		"<table>" + 
+		"<tr><td>中央ヨーロッパ（夏時間）</td><td>" + cet_summer + "時</td></tr>" +
+		"<tr><td>中央ヨーロッパ</td><td>" + cet + "時</td></tr>" +
+		"<tr><td>世界標準時</td><td>" + utc + "時</td></tr>" +
+		"<tr><td>アメリカ東海岸（夏時間）</td><td>" + east_summer + "時</td></tr>" +
+		"<tr><td>アメリカ東海岸</td><td>" + east + "時</td></tr>" +
+		"<tr><td>アメリカ西海岸（夏時間）</td><td>" + west_summer + "時</td></tr>" +
+		"<tr><td>アメリカ西海岸</td><td>" + west + "時</td></tr>" +
+		"<tr><td>ハワイ</td><td>" + hawaii + "時</td></tr>" +
+		"</table>";
+	$("#timelist").html(output);
+  });
+  // Count down timer ==============================================
+    countDown();
 });
+
+  function countDown() {  
+	function getDiffYearMonth(end_){
+		var now = new Date(); var end = new Date(end_);
+		var yearDiff = end.getFullYear() - now.getFullYear(); 
+		var monthDiff = end.getMonth() - now.getMonth();
+		tmp = monthDiff + yearDiff * 12; 
+		yearDiff = Math.floor( tmp / 12 ); 
+		monthDiff = tmp % 12;
+		return((yearDiff != 0 ? (yearDiff + "年 ") : "") + monthDiff + "ヶ月");
+	}
+	function getDiffYearDays(end_){ // This may not work in the leap year
+		var now = new Date(); var end = new Date(end_);
+		var yearDiff = end.getFullYear() - now.getFullYear(); 
+		end.setFullYear(now.getFullYear());
+		var daysDiff = Math.ceil( (end - now) / (1000 * 60 * 60 * 24) ) ;
+		tmp = daysDiff + yearDiff * 365; 
+		yearDiff = Math.floor( tmp / 365 ); daysDiff = tmp % 365;
+		return((yearDiff != 0 ? (yearDiff + "年 ") : "") + daysDiff + "日");
+	}
+	function getRaigetsu(){
+		var now = new Date();
+		return((now.getMonth() + 2) + "/1/" + now.getFullYear());
+	}
+	function getNenmatsu(){
+		var now = new Date();
+		return("12/31/" + now.getFullYear());
+	}
+	function getNendomatsu(){
+		var now = new Date();
+		return("3/31/" + (now.getFullYear() + 1));
+	}
+  output = "<table>" +
+	   "<tr><td>来月1日まで </td><td>" + getDiffYearDays(getRaigetsu()) + "</td></tr>" + 
+	   "<tr><td>大晦日まで </td><td>" + getDiffYearDays(getNenmatsu()) + "</td></tr>" + 
+	   "<tr><td>年度末まで </td><td>" + getDiffYearDays(getNendomatsu()) + "</td></tr>" +
+	   "<tr><td>2020年7月24日（東京オリンピック開会）まで </td><td>" + getDiffYearDays("7/24/2020") + "</td></tr>" + 
+	   "<tr><td>2022年11月21日（カタールW杯）まで </td><td>" + getDiffYearDays("11/21/2022") + "</td></tr>"  +
+   	   "<tr><td>40歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2025") + "</td></tr>" + 
+	   "<tr><td>2027年1月1日（リニア開通の年）まで </td><td>" + getDiffYearDays("1/1/2027") + "</td></tr>" + 
+   	   "<tr><td>50歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2035") + "</td></tr>" + 
+           "<tr><td>2035年9月21日（皆既日食）まで </td><td>" + getDiffYearDays("9/21/2035") + "</td></tr>" + 
+           "<tr><td>2038年1月19日（32bit time_tがオーバーフロー）まで </td><td>" + getDiffYearDays("1/19/2038") + "</td></tr>" + 
+           "<tr><td>2041年10月25日（金環食）まで </td><td>" + getDiffYearDays("10/25/2041") + "</td></tr>" +
+   	   "<tr><td>60歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2045") + "</td></tr>" + 
+           "<tr><td>2051年3月31日（65歳定年）まで </td><td>" + getDiffYearDays("3/31/2051") + "</td></tr>" + 
+           "<tr><td>2056年3月31日（70歳定年）まで </td><td>" + getDiffYearDays("3/31/2056") + "</td></tr>" +
+           "<tr><td>2061年7月28日（ハレー彗星地球接近）まで </td><td>" + getDiffYearDays("7/28/2061") + "</td></tr>" +
+           "<tr><td>2064年（2015年時点での平均余命から見積もった寿命）まで </td><td>" + getDiffYearDays("7/10/2064") + "</td></tr>" +
+	   "</table>";
+  $("#TimeLeft").html(output);
+  setTimeout('countDown()', 1000);
+  }
 </script>
 </head>
 
@@ -186,6 +265,11 @@ Beats: <textarea id = "n_beats", type="text" cols="3" rows="1" id="input-up"></t
 日本時間：<textarea id = "jst_to_worldtime", type="text" cols="3" rows="1" id="input-up"></textarea> 時</br>
 <span id="timelist">世界の時刻</span>
 
+</div></div>
+
+<div id="topic"><h2>カウントダウンタイマー</h2><div id="toggle">
+  <span>（うるう年などは正確には考慮していない目安の日数）</span>
+  <span id="TimeLeft"></span>
 </div></div>
 
 <div id = "topic"><h2>SSH</h2><div id = "toggle">
