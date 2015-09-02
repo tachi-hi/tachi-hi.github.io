@@ -16,6 +16,9 @@ title: Bookmarks
 
 + [Google Scholar](https://scholar.google.co.jp/)
 + [arXiv (mirror)](http://jp.arxiv.org/)
+    + [AI](http://jp.arxiv.org/list/cs.AI/recent)
+    + [CV](http://jp.arxiv.org/list/cs.CV/recent)
+    + [Formal Language](http://jp.arxiv.org/list/cs.FL/recent)
 + [ACL Anthology](http://www.aclweb.org/anthology/index.html)
 
 ### Conferences
