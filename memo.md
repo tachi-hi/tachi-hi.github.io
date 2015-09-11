@@ -56,6 +56,14 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 
 `nohup` `bg` `jobs` `disown`
 
+### screen デタッチ
+
+    screen 
+    . do_something
+    Ctrl-a d
+    screen -ls
+    screen -r 12345
+
 ### wc 系
 
 ファイルの行数を取得するときは
