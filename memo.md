@@ -74,6 +74,11 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 
     L=`cat file.txt | wc -l`
 
+### ls オプション
+
+    ls -ltr
+    ls -lha
+
 ## git
 
     git commit --author="name <mail@address>"
