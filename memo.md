@@ -83,7 +83,10 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 
     git commit --author="name <mail@address>"
 
-# 事務
+## 事務
 
-定期健康診断
++ 確定申告
++ 年金
++ 保険
+    + 定期健康診断
 
