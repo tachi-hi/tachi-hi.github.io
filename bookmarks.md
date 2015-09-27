@@ -88,5 +88,8 @@ title: Bookmarks
 
 ## Text
 
++ [青空文庫](http://www.aozora.gr.jp/)
 + [東京外国語大学言語モジュール](http://www.coelang.tufs.ac.jp/mt/)
+
+
 
