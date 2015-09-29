@@ -94,4 +94,4 @@ title: Bookmarks
 ## TeX
 
 + [TeXample](http://www.texample.net/)
-
++ [行列](http://www.biwako.shiga-u.ac.jp/sensei/kumazawa/tex/form012.html)
