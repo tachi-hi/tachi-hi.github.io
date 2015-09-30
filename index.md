@@ -58,3 +58,6 @@ More detailed info on me and my works will be found at the following sites.
 + [Memorandum](memo.html)
 + [Tools and memo](tools.html)
 + [Bookmarks](bookmarks.html)
++ Cheet sheet
+    + [Emacs](cheet_sheets/emacs.html)
+
