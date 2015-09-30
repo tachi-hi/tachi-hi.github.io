@@ -3,7 +3,7 @@ layout: layout
 title: emacs cheet sheet
 ---
 
-[[Back]](index.html)
+[[Back]](../index.html)
 
 # Emacs Cheet Sheet
 
