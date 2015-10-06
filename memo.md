@@ -94,4 +94,8 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 
 + nvidia-*は不要（公式から.debを落として`apt-get update`, `apt-get install cuda`）
 + リブートする
++ PATHを通す
 
+
+     export PATH=/usr/local/cuda-7.0/bin:$PATH
+     export LD_LIBRARY_PATH=/usr/local/cuda-7.0/lib64:$LD_LIBRARY_PATH
