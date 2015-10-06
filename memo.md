@@ -90,3 +90,8 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 + 保険
     + 定期健康診断
 
+## CUDA 罠
+
++ nvidia-*は不要（公式から.debを落として`apt-get update`, `apt-get install cuda`）
++ リブートする
+
