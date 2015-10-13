@@ -83,6 +83,20 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 
     git commit --author="name <mail@address>"
 
+## apt-get updateがうまくいかない
+
+apt-get updateでi386とamd64の両方を取得しようとしていたのでi386を削除
+
+    dpkg --remove-architecture i386
+
+`/etc/apt/sources.list`は何度もアップデートを重ねて長年使いこむと徐々に不要なものがたまってゆく（？）
+
+## lang
+
+
+    export LANG=en
+    export LANG=ja_JP.utf8
+
 ## 事務
 
 + 確定申告
