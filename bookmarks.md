@@ -32,6 +32,9 @@ title: Bookmarks
 
 + [Meeting - 機械学習の「朱鷺の杜Wiki」](http://ibisforest.org/index.php?Meeting)
 
+## Evaluation Events, Contests, Competitions
+
++ <http://www.music-ir.org/mirex/wiki/MIREX_HOME>
 
 ## Programming
 
