@@ -82,6 +82,12 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 ## git
 
     git commit --author="name <mail@address>"
+    git stash
+    git stash list
+    git stash apply
+    git branch
+    git checkout
+    git reset --soft HEAD^
 
 ## apt-get updateがうまくいかない
 
