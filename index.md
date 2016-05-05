@@ -61,4 +61,4 @@ More detailed info on me and my works will be found at the following sites.
 + [Bookmarks](bookmarks.html)
 + Cheet sheet
     + [Emacs](cheet_sheets/emacs.html)
-
+    + [Cygwin](cheet_sheets/cygwin.html)
