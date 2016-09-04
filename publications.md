@@ -9,8 +9,7 @@ title: Publications
 
 ## Journal
 1. **Hideyuki Tachibana**, Yu Mizuno, Nobutaka Ono, Shigeki Sagayama,
-**"A Real-time Audio-to-audio Karaoke Generation System for Monaural Recordings Based on Singing Voice Suppression and Key Conversion Techniques"**,
-2016 (accepted) ... [Codes](https://github.com/tachi-hi/euterpe), [subsidiary codes](https://github.com/tachi-hi/temperament4fft)
+**"A Real-time Audio-to-audio Karaoke Generation System for Monaural Recordings Based on Singing Voice Suppression and Key Conversion Techniques"**, Journal of Information Processing, Vol. 24, No. 3, pp. 470--482, May. 2016 ... [Codes](https://github.com/tachi-hi/euterpe), [subsidiary codes](https://github.com/tachi-hi/temperament4fft)
 
 1. **Hideyuki Tachibana**, Nobutaka Ono, Hirokazu Kameoka, Shigeki Sagayama, 
 **"Harmonic Percussive Sound Separation Based on Anisotropic Smoothness of Spectrograms,"** 
