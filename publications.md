@@ -9,19 +9,20 @@ title: Publications
 
 ## Journal
 1. **Hideyuki Tachibana**, Yu Mizuno, Nobutaka Ono, Shigeki Sagayama,
-**"A Real-time Audio-to-audio Karaoke Generation System for Monaural Recordings Based on Singing Voice Suppression and Key Conversion Techniques"**, Journal of Information Processing, Vol. 24, No. 3, pp. 470--482, May. 2016 ... [Codes](https://github.com/tachi-hi/euterpe), [subsidiary codes](https://github.com/tachi-hi/temperament4fft)
+**"A Real-time Audio-to-audio Karaoke Generation System for Monaural Recordings Based on Singing Voice Suppression and Key Conversion Techniques"**, Journal of Information Processing, Vol. 24, No. 3, pp. 470--482, May. 2016 *IF : n/a*... [[Article](http://id.nii.ac.jp/1001/00160331/)], [[Supplementary Material (Video Demo)](http://id.nii.ac.jp/1012/00000006/)],
+[[Codes](https://github.com/tachi-hi/euterpe)], [[Subsidiary codes](https://github.com/tachi-hi/temperament4fft)]
 
 1. **Hideyuki Tachibana**, Nobutaka Ono, Hirokazu Kameoka, Shigeki Sagayama, 
 **"Harmonic Percussive Sound Separation Based on Anisotropic Smoothness of Spectrograms,"** 
 *IEEE/ACM Trans. Audio, Speech and Language Processing*, 
 Vol. 22, No. 12, pp. 2059--2073, Dec. 2014. *IF: 2.625*
-... [Codes](https://github.com/tachi-hi/HPSS)
+... [[Codes](https://github.com/tachi-hi/HPSS)]
 
 1. **Hideyuki Tachibana**, Nobutaka Ono, Shigeki Sagayama, 
 **"Singing Voice Enhancement in Monaural Music Signals Based on Two-stage Harmonic/Percussive Sound Separation on Multiple Resolution Spectrograms,"** 
 *IEEE/ACM Trans. Audio, Speech and Language Processing*, 
 Vol. 22, No. 1, pp. 228--237, Jan., 2014. *IF: 2.625*
-... [Codes](https://github.com/tachi-hi/slidingHPSS)
+... [[Codes](https://github.com/tachi-hi/slidingHPSS)]
 
 1. **Hideyuki Tachibana**, Takafumi Suzuki, Kunihiko Mabuchi, 
 **"Estimating Isometric Tension of Finger Muscle Using Needle EMG Signals and the Twitch Contraction Model,"** 
