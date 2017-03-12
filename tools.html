@@ -16,7 +16,7 @@ $(function(){
       $("#wcharCount").text((len != 0 ? len : 0)+"文字");
 
       var words = $(this).val().split(/[\s,]+/);
-      len = words.length; 
+      len = words.length;
       len = (len > 0 && words[len-1].length == 0) ? (len - 1) : len;
       $("#wordCount").text((len != 0 ? len : 0)+"単語");
   });
@@ -91,6 +91,15 @@ $(function(){
   });
   $("#bps_nbeats_2_time").css("font-size", "xx-large");
 
+  // 時間を月額に換算 ========================================================
+  var cost_usd;
+  function hourly_cost_2_monthly(cost_usd){ return (cost_usd * 24 * 31) * 120;}
+  $("#cost_usd").keyup(function(){
+      cost_usd = $(this).val();
+      $("#hourly_cost_2_monthly").text( hourly_cost_2_monthly(cost_usd) + " 円/月（1ドル=120円換算）");
+  });
+  $("#hourly_cost_2_monthly").css("font-size", "xx-large");
+
   // BMI ========================================================
   var bmi_height = 1;
   var bmi_weight = 1;
@@ -117,8 +126,8 @@ $(function(){
 	west = (utc - 8 + 24) % 24;
 	west_summer = (utc - 7 + 24) % 24;
 	hawaii = (utc - 10 + 24) % 24;
-	output = 
-		"<table>" + 
+	output =
+		"<table>" +
 		"<tr><td>中央ヨーロッパ（夏時間）</td><td>" + cet_summer + "時</td></tr>" +
 		"<tr><td>中央ヨーロッパ</td><td>" + cet + "時</td></tr>" +
 		"<tr><td>世界標準時</td><td>" + utc + "時</td></tr>" +
@@ -141,8 +150,8 @@ $(function(){
 	west = (utc - 8 + 24) % 24;
 	west_summer = (utc - 7 + 24) % 24;
 	hawaii = (utc - 10 + 24) % 24;
-	output = 
-		"<table>" + 
+	output =
+		"<table>" +
 		"<tr><td>中央ヨーロッパ（夏時間）</td><td>" + cet_summer + "時</td></tr>" +
 		"<tr><td>中央ヨーロッパ</td><td>" + cet + "時</td></tr>" +
 		"<tr><td>世界標準時</td><td>" + utc + "時</td></tr>" +
@@ -158,22 +167,22 @@ $(function(){
     countDown();
 });
 
-  function countDown() {  
+  function countDown() {
 	function getDiffYearMonth(end_){
 		var now = new Date(); var end = new Date(end_);
-		var yearDiff = end.getFullYear() - now.getFullYear(); 
+		var yearDiff = end.getFullYear() - now.getFullYear();
 		var monthDiff = end.getMonth() - now.getMonth();
-		tmp = monthDiff + yearDiff * 12; 
-		yearDiff = Math.floor( tmp / 12 ); 
+		tmp = monthDiff + yearDiff * 12;
+		yearDiff = Math.floor( tmp / 12 );
 		monthDiff = tmp % 12;
 		return((yearDiff != 0 ? (yearDiff + "年 ") : "") + monthDiff + "ヶ月");
 	}
 	function getDiffYearDays(end_){ // This may not work in the leap year
 		var now = new Date(); var end = new Date(end_);
-		var yearDiff = end.getFullYear() - now.getFullYear(); 
+		var yearDiff = end.getFullYear() - now.getFullYear();
 		end.setFullYear(now.getFullYear());
 		var daysDiff = Math.ceil( (end - now) / (1000 * 60 * 60 * 24) ) ;
-		tmp = daysDiff + yearDiff * 365; 
+		tmp = daysDiff + yearDiff * 365;
 		yearDiff = Math.floor( tmp / 365 ); daysDiff = tmp % 365;
 		return((yearDiff != 0 ? (yearDiff + "年 ") : "") + daysDiff + "日");
 	}
@@ -190,19 +199,19 @@ $(function(){
 		return("3/31/" + (now.getFullYear() + 1));
 	}
   output = "<table>" +
-	   "<tr><td>来月1日まで </td><td>" + getDiffYearDays(getRaigetsu()) + "</td></tr>" + 
-	   "<tr><td>大晦日まで </td><td>" + getDiffYearDays(getNenmatsu()) + "</td></tr>" + 
+	   "<tr><td>来月1日まで </td><td>" + getDiffYearDays(getRaigetsu()) + "</td></tr>" +
+	   "<tr><td>大晦日まで </td><td>" + getDiffYearDays(getNenmatsu()) + "</td></tr>" +
 	   "<tr><td>年度末まで </td><td>" + getDiffYearDays(getNendomatsu()) + "</td></tr>" +
-	   "<tr><td>2020年7月24日（東京オリンピック開会）まで </td><td>" + getDiffYearDays("7/24/2020") + "</td></tr>" + 
+	   "<tr><td>2020年7月24日（東京オリンピック開会）まで </td><td>" + getDiffYearDays("7/24/2020") + "</td></tr>" +
 	   "<tr><td>2022年11月21日（カタールW杯）まで </td><td>" + getDiffYearDays("11/21/2022") + "</td></tr>"  +
-   	   "<tr><td>40歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2025") + "</td></tr>" + 
-	   "<tr><td>2027年1月1日（リニア開通の年）まで </td><td>" + getDiffYearDays("1/1/2027") + "</td></tr>" + 
-   	   "<tr><td>50歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2035") + "</td></tr>" + 
-           "<tr><td>2035年9月21日（皆既日食）まで </td><td>" + getDiffYearDays("9/21/2035") + "</td></tr>" + 
-           "<tr><td>2038年1月19日（32bit time_tがオーバーフロー）まで </td><td>" + getDiffYearDays("1/19/2038") + "</td></tr>" + 
+   	   "<tr><td>40歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2025") + "</td></tr>" +
+	   "<tr><td>2027年1月1日（リニア開通の年）まで </td><td>" + getDiffYearDays("1/1/2027") + "</td></tr>" +
+   	   "<tr><td>50歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2035") + "</td></tr>" +
+           "<tr><td>2035年9月21日（皆既日食）まで </td><td>" + getDiffYearDays("9/21/2035") + "</td></tr>" +
+           "<tr><td>2038年1月19日（32bit time_tがオーバーフロー）まで </td><td>" + getDiffYearDays("1/19/2038") + "</td></tr>" +
            "<tr><td>2041年10月25日（金環食）まで </td><td>" + getDiffYearDays("10/25/2041") + "</td></tr>" +
-   	   "<tr><td>60歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2045") + "</td></tr>" + 
-           "<tr><td>2051年3月31日（65歳定年）まで </td><td>" + getDiffYearDays("3/31/2051") + "</td></tr>" + 
+   	   "<tr><td>60歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2045") + "</td></tr>" +
+           "<tr><td>2051年3月31日（65歳定年）まで </td><td>" + getDiffYearDays("3/31/2051") + "</td></tr>" +
            "<tr><td>2056年3月31日（70歳定年）まで </td><td>" + getDiffYearDays("3/31/2056") + "</td></tr>" +
            "<tr><td>2061年7月28日（ハレー彗星地球接近）まで </td><td>" + getDiffYearDays("7/28/2061") + "</td></tr>" +
            "<tr><td>2064年（2015年時点での平均余命から見積もった寿命）まで </td><td>" + getDiffYearDays("7/10/2064") + "</td></tr>" +
@@ -224,8 +233,8 @@ $(function(){
 <h3>今すぐこの場で（簡易版）</h3>
 <textarea id = "moji_count", type="text" cols="150" rows="10" id="input-up"></textarea>
 <div>
-  <span id="wcharCount">0文字</span> 
-  <span id="wordCount">0単語</span> 
+  <span id="wcharCount">0文字</span>
+  <span id="wordCount">0単語</span>
 </div>
 
 <h3>wc</h3>
@@ -245,6 +254,13 @@ wc --words # 単語数
 <div id="topic"><h2>MIDI to 周波数</h2><div id="toggle">
 MIDI note number: <textarea id = "midi2freq", type="text" cols="3" rows="1" id="input-up"></textarea>
 <span id="notefreq">音名・周波数</span>
+
+</div></div>
+
+<div id="topic"><h2>$/h → ￥/mon </h2><div id="toggle">
+<textarea id = "cost_usd", type="text" cols="3" rows="1" id="input-up"></textarea>ドル/時間　→　
+<span id="hourly_cost_2_monthly">料金</span>
+注：1セント/時 ≒ 900円/月 < 1000円/月
 
 </div></div>
 
@@ -416,11 +432,11 @@ hg clone ssh://user@host:/path
 
 <h3>最新の番号のファイルを探す</h3>
 <pre>
-data_v20080821.txt data_v20101125.txt 
+data_v20080821.txt data_v20101125.txt
 </pre>
 というような方式でファイルを管理しているときの最新版の番号の抽出
 <pre>
- ls *.txt | sed -e 's/.*_v\([0-9]*\).*/\1/g' | sort -n | tail -n 1 
+ ls *.txt | sed -e 's/.*_v\([0-9]*\).*/\1/g' | sort -n | tail -n 1
 </pre>
 
 <pre>
@@ -566,6 +582,5 @@ gprof program.out
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 <hr>
 <a href="index.html">戻る</a>
-<span id="lastUpdate"></span> 
+<span id="lastUpdate"></span>
 </body>
-
