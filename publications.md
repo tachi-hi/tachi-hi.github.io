@@ -5,6 +5,8 @@ title: Publications
 
 [[Back]](index.html)
 
+- See also [Google Scholar](http://scholar.google.co.jp/citations?user=wAXtttwAAAAJ).
+
 # Publications
 
 ## Journal
@@ -12,36 +14,36 @@ title: Publications
 **"A Real-time Audio-to-audio Karaoke Generation System for Monaural Recordings Based on Singing Voice Suppression and Key Conversion Techniques"**, Journal of Information Processing, Vol. 24, No. 3, pp. 470--482, May. 2016 *IF : n/a*... [[Article](http://id.nii.ac.jp/1001/00160331/)], [[Supplementary Material (Video Demo)](http://id.nii.ac.jp/1012/00000006/)],
 [[Codes](https://github.com/tachi-hi/euterpe)], [[Subsidiary codes](https://github.com/tachi-hi/temperament4fft)]
 
-1. **Hideyuki Tachibana**, Nobutaka Ono, Hirokazu Kameoka, Shigeki Sagayama, 
-**"Harmonic Percussive Sound Separation Based on Anisotropic Smoothness of Spectrograms,"** 
-*IEEE/ACM Trans. Audio, Speech and Language Processing*, 
+1. **Hideyuki Tachibana**, Nobutaka Ono, Hirokazu Kameoka, Shigeki Sagayama,
+**"Harmonic Percussive Sound Separation Based on Anisotropic Smoothness of Spectrograms,"**
+*IEEE/ACM Trans. Audio, Speech and Language Processing*,
 Vol. 22, No. 12, pp. 2059--2073, Dec. 2014. *IF: 2.625*
 ... [[Codes](https://github.com/tachi-hi/HPSS)]
 
-1. **Hideyuki Tachibana**, Nobutaka Ono, Shigeki Sagayama, 
-**"Singing Voice Enhancement in Monaural Music Signals Based on Two-stage Harmonic/Percussive Sound Separation on Multiple Resolution Spectrograms,"** 
-*IEEE/ACM Trans. Audio, Speech and Language Processing*, 
+1. **Hideyuki Tachibana**, Nobutaka Ono, Shigeki Sagayama,
+**"Singing Voice Enhancement in Monaural Music Signals Based on Two-stage Harmonic/Percussive Sound Separation on Multiple Resolution Spectrograms,"**
+*IEEE/ACM Trans. Audio, Speech and Language Processing*,
 Vol. 22, No. 1, pp. 228--237, Jan., 2014. *IF: 2.625*
 ... [[Codes](https://github.com/tachi-hi/slidingHPSS)]
 
-1. **Hideyuki Tachibana**, Takafumi Suzuki, Kunihiko Mabuchi, 
-**"Estimating Isometric Tension of Finger Muscle Using Needle EMG Signals and the Twitch Contraction Model,"** 
+1. **Hideyuki Tachibana**, Takafumi Suzuki, Kunihiko Mabuchi,
+**"Estimating Isometric Tension of Finger Muscle Using Needle EMG Signals and the Twitch Contraction Model,"**
 *IEEJ Trans. Electronics, Information and Systems*,
 Vol. 130, No. 2, pp. 254-260, Feb., 2010. *IF: ---* *(in Japanese)*
    + **橘 秀幸**, 鈴木 隆文, 満渕 邦彦, **"針筋電信号と単収縮畳み込みモデルによる手指筋の等尺性収縮時張力の推定"** *電気学会論文誌 C*, Vol. 130, No. 2, pp. 254-260, Feb., 2010.
-	
+
 ## Refereed Conference Papars
-1. **Hideyuki Tachibana**, Hirokazu Kameoka, Nobutaka Ono, Shigeki Sagayama, 
+1. **Hideyuki Tachibana**, Hirokazu Kameoka, Nobutaka Ono, Shigeki Sagayama,
 **"Comparative Evaluations of Various Harmonic/Percussive Sound Separation Algorithms Based on Anisotropic Continuity of Spectrogram,"**
 *Proceedings of 2012 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP2012),*
 pp. 465-468. Mar. 2012, Kyoto.
 
-1. Ngoc Q. K. Duong, **Hideyuki Tachibana**, Emmanuel Vincent, Nobutaka Ono, Remi Gribonval, Shigeki Sagayama, 
+1. Ngoc Q. K. Duong, **Hideyuki Tachibana**, Emmanuel Vincent, Nobutaka Ono, Remi Gribonval, Shigeki Sagayama,
 **"Multichannel Harmonic and Percussive Component Separation by Joint Modeling of Spatial and Spectral Continuity,"**
 *Proceedings of 2011 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP2011),*
  pp. 205-208, May., 2011, Prague.
 
-1. **Hideyuki Tachibana**, Nobutaka Ono, Shigeki Sagayama, 
+1. **Hideyuki Tachibana**, Nobutaka Ono, Shigeki Sagayama,
 **"Singing Voice Enhancement for Monaural Music Signals Based on Multiple Time-Frequency Analysis,"**
 *Proceedings of Intersinging 2010*, Oct., 2010, Tokyo.
 
@@ -53,7 +55,7 @@ pp. 465-468. Mar. 2012, Kyoto.
 1. Takuya Yoshioka, **Hideyuki Tachibana**, Tomohiro Nakatani, Masato Miyoshi,
 **"Adaptive Dereverberation of Speech Signals with Speaker-Position Change Detection,"**
 *Proceedings of 2009 IEEE International Conference of Acoustics, Speech, and Signal Processing (ICASSP2009),*
-pp.3733-3736, Apr., 2009, Taipei. 
+pp.3733-3736, Apr., 2009, Taipei.
 
 ## Non-refereed Articles
 
@@ -115,7 +117,3 @@ in MIREX2009,
 1. **橘秀幸**, 小野順貴, 嵯峨山茂樹, **“多重HPSS 法によるモノラル音楽音響信号に対するボーカル抑圧,”** 日本音響学会講演論文集（春）, 2-8-8, pp. 853-854, 2009 年3 月, 東京（東京工業大学）
 
 1. **橘秀幸**, 鈴木隆文, 満渕邦彦, **“義手制御に向けた針筋電信号による手指状態推定‐単収縮モデルを用いた推定手法の提案‐”** 電子情報通信学会技術研究報告, NC2008-56, pp.107-110, (電気学会研究会資料Vol.MBE-08, pp.53-56), 2008 年10 月24 日, 仙台（東北大学）
-
-
-
-
