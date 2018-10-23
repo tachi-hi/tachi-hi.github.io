@@ -33,6 +33,11 @@ Vol. 130, No. 2, pp. 254-260, Feb., 2010. *IF: ---* *(in Japanese)*
    + **橘 秀幸**, 鈴木 隆文, 満渕 邦彦, **"針筋電信号と単収縮畳み込みモデルによる手指筋の等尺性収縮時張力の推定"** *電気学会論文誌 C*, Vol. 130, No. 2, pp. 254-260, Feb., 2010.
 
 ## Refereed Conference Papars
+1. **Hideyuki Tachibana**, Katsuya Uenoyama, Shunsuke Aihara
+**"Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention,"**
+*Proceedings of 2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2018),*
+pp. 4784-4788, Apr. 2018, Calgary. (*arXiv preprint arXiv:1710.08969*, 2017)
+
 1. **Hideyuki Tachibana**, Hirokazu Kameoka, Nobutaka Ono, Shigeki Sagayama,
 **"Comparative Evaluations of Various Harmonic/Percussive Sound Separation Algorithms Based on Anisotropic Continuity of Spectrogram,"**
 *Proceedings of 2012 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP2012),*
