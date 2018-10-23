@@ -439,6 +439,13 @@ data_v20080821.txt data_v20101125.txt
  ls *.txt | sed -e 's/.*_v\([0-9]*\).*/\1/g' | sort -n | tail -n 1
 </pre>
 
+<h3>最新の3ファイルだけ残して削除</h3>
+<pre>
+ ls -t *.txt | tail -n +3 # 確認
+ ls -t *.txt | tail -n +3 | xargs -I {} rm {} # 削除
+</pre>
+
+
 <pre>
 LATEX = latex
 BIBTEX = bibtex
