@@ -32,7 +32,7 @@ pptx, docx, xlsx など MS Office 2010 のファイルは実体としては色�
 $$m (\mathrm{nrow}) \times n (\mathrm{ncol})$$ matrix
 
 \\[\begin{pmatrix} \
-a\_{11} & a\_{12} & \dots & a\_{1n} \\\\ \ 
+a\_{11} & a\_{12} & \dots & a\_{1n} \\\\ \
 a\_{21} & a\_{22} & \dots & a\_{2n} \\\\ \
 \vdots & \vdots & \ddots & \vdots \\\\ \
 a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
@@ -58,7 +58,7 @@ a\_{m1} & a\_{m2} & \dots & a\_{mn} \end{pmatrix} \
 
 ### screen デタッチ
 
-    screen 
+    screen
     . do_something
     Ctrl-a d
     screen -ls
@@ -102,13 +102,6 @@ apt-get updateでi386とamd64の両方を取得しようとしていたのでi38
 
     export LANG=en
     export LANG=ja_JP.utf8
-
-## 事務
-
-+ 確定申告
-+ 年金
-+ 保険
-    + 定期健康診断
 
 ## CUDA 罠
 

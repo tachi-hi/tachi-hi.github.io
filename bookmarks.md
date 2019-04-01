@@ -5,42 +5,6 @@ title: Bookmarks
 
 [[Back]](index.html)
 
-## AI
-
-### Deep Learning
-+ Web
-    + [deeplearning.jp](http://deeplearning.jp/)
-+ Software Framework
-    + Theano
-    + DL4j
-    + Caffe
-    + Torch
-    + Chainer
-
-## Papers and Conferences
-
-### Papers
-
-+ [Google Scholar](https://scholar.google.co.jp/)
-+ [arXiv (mirror)](http://jp.arxiv.org/)
-    + [AI](http://jp.arxiv.org/list/cs.AI/recent)
-    + [CV](http://jp.arxiv.org/list/cs.CV/recent)
-    + [Formal Language](http://jp.arxiv.org/list/cs.FL/recent)
-+ [ACL Anthology](http://www.aclweb.org/anthology/index.html)
-
-### Conferences
-
-+ [Meeting - 機械学習の「朱鷺の杜Wiki」](http://ibisforest.org/index.php?Meeting)
-
-## Evaluation Events, Contests, Competitions
-
-+ <http://www.music-ir.org/mirex/wiki/MIREX_HOME>
-
-## Programming
-
-### Audio
-+ [JUCE for VST Plugin Development](http://www.redwoodaudio.net/Tutorials/juce_for_vst_development__intro.html)
-
 ## Data
 
 + [情報学研究データリポジトリ データセット一覧](http://www.nii.ac.jp/cscenter/idr/datalist.html)
@@ -59,16 +23,7 @@ title: Bookmarks
 + LabROSA
     + [Polyphonic Melody Extraction](http://labrosa.ee.columbia.edu/projects/melody/)
 
-
-## Books
-+ [Paradigms of Artificial Intelligence Programming: Case Studies in Common Lisp](http://norvig.com/paip.html)
-
-## Law
-
-+ [法令データ提供システム](http://law.e-gov.go.jp/cgi-bin/idxsearch.cgi)
-+ [日本法令外国語訳データベースシステム](http://www.japaneselawtranslation.go.jp/)
-
-## Intellectual Property 
+## Intellectual Property
 
 ### Patent Search
 
@@ -84,15 +39,6 @@ title: Bookmarks
 + [工業所有権法（産業財産権法）逐条解説](http://www.jpo.go.jp/shiryou/hourei/kakokai/cikujyoukaisetu.htm)
 + [基準・便覧・ガイドライン](http://www.jpo.go.jp/seido/houritu_jouyaku/guideline/index.html)
 + [不正競争防止法の概要と改正](http://www.meti.go.jp/policy/economy/chizai/chiteki/unfair-competition.html)
-
-## Mental Health
-
-+ [職業性ストレス簡易調査票 - 東京大学](https://mental.m.u-tokyo.ac.jp/jstress/BJSQ/)
-
-## Text
-
-+ [青空文庫](http://www.aozora.gr.jp/)
-+ [東京外国語大学言語モジュール](http://www.coelang.tufs.ac.jp/mt/)
 
 ## TeX
 
