@@ -56,8 +56,8 @@ $(function(){
   $("#seireki").keyup(function(){
       seireki = $(this).val();
       var wareki_text = "";
-      var wareki = ["", "平成", "昭和", "大正","明治"];
-      var start = [2100, 1989, 1926, 1912, 1868];
+      var wareki = ["", "令和", "平成", "昭和", "大正","明治"];
+      var start = [2100, 2019, 1989, 1926, 1912, 1868];
       for(i = 0; i < wareki.length; i++){
         if(seireki >= start[i] && seireki <= start[i - 1]){
            wareki_text += (wareki[i] + (seireki == start[i] ? "元" : (seireki - start[i] + 1)) + "年 ");
@@ -204,17 +204,14 @@ $(function(){
 	   "<tr><td>年度末まで </td><td>" + getDiffYearDays(getNendomatsu()) + "</td></tr>" +
 	   "<tr><td>2020年7月24日（東京オリンピック開会）まで </td><td>" + getDiffYearDays("7/24/2020") + "</td></tr>" +
 	   "<tr><td>2022年11月21日（カタールW杯）まで </td><td>" + getDiffYearDays("11/21/2022") + "</td></tr>"  +
-   	   "<tr><td>40歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2025") + "</td></tr>" +
 	   "<tr><td>2027年1月1日（リニア開通の年）まで </td><td>" + getDiffYearDays("1/1/2027") + "</td></tr>" +
-   	   "<tr><td>50歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2035") + "</td></tr>" +
-           "<tr><td>2035年9月21日（皆既日食）まで </td><td>" + getDiffYearDays("9/21/2035") + "</td></tr>" +
-           "<tr><td>2038年1月19日（32bit time_tがオーバーフロー）まで </td><td>" + getDiffYearDays("1/19/2038") + "</td></tr>" +
-           "<tr><td>2041年10月25日（金環食）まで </td><td>" + getDiffYearDays("10/25/2041") + "</td></tr>" +
-   	   "<tr><td>60歳の誕生日まで </td><td>" + getDiffYearDays("7/10/2045") + "</td></tr>" +
-           "<tr><td>2051年3月31日（65歳定年）まで </td><td>" + getDiffYearDays("3/31/2051") + "</td></tr>" +
-           "<tr><td>2056年3月31日（70歳定年）まで </td><td>" + getDiffYearDays("3/31/2056") + "</td></tr>" +
-           "<tr><td>2061年7月28日（ハレー彗星地球接近）まで </td><td>" + getDiffYearDays("7/28/2061") + "</td></tr>" +
-           "<tr><td>2064年（2015年時点での平均余命から見積もった寿命）まで </td><td>" + getDiffYearDays("7/10/2064") + "</td></tr>" +
+       "<tr><td>2035年9月21日（皆既日食）まで </td><td>" + getDiffYearDays("9/21/2035") + "</td></tr>" +
+       "<tr><td>2038年1月19日（32bit time_tがオーバーフロー）まで </td><td>" + getDiffYearDays("1/19/2038") + "</td></tr>" +
+       "<tr><td>2041年10月25日（金環食）まで </td><td>" + getDiffYearDays("10/25/2041") + "</td></tr>" +
+       "<tr><td>2051年3月31日（65歳定年）まで </td><td>" + getDiffYearDays("3/31/2051") + "</td></tr>" +
+       "<tr><td>2056年3月31日（70歳定年）まで </td><td>" + getDiffYearDays("3/31/2056") + "</td></tr>" +
+       "<tr><td>2061年7月28日（ハレー彗星地球接近）まで </td><td>" + getDiffYearDays("7/28/2061") + "</td></tr>" +
+       "<tr><td>2064年（2015年時点での平均余命から見積もった寿命）まで </td><td>" + getDiffYearDays("7/10/2064") + "</td></tr>" +
 	   "</table>";
   $("#TimeLeft").html(output);
   setTimeout('countDown()', 1000);
