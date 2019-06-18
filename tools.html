@@ -211,7 +211,6 @@ $(function(){
        "<tr><td>2051年3月31日（65歳定年）まで </td><td>" + getDiffYearDays("3/31/2051") + "</td></tr>" +
        "<tr><td>2056年3月31日（70歳定年）まで </td><td>" + getDiffYearDays("3/31/2056") + "</td></tr>" +
        "<tr><td>2061年7月28日（ハレー彗星地球接近）まで </td><td>" + getDiffYearDays("7/28/2061") + "</td></tr>" +
-       "<tr><td>2064年（2015年時点での平均余命から見積もった寿命）まで </td><td>" + getDiffYearDays("7/10/2064") + "</td></tr>" +
 	   "</table>";
   $("#TimeLeft").html(output);
   setTimeout('countDown()', 1000);
@@ -475,26 +474,6 @@ clean:
 </div>
 </div>
 
-
-<div id = "topic"><h2>ビット演算</h2><div id = "toggle">
-<h3>ある整数が2のべき乗かどうか調べる</h3>
-xが2のべき乗 ⇔ x&(x-1)==0が真。
-<h3>XOR swap</h3>
-x と yの入れ替え： x ^= y ^= x ^= y; (ただし &x != &y)
-<pre>
-x = 0101
-y = 1001
-のとき
-x = x ^ y = 1100 -> x = 1100, y = 1001
-y = y ^ x = 0101 -> x = 1100, y = 0101
-x = x ^ y = 1001 -> x = 1001, y = 0101
-</pre>
-
-<h3>3～5ビットが全部1かどうか</h3>
-下位3～5が全部1  ⇔ (32 - 4) & ~x == 0
-
-</div>
-</div>
 
 <div id = "topic">
 <h2>英語</h2>
