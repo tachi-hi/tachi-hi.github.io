@@ -11,8 +11,11 @@ title: Publications
 
 ## Journal
 1. **Hideyuki Tachibana**, Yu Mizuno, Nobutaka Ono, Shigeki Sagayama,
-**"A Real-time Audio-to-audio Karaoke Generation System for Monaural Recordings Based on Singing Voice Suppression and Key Conversion Techniques"**, Journal of Information Processing, Vol. 24, No. 3, pp. 470--482, May. 2016 *IF : n/a*... [[Article](http://id.nii.ac.jp/1001/00160331/)], [[Supplementary Material (Video Demo)](http://id.nii.ac.jp/1012/00000006/)],
-[[Codes](https://github.com/tachi-hi/euterpe)], [[Subsidiary codes](https://github.com/tachi-hi/temperament4fft)]
+**"A Real-time Audio-to-audio Karaoke Generation System for Monaural Recordings Based on Singing Voice Suppression and Key Conversion Techniques"**, Journal of Information Processing, Vol. 24, No. 3, pp. 470--482, May. 2016 *IF : n/a*
+... [[Article](http://id.nii.ac.jp/1001/00160331/)], 
+[[Supplementary Material (Video Demo)](http://id.nii.ac.jp/1012/00000006/)],
+[[Codes](https://github.com/tachi-hi/euterpe)], 
+[[Subsidiary codes](https://github.com/tachi-hi/temperament4fft)]
 
 1. **Hideyuki Tachibana**, Nobutaka Ono, Hirokazu Kameoka, Shigeki Sagayama,
 **"Harmonic Percussive Sound Separation Based on Anisotropic Smoothness of Spectrograms,"**
@@ -33,10 +36,15 @@ Vol. 130, No. 2, pp. 254-260, Feb., 2010. *IF: ---* *(in Japanese)*
    + **橘 秀幸**, 鈴木 隆文, 満渕 邦彦, **"針筋電信号と単収縮畳み込みモデルによる手指筋の等尺性収縮時張力の推定"** *電気学会論文誌 C*, Vol. 130, No. 2, pp. 254-260, Feb., 2010.
 
 ## Refereed Conference Papars
-1. **Hideyuki Tachibana**, Katsuya Uenoyama, Shunsuke Aihara
+1. **Hideyuki Tachibana**, Yotaro Katayama,
+**"Accent estimation of Japanese words from their surfaces and romanizations for building large vocabulary accent dictionaries,"**
+*Proceedings of 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2020),*
+pp. 8059-8063, May. 2020, Barcelona (Online Virtual Conference).
+
+1. **Hideyuki Tachibana**, Katsuya Uenoyama, Shunsuke Aihara,
 **"Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention,"**
 *Proceedings of 2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2018),*
-pp. 4784-4788, Apr. 2018, Calgary. (*arXiv preprint arXiv:1710.08969*, 2017)
+pp. 4784-4788, Apr. 2018, Calgary. (*arXiv preprint [arXiv:1710.08969](https://arxiv.org/abs/1710.08969)*, 2017)
 
 1. **Hideyuki Tachibana**, Hirokazu Kameoka, Nobutaka Ono, Shigeki Sagayama,
 **"Comparative Evaluations of Various Harmonic/Percussive Sound Separation Algorithms Based on Anisotropic Continuity of Spectrogram,"**
