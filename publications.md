@@ -39,12 +39,15 @@ Vol. 130, No. 2, pp. 254-260, Feb., 2010. *IF: ---* *(in Japanese)*
 1. **Hideyuki Tachibana**, Yotaro Katayama,
 **"Accent estimation of Japanese words from their surfaces and romanizations for building large vocabulary accent dictionaries,"**
 *Proceedings of 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2020),*
-pp. 8059-8063, May. 2020, Barcelona (Online Virtual Conference).
+pp. 8059-8063, May. 2020, Barcelona (Online Virtual Conference). 
+[[arXiv:2009.09679](https://arxiv.org/abs/2009.09679)],
+[[Codes](https://github.com/PKSHATechnology-Research/tdmelodic)], 
 
 1. **Hideyuki Tachibana**, Katsuya Uenoyama, Shunsuke Aihara,
 **"Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention,"**
 *Proceedings of 2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2018),*
-pp. 4784-4788, Apr. 2018, Calgary. (*arXiv preprint [arXiv:1710.08969](https://arxiv.org/abs/1710.08969)*, 2017)
+pp. 4784-4788, Apr. 2018, Calgary. 
+[[arXiv:1710.08969](https://arxiv.org/abs/1710.08969)]
 
 1. **Hideyuki Tachibana**, Hirokazu Kameoka, Nobutaka Ono, Shigeki Sagayama,
 **"Comparative Evaluations of Various Harmonic/Percussive Sound Separation Algorithms Based on Anisotropic Continuity of Spectrogram,"**

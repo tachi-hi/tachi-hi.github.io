@@ -26,6 +26,3 @@ More detailed info on me and my works will be found at the following sites.
 
 + Tools and Memo
     + [Tools and memo](tools.html)
-+ Cheet sheet
-    + Other memo
-        + [Memorandum](memo.html)
