@@ -5,15 +5,15 @@ title: Publications
 
 [[Back]](index.html)
 
-- See also [Google Scholar](http://scholar.google.co.jp/citations?user=wAXtttwAAAAJ).
+- See also [Google Scholar](https://scholar.google.co.jp/citations?user=wAXtttwAAAAJ).
 
 # Publications
 
 ## Journal
 1. **Hideyuki Tachibana**, Yu Mizuno, Nobutaka Ono, Shigeki Sagayama,
 **"A Real-time Audio-to-audio Karaoke Generation System for Monaural Recordings Based on Singing Voice Suppression and Key Conversion Techniques"**, Journal of Information Processing, Vol. 24, No. 3, pp. 470--482, May. 2016 *IF : n/a*
-... [[Article](http://id.nii.ac.jp/1001/00160331/)], 
-[[Supplementary Material (Video Demo)](http://id.nii.ac.jp/1012/00000006/)],
+... [[Article](https://id.nii.ac.jp/1001/00160331/)], 
+[[Supplementary Material (Video Demo)](https://id.nii.ac.jp/1012/00000006/)],
 [[Codes](https://github.com/tachi-hi/euterpe)], 
 [[Subsidiary codes](https://github.com/tachi-hi/temperament4fft)]
 

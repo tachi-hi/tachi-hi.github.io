@@ -13,13 +13,13 @@ title: Hideyuki Tachibana's web
 ## Links to My SNS accounts
 More detailed info on me and my works will be found at the following sites.
 
-+ [Google Scholar](http://scholar.google.co.jp/citations?user=wAXtttwAAAAJ)
++ [Google Scholar](https://scholar.google.co.jp/citations?user=wAXtttwAAAAJ)
 + [GitHub](https://github.com/tachi-hi)
    + [GitHub Repositories](https://github.com/tachi-hi?tab=repositories)
-+ [LinkedIn](http://jp.linkedin.com/pub/hideyuki-tachibana/51/134/5a5)
-   + [SlideShare](http://www.slideshare.net/HideyukiTachibana)
-+ [researchmap](http://researchmap.jp/tachi-hi/)
-+ [ResearchGate](http://www.researchgate.net/profile/Hideyuki_Tachibana)
++ [LinkedIn](https://jp.linkedin.com/in/hideyuki-tachibana-5a513451)
+   + [SlideShare](https://www.slideshare.net/HideyukiTachibana)
++ [researchmap](https://researchmap.jp/tachi-hi/)
++ [ResearchGate](https://www.researchgate.net/profile/Hideyuki_Tachibana)
 
 
 ## Others
