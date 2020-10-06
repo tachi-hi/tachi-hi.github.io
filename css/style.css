@@ -1,29 +1,8 @@
 
-h2{
-color: #223322;
-font-style: bold;
-background: #AADDAA;
-}
-
-h3{
-aaacolor: #990033;
-color: #BB0055;
-font-style: bold;
-text-decoration:underline;
-aaabackground: #EECC88;
-}
-
-h4{
-color: #110033;
-font-style: bold;
-background: #AAFFEE;
-}
-
-h5{
-color: #990033;
-font-style: bold;
-background: #EEEEDD;
-}
+h2{color: #3322ee; font-style: bold; background: #aaccee;}
+h3{color: #dddddd; font-style: bold; text-decoration:underline; background: #333333;}
+h4{color: #110033; font-style: bold; background: #AAFFEE;}
+h5{color: #990033; font-style: bold; background: #EEEEDD;}
 
 pre{
 color: #222222;
@@ -34,10 +13,6 @@ margin-right: 1em;
 padding-left: 1em
 }
 
-body {     font-family: "Times New Roman", Times, serif, 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック'; }
+body { font-family: "Arial", Times, 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ', Meiryo, 'ＭＳ Ｐゴシック'; }
 
-
-table, td, th {
-border: 1px #888888 solid;
-border-collapse: collapse;
-}
+table, td, th { border: 1px #888888 solid; border-collapse: collapse; }

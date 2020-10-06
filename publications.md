@@ -5,9 +5,10 @@ title: Publications
 
 [[Back]](index.html)
 
-- See also [Google Scholar](https://scholar.google.co.jp/citations?user=wAXtttwAAAAJ).
-
 # Publications
+
+- See also 
+   - [Google Scholar](https://scholar.google.co.jp/citations?user=wAXtttwAAAAJ).
 
 ## Journal
 1. **Hideyuki Tachibana**, Yu Mizuno, Nobutaka Ono, Shigeki Sagayama,
