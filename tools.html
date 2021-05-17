@@ -7,7 +7,13 @@
 <base target = "_parent">
 <link rel="stylesheet" href="css/style.css" type="text/css"/>
 
+<!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- MathJax -->
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
 <script type="text/javascript">
 $(function(){
   // 文字数のカウント用=============================================
@@ -66,6 +72,23 @@ $(function(){
       $("#wareki").text(wareki_text);
   });
   $("#wareki").css("font-size", "xx-large");
+
+  // dB and amplitude ========================================================
+  var amp;
+  var db;
+  $("#amp2db").keyup(function(){
+      amp = $(this).val();
+      db_result = 10 * Math.log10(Math.pow(amp, 2)) + "[dB]";
+      $("#db_result").text(db_result);
+  });
+  $("#db_result").css("font-size", "xx-large");
+
+  $("#db2amp").keyup(function(){
+      db = $(this).val();
+      amp_result = Math.pow(10, db / 20);
+      $("#amp_result").text(amp_result);
+  });
+  $("#amp_result").css("font-size", "xx-large");
 
   // MIDI to Freq ========================================================
   var midi;
@@ -244,6 +267,17 @@ wc --words # 単語数
 <div id="topic"><h2>西暦・和暦</h2><div id="toggle">
 西暦<textarea id = "seireki", type="text" cols="3" rows="1" id="input-up"></textarea>年
 <span id="wareki"> ?? 年</span>
+
+</div></div>
+
+<div id="topic"><h2>振幅とデシベル</h2><div id="toggle">
+\(y = 10 \log_{10} x^2\) <br/>
+
+\(y \text{ [dB]} = \)<textarea id = "db2amp", type="text" cols="3" rows="1" id="input-up"></textarea>    
+\(\to x = \)<span id="amp_result"></span><br/>
+
+\(x = \)<textarea id = "amp2db", type="text" cols="3" rows="1" id="input-up"></textarea>    
+\(\to y \text{ [dB]} = \)<span id="db_result"></span>
 
 </div></div>
 
