@@ -27,8 +27,10 @@ More detailed info on me and my works will be found at the following sites.
    + [ResearchGate](https://www.researchgate.net/profile/Hideyuki_Tachibana)
    + [researchmap](https://researchmap.jp/tachi-hi/)
 
-<div itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" content="https://orcid.org/0000-0001-5162-1294" href="https://orcid.org/0000-0001-5162-1294" target="orcid.widget" rel="me noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon"></a></div>
-<span id="badgeCont616"><script type="text/javascript" src="https://publons.com/mashlets?el=badgeCont616&rid=AAU-4568-2021&size=small"></script></span>
+<div align="center">
+   <span itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" content="https://orcid.org/0000-0001-5162-1294" href="https://orcid.org/0000-0001-5162-1294" target="orcid.widget" rel="me noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon"></a></span>
+   <span id="badgeCont616"><script type="text/javascript" src="https://publons.com/mashlets?el=badgeCont616&rid=AAU-4568-2021&size=small"></script></span>
+</div>
 
 ## Others
 
