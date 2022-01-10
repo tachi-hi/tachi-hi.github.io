@@ -25,6 +25,7 @@ More detailed info on me and my works will be found at the following sites.
    + [Google Scholar](https://scholar.google.co.jp/citations?user=wAXtttwAAAAJ)
    + [ORCID](https://orcid.org/0000-0001-5162-1294)
    + [Semantic Scholar](https://www.semanticscholar.org/author/Hideyuki-Tachibana/29876981)
+   + [dblp](https://dblp.org/pid/20/8053.html)
    + [Publons](https://publons.com/researcher/4584175/hideyuki-tachibana/)
    + [ResearchGate](https://www.researchgate.net/profile/Hideyuki_Tachibana)
    + [researchmap](https://researchmap.jp/tachi-hi/)
