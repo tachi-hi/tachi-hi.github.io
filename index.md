@@ -15,6 +15,7 @@ title: Hideyuki Tachibana's web
 More detailed info on me and my works will be found at the following sites.
 
 + SNS
+   + [twitter @tachi_hi_](https://twitter.com/tachi_hi_)
    + Facebook (I only accept follows from the people I know.)
    + [LinkedIn](https://jp.linkedin.com/in/hideyuki-tachibana-5a513451)
 + dev
@@ -27,9 +28,11 @@ More detailed info on me and my works will be found at the following sites.
    + [Semantic Scholar](https://www.semanticscholar.org/author/Hideyuki-Tachibana/29876981)
    + [dblp](https://dblp.org/pid/20/8053.html)
    + [Publons](https://publons.com/researcher/4584175/hideyuki-tachibana/)
+   + [OpenReview.net](https://openreview.net/profile?id=~Hideyuki_Tachibana1)
    + [ResearchGate](https://www.researchgate.net/profile/Hideyuki_Tachibana)
    + [researchmap](https://researchmap.jp/tachi-hi/)
-
++ Others that I am not actively involved in
+   + [Kaggle](https://www.kaggle.com/tachihi)
 
 ## Others
 
