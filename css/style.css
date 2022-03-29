@@ -1,6 +1,5 @@
-
-h2{color: #3322ee; font-style: bold; background: #aaccee;}
-h3{color: #dddddd; font-style: bold; text-decoration:underline; background: #333333;}
+h2{color: #098399; font-style: bold; border: 1px solid; background-color:#cdf0f7;}
+h3{color: #033842; font-style: bold; text-decoration: underline;}
 h4{color: #110033; font-style: bold; background: #AAFFEE;}
 h5{color: #990033; font-style: bold; background: #EEEEDD;}
 
@@ -13,6 +12,6 @@ margin-right: 1em;
 padding-left: 1em
 }
 
-body { font-family: "Arial", Times, 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ', Meiryo, 'ＭＳ Ｐゴシック'; }
+body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif, 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro';}
 
 table, td, th { border: 1px #888888 solid; border-collapse: collapse; }
