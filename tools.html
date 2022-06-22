@@ -16,11 +16,24 @@ src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
 <script type="text/javascript">
 $(function(){
+  // 改行削除用=============================================
+  function remove_linebreaks(text){ 
+    text = text.replace(/\n/g, " ")
+    text = text.replace(/[\s]+/g, " ")
+    text = text.replace(/-\s/g, "-")
+    return text;
+  };
+
   // 文字数のカウント用=============================================
   $("#moji_count").keyup(function(){
+      // remove line breaks
+      $(this).val(remove_linebreaks($(this).val()));
+
+      // count chars
       var len = $(this).val().length;
       $("#wcharCount").text((len != 0 ? len : 0)+"文字");
 
+      // count words
       var words = $(this).val().split(/[\s,]+/);
       len = words.length;
       len = (len > 0 && words[len-1].length == 0) ? (len - 1) : len;
@@ -225,14 +238,9 @@ $(function(){
 	   "<tr><td>来月1日まで </td><td>" + getDiffYearDays(getRaigetsu()) + "</td></tr>" +
 	   "<tr><td>大晦日まで </td><td>" + getDiffYearDays(getNenmatsu()) + "</td></tr>" +
 	   "<tr><td>年度末まで </td><td>" + getDiffYearDays(getNendomatsu()) + "</td></tr>" +
-	   "<tr><td>2020年7月24日（東京オリンピック開会）まで </td><td>" + getDiffYearDays("7/24/2020") + "</td></tr>" +
-	   "<tr><td>2022年11月21日（カタールW杯）まで </td><td>" + getDiffYearDays("11/21/2022") + "</td></tr>"  +
-	   "<tr><td>2027年1月1日（リニア開通の年）まで </td><td>" + getDiffYearDays("1/1/2027") + "</td></tr>" +
        "<tr><td>2035年9月21日（皆既日食）まで </td><td>" + getDiffYearDays("9/21/2035") + "</td></tr>" +
        "<tr><td>2038年1月19日（32bit time_tがオーバーフロー）まで </td><td>" + getDiffYearDays("1/19/2038") + "</td></tr>" +
        "<tr><td>2041年10月25日（金環食）まで </td><td>" + getDiffYearDays("10/25/2041") + "</td></tr>" +
-       "<tr><td>2051年3月31日（65歳定年）まで </td><td>" + getDiffYearDays("3/31/2051") + "</td></tr>" +
-       "<tr><td>2056年3月31日（70歳定年）まで </td><td>" + getDiffYearDays("3/31/2056") + "</td></tr>" +
        "<tr><td>2061年7月28日（ハレー彗星地球接近）まで </td><td>" + getDiffYearDays("7/28/2061") + "</td></tr>" +
 	   "</table>";
   $("#TimeLeft").html(output);
@@ -248,8 +256,9 @@ $(function(){
 このページは著者の私的なメモを外出時等に手軽に参照できるように設けたチートシートです。
 このページから得た情報によって生じたいかなる不利益に関しても著者は責任を負わないものとします。
 
-<div id="topic"><h2>文字数・単語数カウント</h2><div id="toggle">
+<div id="topic"><h2>文字数・単語数カウント + 改行削除</h2><div id="toggle">
 <h3>今すぐこの場で（簡易版）</h3>
+※複数行にまたがる単語の行末のハイフネーションは除去しません。
 <textarea id = "moji_count", type="text" cols="150" rows="10" id="input-up"></textarea>
 <div>
   <span id="wcharCount">0文字</span>
