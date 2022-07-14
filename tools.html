@@ -351,6 +351,20 @@ len=`sox input.wav -n stat 2>&1 | sed -n 's/^Length (seconds):[^0-9]*\([0-9.]*\)
 </div>
 
 
+<div id = "topic"><h2>Pythonワンライナー</h2><div id = "toggle">
+<h3>npzファイズの中身を簡易的にチェックする方法</h3>
+<pre>
+python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k]) for k in D.keys()])" data.npz
+</pre>
+.bashrcなどにエイリアスを設定する場合の一例
+<pre>
+alias npz-check='python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k]) for k in D.keys()])"'
+npz-check data.npz
+</pre>
+
+</div>
+</div>
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 <hr>
 <a href="index.html">戻る</a>
