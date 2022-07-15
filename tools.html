@@ -365,6 +365,23 @@ npz-check data.npz
 </div>
 </div>
 
+<div id = "topic"><h2>学習ログの整理</h2><div id = "toggle">
+<h3>最新の10件のファイル以外を削除</h3>
+<pre>
+ls -t *.dat | tail -n +11 | xargs echo
+# ls -t *.dat | tail -n +11 | xargs rm  
+# ls -t *.dat | tail -n +11 | xargs sudo rm -rf 
+</pre>
+
+<h3>ファイルサイズのチェック</h3>
+<pre>
+du -h . -d 1
+df -h .
+</pre>
+
+</div>
+</div>
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 <hr>
 <a href="index.html">戻る</a>
