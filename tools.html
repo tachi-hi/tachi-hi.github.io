@@ -385,7 +385,7 @@ npz-check data.npz
 <h3>オーディオファイルに含まれる音の最大周波数のおおよその値を求める方法</h3>
 -50dBを上回る周波数のうち最大のものを探す。
 <pre>
-alias highest-freq='python3 -c "import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);N=8192;S=abs(l.stft(y,N)**2);S=n.log10(n.mean(S,axis=1))*10;a=next(i for i,x in enumerate(S[::-1]) if x>-50);F=(len(S)-a)/len(S)*sr;print(int(F),\"Hz\")"'
+alias highest-freq='python3 -c "import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);N=8192;S=abs(l.stft(y,N)**2/N);S=n.log10(n.mean(S,axis=1))*10;a=next(i for i,x in enumerate(S[::-1]) if x>-50);F=(len(S)-a)/len(S)*sr;print(int(F),\"Hz\")"'
 highest-freq data.wav
 </pre>
 </div>
