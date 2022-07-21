@@ -19,10 +19,27 @@ $(function(){
   // 改行削除用=============================================
   function remove_linebreaks(text){ 
     text = text.replace(/\n/g, " ")
-    text = text.replace(/[\s]+/g, " ")
-    text = text.replace(/-\s/g, "-")
+      .replace(/[\s]+/g, " ")
+      .replace(/-\s/g, "-")
+    if (guess_lang(text) == "ja"){
+      text = text.replace(/\s/g, "")
+        .replace(/\,/g,"、")
+        .replace(/，/g,"、")
+        .replace(/\./g,"。")
+        .replace(/．/g,"。")
+    }
+    console.log(text)
     return text;
   };
+
+  // 簡易言語判定
+  function guess_lang(text){
+    utf16_codes = text.split('').map( char => parseInt(char.charCodeAt(0)) );
+    flags = utf16_codes.map( code => code < 128 ? 1 : 0 );
+    sum = flags.reduce( (cum, x) => cum + x )
+    ascii_ratio = (sum + 1) / (flags.length + 1)
+    return (ascii_ratio > 0.7 || flags.length < 20) ? "en" : "ja"
+  }
 
   // 文字数のカウント用=============================================
   $("#moji_count").keyup(function(){
@@ -258,7 +275,10 @@ $(function(){
 
 <div id="topic"><h2>文字数・単語数カウント + 改行削除</h2><div id="toggle">
 <h3>今すぐこの場で（簡易版）</h3>
-※複数行にまたがる単語の行末のハイフネーションは除去しません。
+<ul>
+  <li>複数行にまたがる単語の行末のハイフネーションは除去しません。</li>
+  <li>文字コードの統計に基づいて簡易的な言語判定を行い、非欧文と判定された場合はスペースを削除します。</li>
+</ul>
 <textarea id = "moji_count", type="text" cols="150" rows="10" id="input-up"></textarea>
 <div>
   <span id="wcharCount">0文字</span>
