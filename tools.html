@@ -374,20 +374,27 @@ len=`sox input.wav -n stat 2>&1 | sed -n 's/^Length (seconds):[^0-9]*\([0-9.]*\)
 <div id = "topic"><h2>Pythonワンライナー</h2><div id = "toggle">
 <h3>npzファイズの中身を簡易的にチェックする方法</h3>
 <pre>
-python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k].shape) for k in D.keys()])" data.npz
+  python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k].shape) for k in D.keys()])" data.npz
 </pre>
 .bashrcなどにエイリアスを設定する場合の一例
 <pre>
-alias npz-check='python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k].shape) for k in D.keys()])"'
-npz-check data.npz
+  alias npz-check='python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k].shape) for k in D.keys()])"'
+  npz-check data.npz
 </pre>
 
 <h3>オーディオファイルに含まれる音の最大周波数のおおよその値を求める方法</h3>
 -50dBを上回る周波数のうち最大のものを探す。
 <pre>
-alias highest-freq='python3 -c "import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);N=8192;S=abs(l.stft(y,N)**2/N);S=n.log10(n.mean(S,axis=1))*10;a=next(i for i,x in enumerate(S[::-1]) if x>-50);F=(len(S)-a)/len(S)*sr;print(int(F),\"Hz\")"'
-highest-freq data.wav
+  alias highest-freq='python3 -c "import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);N=8192;S=abs(l.stft(y,N)**2/N);S=n.log10(n.mean(S,axis=1))*10;a=next(i for i,x in enumerate(S[::-1]) if x>-50);F=(len(S)-a)/len(S)*sr;print(int(F),\"Hz\")"'
+  highest-freq data.wav
 </pre>
+
+<h3>スペクトログラムを表示（簡易版）</h3>
+<pre>
+  alias show-spec='python3 -c "import matplotlib.pyplot as plt;import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);H=sr//100;N=H*4;S=abs(l.stft(y,N,H)**2/N);S=n.log10(S)*10;plt.imshow(n.flipud(S),aspect=\"auto\");plt.show(block=True)"'
+  show-spec data.wav
+</pre>
+
 </div>
 </div>
 
