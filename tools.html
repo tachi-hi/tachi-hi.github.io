@@ -17,7 +17,7 @@ src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script type="text/javascript">
 $(function(){
   // 改行削除用=============================================
-  function remove_linebreaks(text){ 
+  function remove_linebreaks(text){
     text = text.replace(/\n/g, " ")
       .replace(/[\s]+/g, " ")
       .replace(/-\s/g, "-")
@@ -302,10 +302,10 @@ wc --words # 単語数
 <div id="topic"><h2>振幅とデシベル</h2><div id="toggle">
 \(y = 10 \log_{10} x^2\) <br/>
 
-\(y \text{ [dB]} = \)<textarea id = "db2amp", type="text" cols="3" rows="1" id="input-up"></textarea>    
+\(y \text{ [dB]} = \)<textarea id = "db2amp", type="text" cols="3" rows="1" id="input-up"></textarea>
 \(\to x = \)<span id="amp_result"></span><br/>
 
-\(x = \)<textarea id = "amp2db", type="text" cols="3" rows="1" id="input-up"></textarea>    
+\(x = \)<textarea id = "amp2db", type="text" cols="3" rows="1" id="input-up"></textarea>
 \(\to y \text{ [dB]} = \)<span id="db_result"></span>
 
 </div></div>
@@ -382,6 +382,12 @@ alias npz-check='python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);p
 npz-check data.npz
 </pre>
 
+<h3>オーディオファイルに含まれる音の最大周波数のおおよその値を求める方法</h3>
+-80dBを上回る周波数のうち最大のものを探す。
+<pre>
+alias highest-freq='python3 -c "import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);N=8192;S=abs(l.stft(y,N)**2);S=n.log10(n.mean(S,axis=1))*20;a=next(i for i,x in enumerate(S[::-1]) if x>-80);F=(len(S)-a)/len(S)*sr;print(int(F),\"Hz\")"'
+highest-freq data.wav
+</pre>
 </div>
 </div>
 
@@ -389,8 +395,8 @@ npz-check data.npz
 <h3>最新の10件のファイル以外を削除</h3>
 <pre>
 ls -t *.dat | tail -n +11 | xargs echo
-# ls -t *.dat | tail -n +11 | xargs rm  
-# ls -t *.dat | tail -n +11 | xargs sudo rm -rf 
+# ls -t *.dat | tail -n +11 | xargs rm
+# ls -t *.dat | tail -n +11 | xargs sudo rm -rf
 </pre>
 
 <h3>ファイルサイズのチェック</h3>
