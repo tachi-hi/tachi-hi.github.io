@@ -22,6 +22,7 @@ More detailed info on me and my works will be found at the following sites.
    + [GitHub](https://github.com/tachi-hi)
    + [PyPI](https://pypi.org/user/tachi-hi)
    + [SlideShare](https://www.slideshare.net/HideyukiTachibana)
+   + [HuggingFace](https://huggingface.co/tachi-hi)
 + Research profile
    + [Google Scholar](https://scholar.google.co.jp/citations?user=wAXtttwAAAAJ)
    + [ORCID](https://orcid.org/0000-0001-5162-1294)
