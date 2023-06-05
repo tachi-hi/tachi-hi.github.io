@@ -42,7 +42,7 @@ $(function(){
   }
 
   // 文字数のカウント用=============================================
-  $("#moji_count").keyup(function(){
+  $("#moji_count").blur(function(){
       // remove line breaks
       $(this).val(remove_linebreaks($(this).val()));
 
@@ -104,13 +104,22 @@ $(function(){
   $("#wareki").css("font-size", "xx-large");
 
   // arXiv URL 変換 ========================================================
-  $("#arxivurl").keyup(function(){
+
+  $("#arxivurl").blur(function(){
       var arxivurl = $(this).val();
       var arxivid = arxivurl.match(/\/(\d+\.\d+)/)[1];
       var arxivabs = "https://arxiv.org/abs/" + arxivid;
       var arxivpdf = "https://arxiv.org/pdf/" + arxivid + ".pdf";
-      $("#arxivabs").text(arxivabs);
+      var link = $('<a>',{text: arxivabs, href: arxivabs});
+      $("#arxivabs").text('');
+      $("#arxivabs").append(link);
       $("#arxivpdf").text(arxivpdf);
+      // copy abs url to clipboard
+      var tempInput = $('<input>');
+      $('body').append(tempInput);
+      tempInput.val(arxivabs).select();
+      document.execCommand('copy');
+      tempInput.remove();
   });
 
   // dB and amplitude ========================================================
@@ -310,10 +319,15 @@ wc --words # 単語数
 </div></div>
 
 <div id="topic"><h2>arXivのURL変換</h2><div id="toggle">
-arXiv の PDF か abstract の URL を入力 <textarea id = "arxivurl", type="text" cols="100" rows="1" id="input-up"></textarea></br>
-<span id="arxivabs">abstract URL</span></br>
-<span id="arxivpdf">PDF URL</span></br>
-	
+  ※ URLを入力したら一度他のところをクリックしてください。</br>
+  ※ Abstract の URL はクリップボードにコピーされます。</br>
+<center>
+  arXiv の PDF か abstract の URL を入力 </br>
+  <textarea id = "arxivurl", type="text" cols="100" rows="1" id="input-up"></textarea></br>
+  <span id="arxivabs">Abstract</span></br>
+  <span id="arxivpdf">PDF</span>
+</center>
+
 </div></div>
 
 <div id="topic"><h2>振幅とデシベル</h2><div id="toggle">
