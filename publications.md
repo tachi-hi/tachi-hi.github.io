@@ -42,6 +42,18 @@ Vol. 130, No. 2, pp. 254-260, Feb., 2010. *IF: ---* *(in Japanese)*
 ... [[Paper (J-Stage)](https://www.jstage.jst.go.jp/article/ieejeiss/130/2/130_2_254/_article/-char/ja/)]
 
 ## Refereed Conference Papars
+1. Chihiro Yano, Akihiko Fukuchi, Shoko Fukasawa, **Hideyuki Tachibana**, Yotaro Watanabe,
+**"Multilingual Sentence-T5: Scalable Sentence Encoders for Multilingual Applications,"** 
+*LREC/COLING* pp. 11849-11858, 2024
+
+1. Mocho Go, **Hideyuki Tachibana**,
+**"gSwin: Gated MLP Vision Model with Hierarchical Structure of Shifted Window,"**
+*Proceedings of 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2023),* 2023
+
+1. **Hideyuki Tachibana**, Muneyoshi Inahara, Mocho Go, Yotaro Katayama, Yotaro Watanabe,
+**"Diffusion Generative Vocoder for Fullband Speech Synthesis Based on Weak Third-order SDE Solver,"**
+INTERSPEECH pp. 1641-1645, 2022
+
 1. **Hideyuki Tachibana**,
 **"Towards Listening to 10 People Simultaneously: An Efficient Permutation Invariant Training of Audio Source Separation Using Sinkhorn's Algorithm,"**
 *Proceedings of 2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2021),*
@@ -92,7 +104,14 @@ pp. 465-468. Mar. 2012, Kyoto.
 pp.3733-3736, Apr., 2009, Taipei.
 [[IEEEXplore](https://doi.org/10.1109/ICASSP.2009.4960438)]
 
-## Non-refereed Articles
+## Non-refereed Articles/Presentations
+
+1. 矢野千紘, 呉孟超, **橘秀幸**, 竹川洋都, 渡邉陽太郎, **"大規模モデルの蒸留を用いた日本語文埋め込みモデル"**,
+*第19回YANSシンポジウム* 2024年9月5日
+
+1. 矢野千紘, 福地成彦, 深澤笙子, **橘秀幸**, 渡邉陽太郎
+**"LoRAを用いた大規模多言語文埋め込みモデルの構築"**,
+*第18回YANSシンポジウム* 2023年8月31日
 
 1. 竹川佳成, 平田圭二, 糸山克寿, 大石康智, **橘秀幸**, 寺澤洋子, 土井啓成, 平野砂峰旅, 深山覚, 松原正樹, **“ 新博士によるパネルディスカッションIV「新博士さんいらっしゃい!」”**, *情処研報* 2014
 年8月，京都（京都大学）
