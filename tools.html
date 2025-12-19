@@ -237,6 +237,30 @@ $(function(){
   });
   // Count down timer ==============================================
     countDown();
+
+  // ひらがな・カタカナ変換 ========================================================
+  function hiraganaToKatakana(str) {
+    return str.replace(/[\u3041-\u3096]/g, function(match) {
+      return String.fromCharCode(match.charCodeAt(0) + 0x60);
+    });
+  }
+
+  function katakanaToHiragana(str) {
+    return str.replace(/[\u30A1-\u30F6]/g, function(match) {
+      return String.fromCharCode(match.charCodeAt(0) - 0x60);
+    });
+  }
+
+  $("#kana_input").on("input", function(){
+    var input = $(this).val();
+    var toKatakana = hiraganaToKatakana(input);
+    var toHiragana = katakanaToHiragana(input);
+    $("#kana_to_katakana").text(toKatakana);
+    $("#kana_to_hiragana").text(toHiragana);
+  });
+
+  $("#kana_to_katakana").css("font-size", "x-large");
+  $("#kana_to_hiragana").css("font-size", "x-large");
 });
 
   function countDown() {
@@ -376,6 +400,12 @@ Beats: <textarea id = "n_beats", type="text" cols="3" rows="1" id="input-up"></t
 <div id="topic"><h2>カウントダウンタイマー</h2><div id="toggle">
   <span>（うるう年などは正確には考慮していない目安の日数）</span>
   <span id="TimeLeft"></span>
+</div></div>
+
+<div id="topic"><h2>ひらがな・カタカナ変換</h2><div id="toggle">
+入力：<textarea id="kana_input" type="text" cols="50" rows="2"></textarea><br/>
+<b>→ カタカナ：</b><span id="kana_to_katakana"></span><br/>
+<b>→ ひらがな：</b><span id="kana_to_hiragana"></span>
 </div></div>
 
 
