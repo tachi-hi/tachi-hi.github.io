@@ -497,12 +497,4 @@ document.addEventListener("DOMContentLoaded", function () {
         katakanaToHiragana(input);
     });
   }
-
-  // ============================================
-  // Last Update
-  // ============================================
-  var lastUpdateEl = document.getElementById("lastUpdate");
-  if (lastUpdateEl) {
-    lastUpdateEl.textContent = "Last Update: " + document.lastModified;
-  }
 });

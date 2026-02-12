@@ -16,9 +16,14 @@
   </div>
   <footer>
     <hr>
+    <p class="last-update"></p>
     <p>&copy; Hideyuki Tachibana. All Rights Reserved.</p>
     <p><a href="{{ site.baseurl }}/">[Home]</a></p>
   </footer>
+  <script>
+    var el = document.querySelector(".last-update");
+    if (el) el.textContent = "Last Update: " + document.lastModified;
+  </script>
   {% if page.custom_js %}
   <script src="{{ site.baseurl }}/{{ page.custom_js }}"></script>
   {% endif %}
