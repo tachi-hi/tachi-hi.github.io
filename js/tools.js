@@ -236,30 +236,56 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ============================================
-  // MIDI to Frequency
+  // MIDI to Frequency + Piano keyboard
   // ============================================
+  function buildPianoSVG(activeMidi) {
+    var WW = 14, WH = 60, BW = 9, BH = 38;
+    var isWhite = {0:1, 2:1, 4:1, 5:1, 7:1, 9:1, 11:1};
+    var whiteKeys = [], blackKeys = [];
+    var wi = 0, whiteX = {};
+    for (var m = 21; m <= 108; m++) {
+      if (isWhite[m % 12]) {
+        whiteX[m] = wi * WW;
+        whiteKeys.push(m);
+        wi++;
+      }
+    }
+    for (var m = 21; m <= 108; m++) {
+      if (!isWhite[m % 12] && whiteX[m - 1] !== undefined) {
+        blackKeys.push({midi: m, x: whiteX[m - 1] + WW - BW / 2});
+      }
+    }
+    var tw = wi * WW;
+    var s = '<svg viewBox="0 0 ' + tw + ' ' + WH + '" class="piano-svg">';
+    for (var i = 0; i < whiteKeys.length; i++) {
+      var m = whiteKeys[i];
+      var fill = m === activeMidi ? "#0984e3" : "#fff";
+      s += '<rect x="' + whiteX[m] + '" y="0" width="' + (WW - 1) +
+        '" height="' + WH + '" fill="' + fill +
+        '" stroke="#aaa" stroke-width="0.5"/>';
+    }
+    for (var i = 0; i < blackKeys.length; i++) {
+      var k = blackKeys[i];
+      var fill = k.midi === activeMidi ? "#0984e3" : "#2d3436";
+      s += '<rect x="' + k.x + '" y="0" width="' + BW +
+        '" height="' + BH + '" fill="' + fill + '" rx="1"/>';
+    }
+    s += '</svg>';
+    return s;
+  }
+
   var midi2freqInput = document.getElementById("midi2freq");
+  var pianoEl = document.getElementById("piano");
   if (midi2freqInput) {
+    if (pianoEl) pianoEl.innerHTML = buildPianoSVG(-1);
     midi2freqInput.addEventListener("input", function () {
       var midi = parseInt(this.value);
-      var notenames = [
-        "C",
-        "Cis",
-        "D",
-        "Dis",
-        "E",
-        "F",
-        "Fis",
-        "G",
-        "Gis",
-        "A",
-        "Ais",
-        "B",
-      ];
+      var notenames = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
       var freq = 440 * Math.pow(2, (midi - 69) / 12);
       var text =
-        notenames[midi % 12] + (Math.floor(midi / 12) - 1) + ", " + freq + "Hz";
+        notenames[midi % 12] + (Math.floor(midi / 12) - 1) + ", " + freq.toFixed(2) + "Hz";
       document.getElementById("notefreq").textContent = text;
+      if (pianoEl) pianoEl.innerHTML = buildPianoSVG(midi);
     });
   }
 
