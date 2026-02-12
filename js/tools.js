@@ -41,18 +41,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var mojiCount = document.getElementById("moji_count");
   if (mojiCount) {
-    mojiCount.addEventListener("blur", function () {
-      this.value = removeLinebreaks(this.value);
+    mojiCount.addEventListener("input", function () {
+      var text = this.value;
 
-      var len = this.value.length;
+      var len = text.length;
       document.getElementById("wcharCount").textContent =
         (len || 0) + "文字";
 
-      var words = this.value.split(/[\s,]+/);
+      var words = text.split(/[\s,]+/);
       var wordLen = words.length;
       if (wordLen > 0 && words[wordLen - 1].length === 0) wordLen--;
       document.getElementById("wordCount").textContent =
         (wordLen || 0) + "単語";
+    });
+
+    mojiCount.addEventListener("blur", function () {
+      this.value = removeLinebreaks(this.value);
+      mojiCount.dispatchEvent(new Event("input"));
     });
   }
 
