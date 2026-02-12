@@ -5,16 +5,9 @@ mathjax: true
 custom_js: js/tools.js
 ---
 
-<h1>公開備忘録</h1>
-
-<p>
-注意：
-このページは著者の私的なメモを外出時等に手軽に参照できるように設けたチートシートです。
-このページから得た情報によって生じたいかなる不利益に関しても著者は責任を負わないものとします。
-</p>
+<h1>公開簡易ツール</h1>
 
 <div class="topic"><h2>文字数・単語数カウント + 改行削除</h2><div class="toggle-content hidden">
-<h3>今すぐこの場で（簡易版）</h3>
 <ul>
   <li>複数行にまたがる単語の行末のハイフネーションは除去しません。</li>
   <li>文字コードの統計に基づいて簡易的な言語判定を行い、非欧文と判定された場合はスペースを削除します。</li>
@@ -24,12 +17,6 @@ custom_js: js/tools.js
   <span class="result-display" id="wcharCount">0文字</span>
   <span class="result-display" id="wordCount">0単語</span>
 </div>
-
-<h3>wc</h3>
-<pre>
-wc --chars # 文字数
-wc --words # 単語数
-</pre>
 
 </div></div>
 
@@ -104,71 +91,6 @@ Beats: <input id="n_beats" type="number" style="width: 5em">
 入力：<textarea id="kana_input" cols="50" rows="2"></textarea><br>
 <b>→ カタカナ：</b><span class="result-display" id="kana_to_katakana"></span><br>
 <b>→ ひらがな：</b><span class="result-display" id="kana_to_hiragana"></span>
-</div></div>
-
-
-<div class="topic"><h2>sox</h2><div class="toggle-content hidden">
-<h3>一括してリサンプリング</h3>
-<pre>
-for file in `ls *.wav`
-do
-  sox $file -r 8000 -c 1 --norm ${file%.wav}_8k.wav trim 0 10
-done
-</pre>
-r: rate, c: channel, norm正規化
-<h3>右のチャンネルの抽出</h3>
-<pre>
-sox input.wav -c 1 -r 16000 output.wav mixer -r channels 1
-</pre>
-<h3>ファイルの長さを調べる</h3>
--n statで出てくる情報から適当に抽出
-<pre>
-len=`sox input.wav -n stat 2>&amp;1 | sed -n 's/^Length (seconds):[^0-9]*\([0-9.]*\)$/\1/p`
-</pre>
-
-</div></div>
-
-
-<div class="topic"><h2>Pythonワンライナー</h2><div class="toggle-content hidden">
-<h3>npzファイルの中身を簡易的にチェックする方法</h3>
-<pre>
-python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k].shape) for k in D.keys()])" data.npz
-</pre>
-.bashrcなどにエイリアスを設定する場合の一例
-<pre>
-alias npz-check='python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k].shape) for k in D.keys()])"'
-npz-check data.npz
-</pre>
-
-<h3>オーディオファイルに含まれる音の最大周波数のおおよその値を求める方法</h3>
--50dBを上回る周波数のうち最大のものを探す。
-<pre>
-alias highest-freq='python3 -c "import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);N=8192;S=abs(l.stft(y,N)**2/N);S=n.log10(n.mean(S,axis=1))*10;a=next(i for i,x in enumerate(S[::-1]) if x>-50);F=(len(S)-a)/len(S)*sr;print(int(F),\"Hz\")"'
-highest-freq data.wav
-</pre>
-
-<h3>スペクトログラムを表示（簡易版）</h3>
-<pre>
-alias show-spec='python3 -c "import matplotlib.pyplot as plt;import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);H=sr//100;N=H*4;S=abs(l.stft(y,N,H)**2/N);S=n.log10(S)*10;plt.imshow(n.flipud(S),aspect=\"auto\");plt.show(block=True)"'
-show-spec data.wav
-</pre>
-
-</div></div>
-
-<div class="topic"><h2>学習ログの整理</h2><div class="toggle-content hidden">
-<h3>最新の10件のファイル以外を削除</h3>
-<pre>
-ls -t *.dat | tail -n +11 | xargs echo
-# ls -t *.dat | tail -n +11 | xargs rm
-# ls -t *.dat | tail -n +11 | xargs sudo rm -rf
-</pre>
-
-<h3>ファイルサイズのチェック</h3>
-<pre>
-du -h . -d 1
-df -h .
-</pre>
-
 </div></div>
 
 <p id="lastUpdate"></p>
