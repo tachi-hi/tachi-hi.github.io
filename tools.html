@@ -1,331 +1,28 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//JP">
-<html>
-<head>
+---
+layout: layout
+title: Tools and Memo
+mathjax: true
+custom_js: js/tools.js
+---
 
-<META http-equiv="Content-Type" content="text/html">
-<title>Tachibana Memo</title>
-<base target = "_parent">
-<link rel="stylesheet" href="css/style.css" type="text/css"/>
-
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- MathJax -->
-<script type="text/javascript" id="MathJax-script" async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-
-<script type="text/javascript">
-$(function(){
-  // 改行削除用=============================================
-  function remove_linebreaks(text){
-    text = text.replace(/\n/g, " ")
-      .replace(/[\s]+/g, " ")
-      .replace(/-\s/g, "-")
-    if (guess_lang(text) == "ja"){
-      text = text.replace(/\s/g, "")
-        .replace(/\,/g,"、")
-        .replace(/，/g,"、")
-        .replace(/\./g,"。")
-        .replace(/．/g,"。")
-    }
-    console.log(text)
-    return text;
-  };
-
-  // 簡易言語判定
-  function guess_lang(text){
-    utf16_codes = text.split('').map( char => parseInt(char.charCodeAt(0)) );
-    flags = utf16_codes.map( code => code < 128 ? 1 : 0 );
-    sum = flags.reduce( (cum, x) => cum + x )
-    ascii_ratio = (sum + 1) / (flags.length + 1)
-    return (ascii_ratio > 0.7 || flags.length < 20) ? "en" : "ja"
-  }
-
-  // 文字数のカウント用=============================================
-  $("#moji_count").blur(function(){
-      // remove line breaks
-      $(this).val(remove_linebreaks($(this).val()));
-
-      // count chars
-      var len = $(this).val().length;
-      $("#wcharCount").text((len != 0 ? len : 0)+"文字");
-
-      // count words
-      var words = $(this).val().split(/[\s,]+/);
-      len = words.length;
-      len = (len > 0 && words[len-1].length == 0) ? (len - 1) : len;
-      $("#wordCount").text((len != 0 ? len : 0)+"単語");
-  });
-
-  $("#wcharCount").css("font-size", "xx-large");
-  $("#wordCount").css("font-size", "xx-large");
-
-  // lastupdate ====================================================
-  $("#lastUpdate").text("Last Update: "+document.lastModified);
-
-  // toggle ========================================================
-  $("#topic > h2").click( function(){
-     $(this).parent().find("#toggle").toggle("fast");
-  });
-
-  $("#subtopic > h3").click( function(){
-     $(this).parent().find("#subtoggle").toggle("fast");
-  });
-
-  $("#topic > #toggle").css("display", "none");
-  $("#subtopic > #subtoggle").css("display", "none");
-
-  $("h2").hover(
-    function(){
-      $(this).css("background-color", "green");
-      $(this).css("color", "white");
-      $(this).css("cursor", "pointer");
-    },
-    function(){
-      $(this).css("background-color","");
-      $(this).css("color", "");
-    }
-  );
-
-  // 和暦・西暦変換 ========================================================
-  var seireki;
-  $("#seireki").keyup(function(){
-      seireki = $(this).val();
-      var wareki_text = "";
-      var wareki = ["", "令和", "平成", "昭和", "大正","明治"];
-      var start = [2100, 2019, 1989, 1926, 1912, 1868];
-      for(i = 0; i < wareki.length; i++){
-        if(seireki >= start[i] && seireki <= start[i - 1]){
-           wareki_text += (wareki[i] + (seireki == start[i] ? "元" : (seireki - start[i] + 1)) + "年 ");
-        }
-      }
-      $("#wareki").text(wareki_text);
-  });
-  $("#wareki").css("font-size", "xx-large");
-
-  // arXiv URL 変換 ========================================================
-
-  $("#arxivurl").blur(function(){
-      var arxivurl = $(this).val();
-      var arxivid = arxivurl.match(/\/(\d+\.\d+)/)[1];
-      var arxivabs = "https://arxiv.org/abs/" + arxivid;
-      var arxivpdf = "https://arxiv.org/pdf/" + arxivid + ".pdf";
-      var link = $('<a>',{text: arxivabs, href: arxivabs});
-      $("#arxivabs").text('');
-      $("#arxivabs").append(link);
-      $("#arxivpdf").text(arxivpdf);
-      // copy abs url to clipboard
-      var tempInput = $('<input>');
-      $('body').append(tempInput);
-      tempInput.val(arxivabs).select();
-      document.execCommand('copy');
-      tempInput.remove();
-  });
-
-  // dB and amplitude ========================================================
-  var amp;
-  var db;
-  $("#amp2db").keyup(function(){
-      amp = $(this).val();
-      db_result = 10 * Math.log10(Math.pow(amp, 2)) + "[dB]";
-      $("#db_result").text(db_result);
-  });
-  $("#db_result").css("font-size", "xx-large");
-
-  $("#db2amp").keyup(function(){
-      db = $(this).val();
-      amp_result = Math.pow(10, db / 20);
-      $("#amp_result").text(amp_result);
-  });
-  $("#amp_result").css("font-size", "xx-large");
-
-  // MIDI to Freq ========================================================
-  var midi;
-  $("#midi2freq").keyup(function(){
-      midi = $(this).val();
-      var notenames = ["C", "Cis", "D", "Dis", "E", "F", "Fis", "G", "Gis", "A", "Ais", "B"];
-      var freqText = ("" + notenames[midi % 12] + "" + Math.floor(midi/12 - 1) + ", " + 440 * Math.pow(2, (midi - 69)/12) + "Hz");
-      $("#notefreq").text(freqText);
-  });
-  $("#notefreq").css("font-size", "xx-large");
-
-  // BPS and n_beats to time ========================================================
-  var bps;
-  var n_beats;
-  function bps_and_n_beats_2_time(bps, n_beats){ return (60.0 / bps * n_beats);}
-  $("#bps").keyup(function(){
-      bps = $(this).val();
-      $("#bps_nbeats_2_time").text( bps_and_n_beats_2_time(bps, n_beats) + " 秒");
-  });
-  $("#n_beats").keyup(function(){
-      n_beats = $(this).val();
-      $("#bps_nbeats_2_time").text( bps_and_n_beats_2_time(bps, n_beats) + " 秒");
-  });
-  $("#bps_nbeats_2_time").css("font-size", "xx-large");
-
-  // 時間を月額に換算 ========================================================
-  var cost_usd;
-  function hourly_cost_2_monthly(cost_usd){ return (cost_usd * 24 * 31) * 120;}
-  $("#cost_usd").keyup(function(){
-      cost_usd = $(this).val();
-      $("#hourly_cost_2_monthly").text( hourly_cost_2_monthly(cost_usd) + " 円/月（1ドル=120円換算）");
-  });
-  $("#hourly_cost_2_monthly").css("font-size", "xx-large");
-
-  // BMI ========================================================
-  var bmi_height = 1;
-  var bmi_weight = 1;
-  $("#bmi_height").keyup(function(){
-      bmi_height = $(this).val();
-      var bmi = bmi_weight / ((bmi_height/100) * (bmi_height/100))
-      $("#bmi").text("BMI = " + bmi);
-  });
-  $("#bmi_weight").keyup(function(){
-      bmi_weight = $(this).val();
-      var bmi = bmi_weight / ((bmi_height/100) * (bmi_height/100))
-      $("#bmi").text("BMI = " + bmi);
-  });
-  $("#bmi").css("font-size", "xx-large");
-
-  // JSTtoWorldTime ==============================================
-  $("#jst_to_worldtime").keyup(function(){
-  	jst = $(this).val();
-  	utc = (jst - 9 + 24) % 24;
-	cet = (utc + 1 + 24) % 24;
-	cet_summer = (utc + 2 + 24) %24;
-	east = (utc - 5 + 24) % 24;
-	east_summer = (utc - 4 + 24) % 24;
-	west = (utc - 8 + 24) % 24;
-	west_summer = (utc - 7 + 24) % 24;
-	hawaii = (utc - 10 + 24) % 24;
-	output =
-		"<table>" +
-		"<tr><td>中央ヨーロッパ（夏時間）</td><td>" + cet_summer + "時</td></tr>" +
-		"<tr><td>中央ヨーロッパ</td><td>" + cet + "時</td></tr>" +
-		"<tr><td>世界標準時</td><td>" + utc + "時</td></tr>" +
-		"<tr><td>アメリカ東海岸（夏時間）</td><td>" + east_summer + "時</td></tr>" +
-		"<tr><td>アメリカ東海岸</td><td>" + east + "時</td></tr>" +
-		"<tr><td>アメリカ西海岸（夏時間）</td><td>" + west_summer + "時</td></tr>" +
-		"<tr><td>アメリカ西海岸</td><td>" + west + "時</td></tr>" +
-		"<tr><td>ハワイ</td><td>" + hawaii + "時</td></tr>" +
-		"</table>";
-	$("#timelist").html(output);
-  });
-  // Count down timer ==============================================
-  $("#jst_to_worldtime").keyup(function(){
-  	jst = $(this).val();
-  	utc = (jst - 9 + 24) % 24;
-	cet = (utc + 1 + 24) % 24;
-	cet_summer = (utc + 2 + 24) %24;
-	east = (utc - 5 + 24) % 24;
-	east_summer = (utc - 4 + 24) % 24;
-	west = (utc - 8 + 24) % 24;
-	west_summer = (utc - 7 + 24) % 24;
-	hawaii = (utc - 10 + 24) % 24;
-	output =
-		"<table>" +
-		"<tr><td>中央ヨーロッパ（夏時間）</td><td>" + cet_summer + "時</td></tr>" +
-		"<tr><td>中央ヨーロッパ</td><td>" + cet + "時</td></tr>" +
-		"<tr><td>世界標準時</td><td>" + utc + "時</td></tr>" +
-		"<tr><td>アメリカ東海岸（夏時間）</td><td>" + east_summer + "時</td></tr>" +
-		"<tr><td>アメリカ東海岸</td><td>" + east + "時</td></tr>" +
-		"<tr><td>アメリカ西海岸（夏時間）</td><td>" + west_summer + "時</td></tr>" +
-		"<tr><td>アメリカ西海岸</td><td>" + west + "時</td></tr>" +
-		"<tr><td>ハワイ</td><td>" + hawaii + "時</td></tr>" +
-		"</table>";
-	$("#timelist").html(output);
-  });
-  // Count down timer ==============================================
-    countDown();
-
-  // ひらがな・カタカナ変換 ========================================================
-  function hiraganaToKatakana(str) {
-    return str.replace(/[\u3041-\u3096]/g, function(match) {
-      return String.fromCharCode(match.charCodeAt(0) + 0x60);
-    });
-  }
-
-  function katakanaToHiragana(str) {
-    return str.replace(/[\u30A1-\u30F6]/g, function(match) {
-      return String.fromCharCode(match.charCodeAt(0) - 0x60);
-    });
-  }
-
-  $("#kana_input").on("input", function(){
-    var input = $(this).val();
-    var toKatakana = hiraganaToKatakana(input);
-    var toHiragana = katakanaToHiragana(input);
-    $("#kana_to_katakana").text(toKatakana);
-    $("#kana_to_hiragana").text(toHiragana);
-  });
-
-  $("#kana_to_katakana").css("font-size", "x-large");
-  $("#kana_to_hiragana").css("font-size", "x-large");
-});
-
-  function countDown() {
-	function getDiffYearMonth(end_){
-		var now = new Date(); var end = new Date(end_);
-		var yearDiff = end.getFullYear() - now.getFullYear();
-		var monthDiff = end.getMonth() - now.getMonth();
-		tmp = monthDiff + yearDiff * 12;
-		yearDiff = Math.floor( tmp / 12 );
-		monthDiff = tmp % 12;
-		return((yearDiff != 0 ? (yearDiff + "年 ") : "") + monthDiff + "ヶ月");
-	}
-	function getDiffYearDays(end_){ // This may not work in the leap year
-		var now = new Date(); var end = new Date(end_);
-		var yearDiff = end.getFullYear() - now.getFullYear();
-		end.setFullYear(now.getFullYear());
-		var daysDiff = Math.ceil( (end - now) / (1000 * 60 * 60 * 24) ) ;
-		tmp = daysDiff + yearDiff * 365;
-		yearDiff = Math.floor( tmp / 365 ); daysDiff = tmp % 365;
-		return((yearDiff != 0 ? (yearDiff + "年 ") : "") + daysDiff + "日");
-	}
-	function getRaigetsu(){
-		var now = new Date();
-		return((now.getMonth() + 2) + "/1/" + now.getFullYear());
-	}
-	function getNenmatsu(){
-		var now = new Date();
-		return("12/31/" + now.getFullYear());
-	}
-	function getNendomatsu(){
-		var now = new Date();
-		return("3/31/" + (now.getFullYear() + 1));
-	}
-  output = "<table>" +
-	   "<tr><td>来月1日まで </td><td>" + getDiffYearDays(getRaigetsu()) + "</td></tr>" +
-	   "<tr><td>大晦日まで </td><td>" + getDiffYearDays(getNenmatsu()) + "</td></tr>" +
-	   "<tr><td>年度末まで </td><td>" + getDiffYearDays(getNendomatsu()) + "</td></tr>" +
-       "<tr><td>2035年9月21日（皆既日食）まで </td><td>" + getDiffYearDays("9/21/2035") + "</td></tr>" +
-       "<tr><td>2038年1月19日（32bit time_tがオーバーフロー）まで </td><td>" + getDiffYearDays("1/19/2038") + "</td></tr>" +
-       "<tr><td>2041年10月25日（金環食）まで </td><td>" + getDiffYearDays("10/25/2041") + "</td></tr>" +
-       "<tr><td>2061年7月28日（ハレー彗星地球接近）まで </td><td>" + getDiffYearDays("7/28/2061") + "</td></tr>" +
-	   "</table>";
-  $("#TimeLeft").html(output);
-  setTimeout('countDown()', 1000);
-  }
-</script>
-</head>
-
-<body>
 <h1>公開備忘録</h1>
 
+<p>
 注意：
 このページは著者の私的なメモを外出時等に手軽に参照できるように設けたチートシートです。
 このページから得た情報によって生じたいかなる不利益に関しても著者は責任を負わないものとします。
+</p>
 
-<div id="topic"><h2>文字数・単語数カウント + 改行削除</h2><div id="toggle">
+<div class="topic"><h2>文字数・単語数カウント + 改行削除</h2><div class="toggle-content hidden">
 <h3>今すぐこの場で（簡易版）</h3>
 <ul>
   <li>複数行にまたがる単語の行末のハイフネーションは除去しません。</li>
   <li>文字コードの統計に基づいて簡易的な言語判定を行い、非欧文と判定された場合はスペースを削除します。</li>
 </ul>
-<textarea id = "moji_count", type="text" cols="150" rows="10" id="input-up"></textarea>
+<textarea id="moji_count" cols="100" rows="10"></textarea>
 <div>
-  <span id="wcharCount">0文字</span>
-  <span id="wordCount">0単語</span>
+  <span class="result-display" id="wcharCount">0文字</span>
+  <span class="result-display" id="wordCount">0単語</span>
 </div>
 
 <h3>wc</h3>
@@ -336,80 +33,81 @@ wc --words # 単語数
 
 </div></div>
 
-<div id="topic"><h2>西暦・和暦</h2><div id="toggle">
-西暦<textarea id = "seireki", type="text" cols="3" rows="1" id="input-up"></textarea>年
-<span id="wareki"> ?? 年</span>
+<div class="topic"><h2>西暦・和暦</h2><div class="toggle-content hidden">
+西暦 <input id="seireki" type="number" style="width: 5em"> 年
+<span class="result-display" id="wareki"> ?? 年</span>
 
 </div></div>
 
-<div id="topic"><h2>arXivのURL変換</h2><div id="toggle">
-  ※ URLを入力したら一度他のところをクリックしてください。</br>
-  ※ Abstract の URL はクリップボードにコピーされます。</br>
-<center>
-  arXiv の PDF か abstract の URL を入力 </br>
-  <textarea id = "arxivurl", type="text" cols="100" rows="1" id="input-up"></textarea></br>
-  <span id="arxivabs">Abstract</span></br>
+<div class="topic"><h2>arXivのURL変換</h2><div class="toggle-content hidden">
+  <p>※ URLを入力したら一度他のところをクリックしてください。</p>
+  <p>※ Abstract の URL はクリップボードにコピーされます。</p>
+  arXiv の PDF か abstract の URL を入力<br>
+  <input id="arxivurl" type="text" style="width: 100%; max-width: 40em"><br>
+  <span id="arxivabs">Abstract</span><br>
   <span id="arxivpdf">PDF</span>
-</center>
 
 </div></div>
 
-<div id="topic"><h2>振幅とデシベル</h2><div id="toggle">
-\(y = 10 \log_{10} x^2\) <br/>
+<div class="topic"><h2>振幅とデシベル</h2><div class="toggle-content hidden">
+\(y = 10 \log_{10} x^2\) <br>
 
-\(y \text{ [dB]} = \)<textarea id = "db2amp", type="text" cols="3" rows="1" id="input-up"></textarea>
-\(\to x = \)<span id="amp_result"></span><br/>
+\(y \text{ [dB]} = \)<input id="db2amp" type="number" step="any" style="width: 5em">
+\(\to x = \)<span class="result-display" id="amp_result"></span><br>
 
-\(x = \)<textarea id = "amp2db", type="text" cols="3" rows="1" id="input-up"></textarea>
-\(\to y \text{ [dB]} = \)<span id="db_result"></span>
-
-</div></div>
-
-<div id="topic"><h2>MIDI to 周波数</h2><div id="toggle">
-MIDI note number: <textarea id = "midi2freq", type="text" cols="3" rows="1" id="input-up"></textarea>
-<span id="notefreq">音名・周波数</span>
+\(x = \)<input id="amp2db" type="number" step="any" style="width: 5em">
+\(\to y \text{ [dB]} = \)<span class="result-display" id="db_result"></span>
 
 </div></div>
 
-<div id="topic"><h2>$/h → ￥/mon </h2><div id="toggle">
-<textarea id = "cost_usd", type="text" cols="3" rows="1" id="input-up"></textarea>ドル/時間　→　
-<span id="hourly_cost_2_monthly">料金</span>
-注：1セント/時 ≒ 900円/月 < 1000円/月
+<div class="topic"><h2>MIDI to 周波数</h2><div class="toggle-content hidden">
+MIDI note number: <input id="midi2freq" type="number" style="width: 5em">
+<span class="result-display" id="notefreq">音名・周波数</span>
 
 </div></div>
 
-<div id="topic"><h2>BPS and Beats to Time</h2><div id="toggle">
-BPS (beats per second): <textarea id = "bps", type="text" cols="3" rows="1" id="input-up"></textarea>
-Beats: <textarea id = "n_beats", type="text" cols="3" rows="1" id="input-up"></textarea>
-<span id="bps_nbeats_2_time">時間</span>
-
-</div></div>
-<div id="topic"><h2>BMI</h2><div id="toggle">
-身長: <textarea id = "bmi_height", type="text" cols="3" rows="1" id="input-up"></textarea> cm
-体重: <textarea id = "bmi_weight", type="text" cols="3" rows="1" id="input-up"></textarea> kg
-<span id="bmi">BMI</span>
+<div class="topic"><h2>$/h → ￥/mon</h2><div class="toggle-content hidden">
+<input id="cost_usd" type="number" step="any" style="width: 5em"> ドル/時間
+× 為替レート <input id="exchange_rate" type="number" value="150" style="width: 5em"> 円/ドル →
+<span class="result-display" id="hourly_cost_2_monthly">料金</span>
+<br>
+<small>注：1セント/時 ≒ 1000円/月 (為替150円換算)</small>
 
 </div></div>
 
-<div id="topic"><h2>世界時計</h2><div id="toggle">
-日本時間：<textarea id = "jst_to_worldtime", type="text" cols="3" rows="1" id="input-up"></textarea> 時</br>
+<div class="topic"><h2>BPS and Beats to Time</h2><div class="toggle-content hidden">
+BPS (beats per second): <input id="bps" type="number" step="any" style="width: 5em">
+Beats: <input id="n_beats" type="number" style="width: 5em">
+<span class="result-display" id="bps_nbeats_2_time">時間</span>
+
+</div></div>
+
+<div class="topic"><h2>BMI</h2><div class="toggle-content hidden">
+身長: <input id="bmi_height" type="number" step="any" style="width: 5em"> cm
+体重: <input id="bmi_weight" type="number" step="any" style="width: 5em"> kg
+<span class="result-display" id="bmi">BMI</span>
+
+</div></div>
+
+<div class="topic"><h2>世界時計</h2><div class="toggle-content hidden">
+日本時間：<input id="jst_to_worldtime" type="number" style="width: 5em"> 時<br>
 <span id="timelist">世界の時刻</span>
 
 </div></div>
 
-<div id="topic"><h2>カウントダウンタイマー</h2><div id="toggle">
+<div class="topic"><h2>カウントダウンタイマー</h2><div class="toggle-content hidden">
   <span>（うるう年などは正確には考慮していない目安の日数）</span>
   <span id="TimeLeft"></span>
 </div></div>
 
-<div id="topic"><h2>ひらがな・カタカナ変換</h2><div id="toggle">
-入力：<textarea id="kana_input" type="text" cols="50" rows="2"></textarea><br/>
-<b>→ カタカナ：</b><span id="kana_to_katakana"></span><br/>
-<b>→ ひらがな：</b><span id="kana_to_hiragana"></span>
+<div class="topic"><h2>ひらがな・カタカナ変換</h2><div class="toggle-content hidden">
+入力：<textarea id="kana_input" cols="50" rows="2"></textarea><br>
+<b>→ カタカナ：</b><span class="result-display" id="kana_to_katakana"></span><br>
+<b>→ ひらがな：</b><span class="result-display" id="kana_to_hiragana"></span>
 </div></div>
 
 
-<div id = "topic"><h2>sox</h2><div id = "toggle">
+<div class="topic"><h2>sox</h2><div class="toggle-content hidden">
 <h3>一括してリサンプリング</h3>
 <pre>
 for file in `ls *.wav`
@@ -425,41 +123,39 @@ sox input.wav -c 1 -r 16000 output.wav mixer -r channels 1
 <h3>ファイルの長さを調べる</h3>
 -n statで出てくる情報から適当に抽出
 <pre>
-len=`sox input.wav -n stat 2>&1 | sed -n 's/^Length (seconds):[^0-9]*\([0-9.]*\)$/\1/p`
+len=`sox input.wav -n stat 2>&amp;1 | sed -n 's/^Length (seconds):[^0-9]*\([0-9.]*\)$/\1/p`
 </pre>
 
-</div>
-</div>
+</div></div>
 
 
-<div id = "topic"><h2>Pythonワンライナー</h2><div id = "toggle">
-<h3>npzファイズの中身を簡易的にチェックする方法</h3>
+<div class="topic"><h2>Pythonワンライナー</h2><div class="toggle-content hidden">
+<h3>npzファイルの中身を簡易的にチェックする方法</h3>
 <pre>
-  python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k].shape) for k in D.keys()])" data.npz
+python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k].shape) for k in D.keys()])" data.npz
 </pre>
 .bashrcなどにエイリアスを設定する場合の一例
 <pre>
-  alias npz-check='python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k].shape) for k in D.keys()])"'
-  npz-check data.npz
+alias npz-check='python3 -c "import sys;import numpy;D=numpy.load(sys.argv[1]);print([(k,D[k].shape) for k in D.keys()])"'
+npz-check data.npz
 </pre>
 
 <h3>オーディオファイルに含まれる音の最大周波数のおおよその値を求める方法</h3>
 -50dBを上回る周波数のうち最大のものを探す。
 <pre>
-  alias highest-freq='python3 -c "import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);N=8192;S=abs(l.stft(y,N)**2/N);S=n.log10(n.mean(S,axis=1))*10;a=next(i for i,x in enumerate(S[::-1]) if x>-50);F=(len(S)-a)/len(S)*sr;print(int(F),\"Hz\")"'
-  highest-freq data.wav
+alias highest-freq='python3 -c "import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);N=8192;S=abs(l.stft(y,N)**2/N);S=n.log10(n.mean(S,axis=1))*10;a=next(i for i,x in enumerate(S[::-1]) if x>-50);F=(len(S)-a)/len(S)*sr;print(int(F),\"Hz\")"'
+highest-freq data.wav
 </pre>
 
 <h3>スペクトログラムを表示（簡易版）</h3>
 <pre>
-  alias show-spec='python3 -c "import matplotlib.pyplot as plt;import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);H=sr//100;N=H*4;S=abs(l.stft(y,N,H)**2/N);S=n.log10(S)*10;plt.imshow(n.flipud(S),aspect=\"auto\");plt.show(block=True)"'
-  show-spec data.wav
+alias show-spec='python3 -c "import matplotlib.pyplot as plt;import sys as s,librosa as l,numpy as n;y,sr=l.load(s.argv[1],sr=None);H=sr//100;N=H*4;S=abs(l.stft(y,N,H)**2/N);S=n.log10(S)*10;plt.imshow(n.flipud(S),aspect=\"auto\");plt.show(block=True)"'
+show-spec data.wav
 </pre>
 
-</div>
-</div>
+</div></div>
 
-<div id = "topic"><h2>学習ログの整理</h2><div id = "toggle">
+<div class="topic"><h2>学習ログの整理</h2><div class="toggle-content hidden">
 <h3>最新の10件のファイル以外を削除</h3>
 <pre>
 ls -t *.dat | tail -n +11 | xargs echo
@@ -473,11 +169,6 @@ du -h . -d 1
 df -h .
 </pre>
 
-</div>
-</div>
+</div></div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-<hr>
-<a href="index.html">戻る</a>
-<span id="lastUpdate"></span>
-</body>
+<p id="lastUpdate"></p>
