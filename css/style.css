@@ -210,6 +210,61 @@ textarea {
 }
 
 /* ============================================
+   World Clock
+   ============================================ */
+.clock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.clock-card {
+  border-radius: 8px;
+  padding: 0.7rem;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.clock-card.daytime {
+  background: linear-gradient(135deg, #dfe6e9, #f8f9fa);
+  color: #2d3436;
+  border: 1px solid #dee2e6;
+}
+
+.clock-card.night {
+  background: linear-gradient(135deg, #1e272e, #2d3436);
+  color: #f5f6fa;
+  border: 1px solid #485460;
+}
+
+.clock-card.twilight {
+  background: linear-gradient(135deg, #4a6fa5, #e17055);
+  color: #fff;
+  border: 1px solid #6c7a89;
+}
+
+.clock-card .clock-svg {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto 0.3rem;
+}
+
+.clock-card .clock-time {
+  font-size: 1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.clock-card .clock-label {
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+  opacity: 0.85;
+}
+
+/* ============================================
    Responsive
    ============================================ */
 @media (max-width: 600px) {

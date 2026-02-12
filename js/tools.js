@@ -216,33 +216,112 @@ document.addEventListener("DOMContentLoaded", function () {
   if (bmiWeightInput) bmiWeightInput.addEventListener("input", updateBmi);
 
   // ============================================
-  // JST to World Time (duplicate removed)
+  // JST to World Time (analog clocks, day/night)
   // ============================================
+  var timezones = [
+    { label: "Honolulu", offset: -10 },
+    { label: "Los Angeles", offset: -8 },
+    { label: "New York", offset: -5 },
+    { label: "London", offset: 0 },
+    { label: "Paris", offset: 1 },
+    { label: "Helsinki", offset: 2 },
+    { label: "Dubai", offset: 4 },
+    { label: "Singapore", offset: 8 },
+    { label: "Tokyo", offset: 9 },
+  ];
+
+  function getTimeClass(hour) {
+    if (hour >= 7 && hour < 18) return "daytime";
+    if ((hour >= 18 && hour < 20) || (hour >= 5 && hour < 7)) return "twilight";
+    return "night";
+  }
+
+  function buildClockSVG(hour24, min) {
+    var h12 = hour24 % 12;
+    var hourAngle = (h12 + min / 60) * 30;
+    var minAngle = min * 6;
+    var isNight = getTimeClass(hour24) === "night";
+    var isTwilight = getTimeClass(hour24) === "twilight";
+    var faceFill = isNight ? "#1e272e" : isTwilight ? "#4a6fa5" : "#f8f9fa";
+    var handColor = isNight ? "#f5f6fa" : "#2d3436";
+    var tickColor = isNight ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.3)";
+    var borderColor = isNight ? "#485460" : "#dee2e6";
+    var ticks = "";
+    for (var i = 0; i < 12; i++) {
+      var a = i * 30;
+      var isMain = (i % 3 === 0);
+      var r1 = isMain ? 36 : 38;
+      var r2 = 42;
+      var rad = a * Math.PI / 180;
+      ticks +=
+        '<line x1="' + (50 + r1 * Math.sin(rad)) +
+        '" y1="' + (50 - r1 * Math.cos(rad)) +
+        '" x2="' + (50 + r2 * Math.sin(rad)) +
+        '" y2="' + (50 - r2 * Math.cos(rad)) +
+        '" stroke="' + tickColor +
+        '" stroke-width="' + (isMain ? "2" : "1") + '"/>';
+    }
+    return (
+      '<svg viewBox="0 0 100 100" class="clock-svg">' +
+      '<circle cx="50" cy="50" r="46" fill="' + faceFill + '" stroke="' + borderColor + '" stroke-width="1.5"/>' +
+      ticks +
+      '<line x1="50" y1="50" x2="' + (50 + 26 * Math.sin(hourAngle * Math.PI / 180)) +
+      '" y2="' + (50 - 26 * Math.cos(hourAngle * Math.PI / 180)) +
+      '" stroke="' + handColor + '" stroke-width="3" stroke-linecap="round"/>' +
+      '<line x1="50" y1="50" x2="' + (50 + 36 * Math.sin(minAngle * Math.PI / 180)) +
+      '" y2="' + (50 - 36 * Math.cos(minAngle * Math.PI / 180)) +
+      '" stroke="' + handColor + '" stroke-width="1.5" stroke-linecap="round"/>' +
+      '<circle cx="50" cy="50" r="2.5" fill="' + handColor + '"/>' +
+      "</svg>"
+    );
+  }
+
+  function renderWorldClock(jstHour, jstMin) {
+    var container = document.getElementById("timelist");
+    if (!container) return;
+    var utcHour = ((jstHour - 9) % 24 + 24) % 24;
+    var html = "";
+    for (var i = 0; i < timezones.length; i++) {
+      var tz = timezones[i];
+      var h = ((utcHour + tz.offset) % 24 + 24) % 24;
+      var cls = getTimeClass(h);
+      var timeStr = ("0" + h).slice(-2) + ":" + ("0" + jstMin).slice(-2);
+      html +=
+        '<div class="clock-card ' + cls + '">' +
+        buildClockSVG(h, jstMin) +
+        '<div class="clock-time">' + timeStr + "</div>" +
+        '<div class="clock-label">' + tz.label + "</div>" +
+        "</div>";
+    }
+    container.innerHTML = html;
+  }
+
   var jstInput = document.getElementById("jst_to_worldtime");
+  var clockInterval = null;
+
+  function updateClockFromNow() {
+    var now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
+    renderWorldClock(now.getHours(), now.getMinutes());
+  }
+
+  function startAutoUpdate() {
+    if (clockInterval) clearInterval(clockInterval);
+    clockInterval = setInterval(updateClockFromNow, 1000);
+  }
+
   if (jstInput) {
     jstInput.addEventListener("input", function () {
-      var jst = parseInt(this.value);
-      var utc = ((jst - 9 + 24) % 24);
-      var cet = ((utc + 1 + 24) % 24);
-      var cetSummer = ((utc + 2 + 24) % 24);
-      var east = ((utc - 5 + 24) % 24);
-      var eastSummer = ((utc - 4 + 24) % 24);
-      var west = ((utc - 8 + 24) % 24);
-      var westSummer = ((utc - 7 + 24) % 24);
-      var hawaii = ((utc - 10 + 24) % 24);
-      var output =
-        "<table>" +
-        "<tr><td>中央ヨーロッパ（夏時間）</td><td>" + cetSummer + "時</td></tr>" +
-        "<tr><td>中央ヨーロッパ</td><td>" + cet + "時</td></tr>" +
-        "<tr><td>世界標準時</td><td>" + utc + "時</td></tr>" +
-        "<tr><td>アメリカ東海岸（夏時間）</td><td>" + eastSummer + "時</td></tr>" +
-        "<tr><td>アメリカ東海岸</td><td>" + east + "時</td></tr>" +
-        "<tr><td>アメリカ西海岸（夏時間）</td><td>" + westSummer + "時</td></tr>" +
-        "<tr><td>アメリカ西海岸</td><td>" + west + "時</td></tr>" +
-        "<tr><td>ハワイ</td><td>" + hawaii + "時</td></tr>" +
-        "</table>";
-      document.getElementById("timelist").innerHTML = output;
+      var val = this.value;
+      if (val === "") {
+        updateClockFromNow();
+        startAutoUpdate();
+      } else {
+        if (clockInterval) clearInterval(clockInterval);
+        renderWorldClock(parseInt(val), 0);
+      }
     });
+    updateClockFromNow();
+    startAutoUpdate();
   }
 
   // ============================================
