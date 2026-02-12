@@ -276,16 +276,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var midi2freqInput = document.getElementById("midi2freq");
   var pianoEl = document.getElementById("piano");
+  function updateMidi(midi) {
+    var notenames = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+    var freq = 440 * Math.pow(2, (midi - 69) / 12);
+    var text =
+      notenames[midi % 12] + (Math.floor(midi / 12) - 1) + ", " + freq.toFixed(2) + "Hz";
+    document.getElementById("notefreq").textContent = text;
+    if (pianoEl) pianoEl.innerHTML = buildPianoSVG(midi);
+  }
+
   if (midi2freqInput) {
-    if (pianoEl) pianoEl.innerHTML = buildPianoSVG(-1);
+    updateMidi(parseInt(midi2freqInput.value) || 60);
     midi2freqInput.addEventListener("input", function () {
-      var midi = parseInt(this.value);
-      var notenames = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
-      var freq = 440 * Math.pow(2, (midi - 69) / 12);
-      var text =
-        notenames[midi % 12] + (Math.floor(midi / 12) - 1) + ", " + freq.toFixed(2) + "Hz";
-      document.getElementById("notefreq").textContent = text;
-      if (pianoEl) pianoEl.innerHTML = buildPianoSVG(midi);
+      updateMidi(parseInt(this.value));
     });
   }
 
