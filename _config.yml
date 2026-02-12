@@ -1,0 +1,8 @@
+title: "Hideyuki Tachibana"
+description: "Hideyuki Tachibana's personal academic website"
+url: "https://tachi-hi.github.io"
+baseurl: ""
+markdown: kramdown
+exclude:
+  - README.md
+  - .DS_Store

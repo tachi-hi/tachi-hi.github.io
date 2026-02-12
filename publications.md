@@ -41,7 +41,7 @@ Vol. 130, No. 2, pp. 254-260, Feb., 2010. *IF: ---* *(in Japanese)*
    + **橘 秀幸**, 鈴木 隆文, 満渕 邦彦, **"針筋電信号と単収縮畳み込みモデルによる手指筋の等尺性収縮時張力の推定"** *電気学会論文誌 C*, Vol. 130, No. 2, pp. 254-260, Feb., 2010.
 ... [[Paper (J-Stage)](https://www.jstage.jst.go.jp/article/ieejeiss/130/2/130_2_254/_article/-char/ja/)]
 
-## Refereed Conference Papars
+## Refereed Conference Papers
 1. Chihiro Yano, Akihiko Fukuchi, Shoko Fukasawa, **Hideyuki Tachibana**, Yotaro Watanabe,
 **"Multilingual Sentence-T5: Scalable Sentence Encoders for Multilingual Applications,"** 
 *LREC/COLING* pp. 11849-11858, 2024

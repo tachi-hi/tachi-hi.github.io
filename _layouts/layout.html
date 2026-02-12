@@ -1,13 +1,35 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/style.css"> 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+  {% if page.mathjax %}
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  {% endif %}
 </head>
 <body>
-  {{ content }}
-<hr/>
-  <center> Copyright (c) Hideuyki Tachibana. All Rights Reserved. </center>
-  <center> <a href="https://tachi-hi.github.io">[Home]</a> </center>
+  <div class="container">
+    {{ content }}
+  </div>
+  <footer>
+    <hr>
+    <p class="last-update"></p>
+    <p>&copy; Hideyuki Tachibana. All Rights Reserved.</p>
+    <p><a href="{{ site.baseurl }}/">[Home]</a></p>
+  </footer>
+  <script>
+    var el = document.querySelector(".last-update");
+    if (el) {
+      var d = new Date(document.lastModified);
+      el.textContent = "最終更新: " + d.getFullYear() + "年" +
+        (d.getMonth() + 1) + "月" + d.getDate() + "日";
+    }
+  </script>
+  {% if page.custom_js %}
+  <script src="{{ site.baseurl }}/{{ page.custom_js }}"></script>
+  {% endif %}
 </body>
-
+</html>

@@ -15,7 +15,7 @@ title: Hideyuki Tachibana's web
 More detailed info on me and my works will be found at the following sites.
 
 + SNS
-   + [twitter @tachi_hi_](https://twitter.com/tachi_hi_)
+   + [X (Twitter) @tachi_hi_](https://x.com/tachi_hi_)
    + Facebook (I only accept follows from the people I know.)
    + [LinkedIn](https://jp.linkedin.com/in/hideyuki-tachibana-5a513451)
 + dev
