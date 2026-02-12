@@ -216,19 +216,31 @@ document.addEventListener("DOMContentLoaded", function () {
   if (bmiWeightInput) bmiWeightInput.addEventListener("input", updateBmi);
 
   // ============================================
-  // JST to World Time (analog clocks, day/night)
+  // JST to World Time (analog clocks, DST-aware)
   // ============================================
   var timezones = [
-    { label: "Honolulu", offset: -10 },
-    { label: "Los Angeles", offset: -8 },
-    { label: "New York", offset: -5 },
-    { label: "London", offset: 0 },
-    { label: "Paris", offset: 1 },
-    { label: "Helsinki", offset: 2 },
-    { label: "Dubai", offset: 4 },
-    { label: "Singapore", offset: 8 },
-    { label: "Tokyo", offset: 9 },
+    { label: "AOE", tz: "Etc/GMT+12" },
+    { label: "Honolulu", tz: "Pacific/Honolulu" },
+    { label: "Los Angeles", tz: "America/Los_Angeles" },
+    { label: "New York", tz: "America/New_York" },
+    { label: "London", tz: "Europe/London" },
+    { label: "Paris", tz: "Europe/Paris" },
+    { label: "Helsinki", tz: "Europe/Helsinki" },
+    { label: "Dubai", tz: "Asia/Dubai" },
+    { label: "Singapore", tz: "Asia/Singapore" },
+    { label: "Tokyo", tz: "Asia/Tokyo" },
   ];
+
+  function getLocalTime(date, tzName) {
+    var s = date.toLocaleString("en-US", {
+      timeZone: tzName,
+      hour: "numeric", minute: "numeric", hour12: false,
+    });
+    var parts = s.split(":");
+    var h = parseInt(parts[0]) % 24;
+    var m = parseInt(parts[1]);
+    return { hour: h, min: m };
+  }
 
   function getTimeClass(hour) {
     if (hour >= 7 && hour < 18) return "daytime";
@@ -276,19 +288,18 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  function renderWorldClock(jstHour, jstMin) {
+  function renderWorldClock(date) {
     var container = document.getElementById("timelist");
     if (!container) return;
-    var utcHour = ((jstHour - 9) % 24 + 24) % 24;
     var html = "";
     for (var i = 0; i < timezones.length; i++) {
       var tz = timezones[i];
-      var h = ((utcHour + tz.offset) % 24 + 24) % 24;
-      var cls = getTimeClass(h);
-      var timeStr = ("0" + h).slice(-2) + ":" + ("0" + jstMin).slice(-2);
+      var t = getLocalTime(date, tz.tz);
+      var cls = getTimeClass(t.hour);
+      var timeStr = ("0" + t.hour).slice(-2) + ":" + ("0" + t.min).slice(-2);
       html +=
         '<div class="clock-card ' + cls + '">' +
-        buildClockSVG(h, jstMin) +
+        buildClockSVG(t.hour, t.min) +
         '<div class="clock-time">' + timeStr + "</div>" +
         '<div class="clock-label">' + tz.label + "</div>" +
         "</div>";
@@ -296,32 +307,13 @@ document.addEventListener("DOMContentLoaded", function () {
     container.innerHTML = html;
   }
 
-  var jstInput = document.getElementById("jst_to_worldtime");
-  var clockInterval = null;
-
   function updateClockFromNow() {
-    var now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
-    renderWorldClock(now.getHours(), now.getMinutes());
+    renderWorldClock(new Date());
   }
 
-  function startAutoUpdate() {
-    if (clockInterval) clearInterval(clockInterval);
-    clockInterval = setInterval(updateClockFromNow, 1000);
-  }
-
-  if (jstInput) {
-    jstInput.addEventListener("input", function () {
-      var val = this.value;
-      if (val === "") {
-        updateClockFromNow();
-        startAutoUpdate();
-      } else {
-        if (clockInterval) clearInterval(clockInterval);
-        renderWorldClock(parseInt(val), 0);
-      }
-    });
+  if (document.getElementById("timelist")) {
     updateClockFromNow();
-    startAutoUpdate();
+    setInterval(updateClockFromNow, 1000);
   }
 
   // ============================================

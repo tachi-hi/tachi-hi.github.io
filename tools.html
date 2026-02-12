@@ -7,6 +7,8 @@ custom_js: js/tools.js
 
 <h1>公開簡易ツール</h1>
 
+<div id="timelist" class="clock-grid"></div>
+
 <div class="topic"><h2>文字数・単語数カウント + 改行削除</h2><div class="toggle-content hidden">
 <ul>
   <li>複数行にまたがる単語の行末のハイフネーションは除去しません。</li>
@@ -73,13 +75,6 @@ Beats: <input id="n_beats" type="number" style="width: 5em">
 身長: <input id="bmi_height" type="number" step="any" style="width: 5em"> cm
 体重: <input id="bmi_weight" type="number" step="any" style="width: 5em"> kg
 <span class="result-display" id="bmi">BMI</span>
-
-</div></div>
-
-<div class="topic"><h2>世界時計</h2><div class="toggle-content hidden">
-<p>日本時間を入力すると各地の時刻を表示します。空欄の場合は現在時刻を使用します。</p>
-日本時間：<input id="jst_to_worldtime" type="number" style="width: 5em" placeholder="now"> 時
-<div id="timelist" class="clock-grid"></div>
 
 </div></div>
 
