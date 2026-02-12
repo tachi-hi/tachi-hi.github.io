@@ -22,7 +22,11 @@
   </footer>
   <script>
     var el = document.querySelector(".last-update");
-    if (el) el.textContent = "Last Update: " + document.lastModified;
+    if (el) {
+      var d = new Date(document.lastModified);
+      el.textContent = "最終更新: " + d.getFullYear() + "年" +
+        (d.getMonth() + 1) + "月" + d.getDate() + "日";
+    }
   </script>
   {% if page.custom_js %}
   <script src="{{ site.baseurl }}/{{ page.custom_js }}"></script>
