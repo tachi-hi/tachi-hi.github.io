@@ -64,22 +64,36 @@ document.addEventListener("DOMContentLoaded", function () {
   // ============================================
   // 西暦・和暦変換
   // ============================================
+  // [start year, era name] - newest first
+  var eraTable = [
+    [2019, "令和"], [1989, "平成"], [1926, "昭和"], [1912, "大正"], [1868, "明治"],
+    [1865, "慶応"], [1864, "元治"], [1861, "文久"], [1860, "万延"],
+    [1854, "安政"], [1848, "嘉永"], [1844, "弘化"], [1830, "天保"],
+    [1818, "文政"], [1804, "文化"], [1801, "享和"], [1789, "寛政"],
+    [1781, "天明"], [1772, "安永"], [1764, "明和"], [1751, "宝暦"],
+    [1748, "寛延"], [1744, "延享"], [1741, "寛保"], [1736, "元文"],
+    [1716, "享保"], [1711, "正徳"], [1704, "宝永"], [1688, "元禄"],
+    [1684, "貞享"], [1681, "天和"], [1673, "延宝"], [1661, "寛文"],
+    [1658, "万治"], [1655, "明暦"], [1652, "承応"], [1648, "慶安"],
+    [1644, "正保"], [1624, "寛永"], [1615, "元和"], [1596, "慶長"],
+  ];
+
   var seirekiInput = document.getElementById("seireki");
   if (seirekiInput) {
     seirekiInput.addEventListener("input", function () {
       var seireki = parseInt(this.value);
       var warekiText = "";
-      var wareki = ["", "令和", "平成", "昭和", "大正", "明治"];
-      var start = [2100, 2019, 1989, 1926, 1912, 1868];
-      for (var i = 0; i < wareki.length; i++) {
-        if (seireki >= start[i] && seireki <= start[i - 1]) {
+      for (var i = 0; i < eraTable.length; i++) {
+        var eraStart = eraTable[i][0];
+        var eraEnd = (i === 0) ? 2100 : eraTable[i - 1][0];
+        if (seireki >= eraStart && seireki <= eraEnd) {
           warekiText +=
-            wareki[i] +
-            (seireki === start[i] ? "元" : seireki - start[i] + 1) +
+            eraTable[i][1] +
+            (seireki === eraStart ? "元" : seireki - eraStart + 1) +
             "年 ";
         }
       }
-      document.getElementById("wareki").textContent = warekiText;
+      document.getElementById("wareki").textContent = warekiText || "（範囲外）";
     });
   }
 
