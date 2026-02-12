@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css?v={{ site.time | date: '%s' }}">
   {% if page.mathjax %}
   <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
@@ -29,7 +29,7 @@
     }
   </script>
   {% if page.custom_js %}
-  <script src="{{ site.baseurl }}/{{ page.custom_js }}"></script>
+  <script src="{{ site.baseurl }}/{{ page.custom_js }}?v={{ site.time | date: '%s' }}"></script>
   {% endif %}
 </body>
 </html>
