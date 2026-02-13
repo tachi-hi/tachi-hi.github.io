@@ -125,6 +125,112 @@ tr:nth-child(even) {
 }
 
 /* ============================================
+   Index panels
+   ============================================ */
+.link-section {
+  margin: 2rem 0 0.8rem;
+}
+
+.link-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid #eee;
+}
+
+.link-section-icon {
+  font-size: 1.2rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.link-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.6rem;
+}
+
+.panel-grid.compact {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.panel {
+  display: block;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  text-decoration: none;
+  color: #2c3e50;
+  background: #fff;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.2s;
+}
+
+a.panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+}
+
+.panel.disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+.panel .panel-icon {
+  margin-right: 0.4rem;
+  width: 1.1em;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.panel .panel-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: block;
+}
+
+.panel .panel-desc {
+  font-size: 0.75rem;
+  color: #868e96;
+  margin-top: 0.15rem;
+  display: block;
+  padding-left: 1.5rem;
+}
+
+/* Section accent colors */
+.section-main .link-section-header { border-bottom-color: #0984e3; }
+.section-main .link-section-icon { background: #0984e3; }
+.section-main a.panel:hover { border-color: #0984e3; }
+.section-main .panel { border-left: 3px solid #0984e3; }
+
+.section-sns .link-section-header { border-bottom-color: #e17055; }
+.section-sns .link-section-icon { background: #e17055; }
+.section-sns a.panel:hover { border-color: #e17055; }
+
+.section-dev .link-section-header { border-bottom-color: #00b894; }
+.section-dev .link-section-icon { background: #00b894; }
+.section-dev a.panel:hover { border-color: #00b894; }
+
+.section-research .link-section-header { border-bottom-color: #6c5ce7; }
+.section-research .link-section-icon { background: #6c5ce7; }
+.section-research a.panel:hover { border-color: #6c5ce7; }
+
+/* ============================================
    Footer
    ============================================ */
 footer {
