@@ -420,6 +420,13 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
+  function getLocalDateStr(date, tzName) {
+    return date.toLocaleDateString("en-US", {
+      timeZone: tzName,
+      weekday: "short", month: "short", day: "numeric",
+    });
+  }
+
   function renderWorldClock(date) {
     var container = document.getElementById("timelist");
     if (!container) return;
@@ -429,8 +436,10 @@ document.addEventListener("DOMContentLoaded", function () {
       var t = getLocalTime(date, tz.tz);
       var cls = getTimeClass(t.hour);
       var timeStr = ("0" + t.hour).slice(-2) + ":" + ("0" + t.min).slice(-2);
+      var dateStr = getLocalDateStr(date, tz.tz);
       html +=
         '<div class="clock-card ' + cls + '">' +
+        '<div class="clock-date">' + dateStr + "</div>" +
         buildClockSVG(t.hour, t.min) +
         '<div class="clock-time">' + timeStr + "</div>" +
         '<div class="clock-label">' + tz.label + "</div>" +

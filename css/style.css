@@ -261,6 +261,12 @@ textarea {
   margin: 0 auto 0.3rem;
 }
 
+.clock-card .clock-date {
+  font-size: 0.7rem;
+  opacity: 0.75;
+  margin-bottom: 0.2rem;
+}
+
 .clock-card .clock-time {
   font-size: 1rem;
   font-weight: 700;
