@@ -5,6 +5,48 @@ title: Hideyuki Tachibana's web
 
 # Hideyuki Tachibana's web page
 
+<div class="profile">
+  <div class="profile-section">
+    <div class="profile-label"><i class="fa-solid fa-user"></i> About</div>
+    <p class="profile-en">Hideyuki Tachibana, Ph.D. in Information Science and Technology.</p>
+    <p class="profile-ja">橘 秀幸, 博士（情報理工学）</p>
+  </div>
+  <div class="profile-section">
+    <div class="profile-label"><i class="fa-solid fa-lightbulb"></i> Academic Interests</div>
+    <div class="profile-tags tags-academic">
+      <span class="tag"><span class="tag-en">Machine Learning</span><span class="tag-ja">機械学習</span></span>
+      <span class="tag"><span class="tag-en">LLM</span><span class="tag-ja">大規模言語モデル</span></span>
+      <span class="tag"><span class="tag-en">AI Safety</span><span class="tag-ja">AI安全性</span></span>
+      <span class="tag"><span class="tag-en">Mis/Disinformation</span><span class="tag-ja">誤情報・偽情報</span></span>
+      <span class="tag"><span class="tag-en">Acoustic Signal Processing</span><span class="tag-ja">音響信号処理</span></span>
+      <span class="tag"><span class="tag-en">Speech Synthesis</span><span class="tag-ja">音声合成</span></span>
+      <span class="tag"><span class="tag-en">Music Information Processing</span><span class="tag-ja">音楽情報処理</span></span>
+      <span class="tag-etc">etc.</span>
+    </div>
+  </div>
+  <div class="profile-section">
+    <div class="profile-label"><i class="fa-solid fa-people-group"></i> Social Interests</div>
+    <div class="profile-tags tags-social">
+      <span class="tag"><span class="tag-en">AI Governance</span><span class="tag-ja">AIガバナンス</span></span>
+      <span class="tag"><span class="tag-en">AI &amp; Labor Market</span><span class="tag-ja">AI失業問題</span></span>
+      <span class="tag"><span class="tag-en">Labor Market: Ice Age &amp; After</span><span class="tag-ja">就職氷河期・ポスト氷河期の課題</span></span>
+      <span class="tag"><span class="tag-en">Traffic Safety</span><span class="tag-ja">交通安全</span></span>
+      <span class="tag-etc">etc.</span>
+    </div>
+  </div>
+  <div class="profile-section">
+    <div class="profile-label"><i class="fa-solid fa-award"></i> Certifications</div>
+    <div class="profile-tags tags-cert">
+      <span class="tag"><span class="tag-en">Bookkeeping Grade 2</span><span class="tag-ja">簿記2級</span></span>
+      <span class="tag"><span class="tag-en">Driver's License</span><span class="tag-ja">普通自動車免許</span></span>
+      <span class="tag"><span class="tag-en">National Civil Service Exam</span><span class="tag-ja">国家公務員採用総合職試験（院卒）合格</span></span>
+      <span class="tag"><span class="tag-en">Amateur Radio Class 3</span><span class="tag-ja">アマチュア無線3級</span></span>
+      <span class="tag"><span class="tag-en">Mental Arithmetic 5-dan</span><span class="tag-ja">暗算五段</span></span>
+      <span class="tag-etc">etc.</span>
+    </div>
+  </div>
+</div>
+
 <div class="site-nav">
   <div class="nav-group nav-research">
     <div class="nav-group-label"><i class="fa-solid fa-graduation-cap"></i> Research</div>
