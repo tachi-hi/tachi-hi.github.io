@@ -608,6 +608,144 @@ textarea {
 }
 
 /* ============================================
+   Yearly Calendar
+   ============================================ */
+.cal-year-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 1.5rem 0 0.6rem;
+  text-align: center;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+
+.cal-month {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.cal-month-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0984e3;
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+
+.cal-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 0;
+}
+
+.cal-table th,
+.cal-table td {
+  font-size: 0.65rem;
+  text-align: center;
+  padding: 0.15em 0;
+  border: none;
+  background: transparent;
+}
+
+.cal-table th {
+  color: #868e96;
+  font-weight: 600;
+}
+
+.cal-table td {
+  color: #495057;
+}
+
+.cal-today {
+  background: #0984e3 !important;
+  color: #fff !important;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.cal-holiday {
+  color: #e17055 !important;
+  font-weight: 700;
+}
+
+.cal-holiday:not(.cal-today) {
+  background: rgba(225, 112, 85, 0.1);
+  border-radius: 50%;
+}
+
+.cal-sun {
+  color: #e17055 !important;
+}
+
+.cal-sat {
+  color: #0984e3 !important;
+}
+
+.cal-today.cal-sun,
+.cal-today.cal-sat,
+.cal-today.cal-holiday {
+  color: #fff !important;
+}
+
+@media (max-width: 800px) {
+  .cal-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .cal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================
+   Countdown bar
+   ============================================ */
+#countdown-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.countdown-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.countdown-days {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0984e3;
+  line-height: 1;
+}
+
+.countdown-unit {
+  font-size: 0.8rem;
+  color: #868e96;
+  margin-right: 0.2rem;
+}
+
+.countdown-label {
+  font-size: 0.7rem;
+  color: #868e96;
+  width: 100%;
+  text-align: center;
+}
+
+/* ============================================
    Responsive
    ============================================ */
 @media (max-width: 600px) {

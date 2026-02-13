@@ -458,57 +458,130 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ============================================
-  // Countdown timer
+  // Yearly Calendar (with Japanese holidays)
   // ============================================
-  function getDiffYearDays(endStr) {
-    var now = new Date();
-    var end = new Date(endStr);
-    var yearDiff = end.getFullYear() - now.getFullYear();
-    end.setFullYear(now.getFullYear());
-    var daysDiff = Math.ceil((end - now) / (1000 * 60 * 60 * 24));
-    var tmp = daysDiff + yearDiff * 365;
-    yearDiff = Math.floor(tmp / 365);
-    daysDiff = tmp % 365;
-    return (yearDiff !== 0 ? yearDiff + "年 " : "") + daysDiff + "日";
-  }
-
-  function getRaigetsu() {
-    var now = new Date();
-    return (now.getMonth() + 2) + "/1/" + now.getFullYear();
-  }
-
-  function getNenmatsu() {
-    var now = new Date();
-    return "12/31/" + now.getFullYear();
-  }
-
-  function getNendomatsu() {
+  function renderYearlyCalendar(holidays) {
+    var container = document.getElementById("yearly-calendar");
+    if (!container) return;
     var now = new Date();
     var year = now.getFullYear();
-    var endOfFY = new Date(year, 2, 31);
-    if (now > endOfFY) {
-      year += 1;
+    var todayKey = year + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+    var dayLabels = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+    var monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    // Convert holidays from "YYYY-MM-DD" keys to "YYYY-M-D" for easy lookup
+    var holidayMap = {};
+    if (holidays) {
+      Object.keys(holidays).forEach(function (key) {
+        var parts = key.split("-");
+        var normalized = parseInt(parts[0]) + "-" + parseInt(parts[1]) + "-" + parseInt(parts[2]);
+        holidayMap[normalized] = holidays[key];
+      });
     }
-    return "3/31/" + year;
+    var html = '<div class="cal-year-title">' + year + '</div><div class="cal-grid">';
+    for (var m = 0; m < 12; m++) {
+      html += '<div class="cal-month">';
+      html += '<div class="cal-month-name">' + monthNames[m] + '</div>';
+      html += '<table class="cal-table"><thead><tr>';
+      for (var d = 0; d < 7; d++) {
+        html += '<th>' + dayLabels[d] + '</th>';
+      }
+      html += '</tr></thead><tbody>';
+      var first = new Date(year, m, 1);
+      var startDay = first.getDay();
+      var daysInMonth = new Date(year, m + 1, 0).getDate();
+      var day = 1;
+      for (var row = 0; row < 6; row++) {
+        if (day > daysInMonth) break;
+        html += '<tr>';
+        for (var col = 0; col < 7; col++) {
+          if ((row === 0 && col < startDay) || day > daysInMonth) {
+            html += '<td></td>';
+          } else {
+            var key = year + "-" + (m + 1) + "-" + day;
+            var cls = "";
+            var title = "";
+            if (key === todayKey) cls = " cal-today";
+            if (holidayMap[key]) {
+              cls += " cal-holiday";
+              title = ' title="' + holidayMap[key] + '"';
+            }
+            if (col === 0) cls += " cal-sun";
+            if (col === 6) cls += " cal-sat";
+            html += '<td class="' + cls.trim() + '"' + title + '>' + day + '</td>';
+            day++;
+          }
+        }
+        html += '</tr>';
+      }
+      html += '</tbody></table></div>';
+    }
+    html += '</div>';
+    container.innerHTML = html;
   }
 
-  function countDown() {
-    var output =
-      "<table>" +
-      "<tr><td>来月1日まで</td><td>" + getDiffYearDays(getRaigetsu()) + "</td></tr>" +
-      "<tr><td>大晦日まで</td><td>" + getDiffYearDays(getNenmatsu()) + "</td></tr>" +
-      "<tr><td>年度末まで</td><td>" + getDiffYearDays(getNendomatsu()) + "</td></tr>" +
-      "<tr><td>2035年9月21日（皆既日食）まで</td><td>" + getDiffYearDays("9/21/2035") + "</td></tr>" +
-      "<tr><td>2038年1月19日（32bit time_tがオーバーフロー）まで</td><td>" + getDiffYearDays("1/19/2038") + "</td></tr>" +
-      "<tr><td>2041年10月25日（金環食）まで</td><td>" + getDiffYearDays("10/25/2041") + "</td></tr>" +
-      "<tr><td>2061年7月28日（ハレー彗星地球接近）まで</td><td>" + getDiffYearDays("7/28/2061") + "</td></tr>" +
-      "</table>";
-    var el = document.getElementById("TimeLeft");
-    if (el) el.innerHTML = output;
-    setTimeout(countDown, 1000);
+  if (document.getElementById("yearly-calendar")) {
+    var now = new Date();
+    var year = now.getFullYear();
+    var apiUrl = "https://holidays-jp.github.io/api/v1/" + year + "/date.json";
+    // Render immediately without holidays, then update with holidays
+    renderYearlyCalendar(null);
+    fetch(apiUrl)
+      .then(function (res) { return res.json(); })
+      .then(function (holidays) { renderYearlyCalendar(holidays); })
+      .catch(function () { /* holidays unavailable, calendar already rendered */ });
   }
 
-  countDown();
+  // ============================================
+  // Countdown bar (below calendar)
+  // ============================================
+  function daysUntil(target) {
+    var now = new Date();
+    now.setHours(0, 0, 0, 0);
+    var diff = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+    return diff;
+  }
+
+  function renderCountdownBar() {
+    var bar = document.getElementById("countdown-bar");
+    if (!bar) return;
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth();
+
+    // 月末
+    var endOfMonth = new Date(year, month + 1, 0);
+    var daysMonth = daysUntil(endOfMonth);
+
+    // 年末
+    var endOfYear = new Date(year, 11, 31);
+    var daysYear = daysUntil(endOfYear);
+
+    // 年度末 (3/31)
+    var fyYear = (month >= 3) ? year + 1 : year;
+    var endOfFY = new Date(fyYear, 2, 31);
+    var daysFY = daysUntil(endOfFY);
+
+    var items = [
+      { label: "月末まで", days: daysMonth },
+      { label: "年度末まで", days: daysFY },
+      { label: "年末まで", days: daysYear },
+    ];
+
+    var html = "";
+    for (var i = 0; i < items.length; i++) {
+      html += '<div class="countdown-item">' +
+        '<div class="countdown-days">' + items[i].days + '</div>' +
+        '<div class="countdown-unit">日</div>' +
+        '<div class="countdown-label">' + items[i].label + '</div>' +
+        '</div>';
+    }
+    bar.innerHTML = html;
+  }
+
+  renderCountdownBar();
 
   // ============================================
   // ひらがな・カタカナ変換
