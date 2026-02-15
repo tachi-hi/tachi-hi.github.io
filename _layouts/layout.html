@@ -15,7 +15,29 @@
 <body>
   <header class="site-header">
     <a href="{{ site.baseurl }}/" class="site-header-link">Hideyuki Tachibana's Personal Web Page</a>
+    <canvas id="site-qr" class="site-header-qr"></canvas>
   </header>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <script>
+    (function () {
+      var qr = qrcode(0, "M");
+      qr.addData(location.href);
+      qr.make();
+      var c = document.getElementById("site-qr");
+      var count = qr.getModuleCount();
+      var size = 48;
+      c.width = size;
+      c.height = size;
+      var ctx = c.getContext("2d");
+      var cell = size / count;
+      for (var r = 0; r < count; r++) {
+        for (var col = 0; col < count; col++) {
+          ctx.fillStyle = qr.isDark(r, col) ? "#000" : "#fff";
+          ctx.fillRect(col * cell, r * cell, cell, cell);
+        }
+      }
+    })();
+  </script>
   <div class="container">
     {{ content }}
   </div>

@@ -25,6 +25,9 @@ body {
   padding: 1.5rem 1.5rem 1.2rem;
   background-color: #fff;
   border-bottom: 2px solid #0984e3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .site-header-link {
@@ -38,6 +41,18 @@ body {
 .site-header-link:hover {
   color: #0984e3;
   text-decoration: none;
+}
+
+.site-header-qr {
+  width: 48px;
+  height: 48px;
+  opacity: 0.6;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+.site-header-qr:hover {
+  opacity: 1;
 }
 
 .container {
