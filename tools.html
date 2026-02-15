@@ -2,91 +2,108 @@
 layout: layout
 title: Tools and Memo
 mathjax: true
-custom_js: js/tools.js
+custom_js:
+  - js/sound.js
+  - js/tools.js
 ---
 
 <h1>公開簡易ツール</h1>
 
-<div id="timelist" class="clock-grid"></div>
-
-<div id="yearly-calendar"></div>
-
-<div id="countdown-bar"></div>
-
-<div class="topic"><h2>文字数・単語数カウント + 改行削除</h2><div class="toggle-content hidden">
-<ul>
-  <li>複数行にまたがる単語の行末のハイフネーションは除去しません。</li>
-  <li>文字コードの統計に基づいて簡易的な言語判定を行い、非欧文と判定された場合はスペースを削除します。</li>
-</ul>
-<textarea id="moji_count" cols="100" rows="10"></textarea>
-<div>
-  <span class="result-display" id="wcharCount">0文字</span>
-  <span class="result-display" id="wordCount">0単語</span>
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-clock"></i> 世界時計</div>
+  <div id="timelist" class="clock-grid"></div>
 </div>
 
-</div></div>
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-calendar-days"></i> カレンダー</div>
+  <div id="yearly-calendar"></div>
+  <div id="countdown-bar"></div>
+</div>
 
-<div class="topic"><h2>西暦・和暦</h2><div class="toggle-content hidden">
-<small>大化（645年）〜対応。南北朝時代は両朝の元号を併記。</small><br>
-西暦 <input id="seireki" type="number" style="width: 5em"> 年
-<span class="result-display" id="wareki"> ?? 年</span>
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-font"></i> テキスト処理</div>
 
-</div></div>
+  <div class="widget-section">
+    <div class="widget-section-title">文字数・単語数カウント + 改行削除</div>
+    <ul style="margin: 0.3rem 0; padding-left: 1.2em; font-size: 0.85rem">
+      <li>複数行にまたがる単語の行末のハイフネーションは除去しません。</li>
+      <li>文字コードの統計に基づいて簡易的な言語判定を行い、非欧文と判定された場合はスペースを削除します。</li>
+    </ul>
+    <textarea id="moji_count" cols="100" rows="6"></textarea>
+    <div>
+      <span class="result-display" id="wcharCount">0文字</span>
+      <span class="result-display" id="wordCount">0単語</span>
+    </div>
+  </div>
 
-<div class="topic"><h2>arXivのURL変換</h2><div class="toggle-content hidden">
-  <p>※ URLを入力したら一度他のところをクリックしてください。</p>
-  <p>※ Abstract の URL はクリップボードにコピーされます。</p>
-  arXiv の PDF か abstract の URL を入力<br>
-  <input id="arxivurl" type="text" style="width: 100%; max-width: 40em"><br>
-  <span id="arxivabs">Abstract</span><br>
-  <span id="arxivpdf">PDF</span>
+  <div class="widget-section">
+    <div class="widget-section-title">arXivのURL変換</div>
+    <small>※ URLを入力したら一度他のところをクリックしてください。Abstract の URL はクリップボードにコピーされます。</small><br>
+    arXiv の PDF か abstract の URL を入力<br>
+    <input id="arxivurl" type="text" style="width: 100%; max-width: 40em"><br>
+    <span id="arxivabs">Abstract</span><br>
+    <span id="arxivpdf">PDF</span>
+  </div>
 
-</div></div>
+  <div class="widget-section">
+    <div class="widget-section-title">ひらがな・カタカナ変換</div>
+    <textarea id="kana_input" cols="100" rows="4"></textarea>
+    <div class="kana-output-row"><span class="kana-label">カタカナ</span><div class="kana-output" id="kana_to_katakana"></div></div>
+    <div class="kana-output-row"><span class="kana-label">ひらがな</span><div class="kana-output" id="kana_to_hiragana"></div></div>
+  </div>
+</div>
 
-<div class="topic"><h2>振幅とデシベル</h2><div class="toggle-content hidden">
-\(y = 10 \log_{10} x^2\) <br>
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-music"></i> MIDI / 周波数</div>
+  <div class="piano-controls">
+    <div class="piano-input-row">
+      <label>MIDI note: <input id="midi2freq" type="number" value="60" style="width: 4em"></label>
+      <span class="result-display" id="notefreq">音名・周波数</span>
+      <button id="piano-sound-toggle" class="sound-toggle" title="音声ON/OFF">
+        <i class="fa-solid fa-volume-xmark"></i>
+      </button>
+    </div>
+    <div id="piano"></div>
+  </div>
+</div>
 
-\(y \text{ [dB]} = \)<input id="db2amp" type="number" step="any" style="width: 5em">
-\(\to x = \)<span class="result-display" id="amp_result"></span><br>
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-calculator"></i> 計算ツール</div>
 
-\(x = \)<input id="amp2db" type="number" step="any" style="width: 5em">
-\(\to y \text{ [dB]} = \)<span class="result-display" id="db_result"></span>
+  <div class="widget-section">
+    <div class="widget-section-title">西暦・和暦</div>
+    西暦 <input id="seireki" type="number" style="width: 5em"> 年
+    <span class="result-display" id="wareki"> ?? 年</span>
+  </div>
 
-</div></div>
+  <div class="widget-section">
+    <div class="widget-section-title">振幅とデシベル</div>
+    \(y = 10 \log_{10} x^2\) <br>
+    \(y \text{ [dB]} = \)<input id="db2amp" type="number" step="any" style="width: 5em">
+    \(\to x = \)<span class="result-display" id="amp_result"></span><br>
+    \(x = \)<input id="amp2db" type="number" step="any" style="width: 5em">
+    \(\to y \text{ [dB]} = \)<span class="result-display" id="db_result"></span>
+  </div>
 
-<div class="topic"><h2>MIDI to 周波数</h2><div class="toggle-content hidden">
-MIDI note number: <input id="midi2freq" type="number" value="60" style="width: 5em">
-<span class="result-display" id="notefreq">音名・周波数</span>
-<div id="piano"></div>
+  <div class="widget-section">
+    <div class="widget-section-title">$/h → ￥/mon</div>
+    <input id="cost_usd" type="number" step="any" style="width: 5em"> ドル/時間
+    × 為替レート <input id="exchange_rate" type="number" value="150" style="width: 5em"> 円/ドル →
+    <span class="result-display" id="hourly_cost_2_monthly">料金</span>
+    <br><small>注：1セント/時 ≒ 1000円/月 (為替150円換算)</small>
+  </div>
 
-</div></div>
+  <div class="widget-section">
+    <div class="widget-section-title">BPS and Beats to Time</div>
+    BPS (beats per second): <input id="bps" type="number" step="any" style="width: 5em">
+    Beats: <input id="n_beats" type="number" style="width: 5em">
+    <span class="result-display" id="bps_nbeats_2_time">時間</span>
+  </div>
 
-<div class="topic"><h2>$/h → ￥/mon</h2><div class="toggle-content hidden">
-<input id="cost_usd" type="number" step="any" style="width: 5em"> ドル/時間
-× 為替レート <input id="exchange_rate" type="number" value="150" style="width: 5em"> 円/ドル →
-<span class="result-display" id="hourly_cost_2_monthly">料金</span>
-<br>
-<small>注：1セント/時 ≒ 1000円/月 (為替150円換算)</small>
-
-</div></div>
-
-<div class="topic"><h2>BPS and Beats to Time</h2><div class="toggle-content hidden">
-BPS (beats per second): <input id="bps" type="number" step="any" style="width: 5em">
-Beats: <input id="n_beats" type="number" style="width: 5em">
-<span class="result-display" id="bps_nbeats_2_time">時間</span>
-
-</div></div>
-
-<div class="topic"><h2>BMI</h2><div class="toggle-content hidden">
-身長: <input id="bmi_height" type="number" step="any" style="width: 5em"> cm
-体重: <input id="bmi_weight" type="number" step="any" style="width: 5em"> kg
-<span class="result-display" id="bmi">BMI</span>
-
-</div></div>
-
-
-<div class="topic"><h2>ひらがな・カタカナ変換</h2><div class="toggle-content hidden">
-入力：<textarea id="kana_input" cols="50" rows="2"></textarea><br>
-<b>→ カタカナ：</b><span class="result-display" id="kana_to_katakana"></span><br>
-<b>→ ひらがな：</b><span class="result-display" id="kana_to_hiragana"></span>
-</div></div>
+  <div class="widget-section">
+    <div class="widget-section-title">BMI</div>
+    身長: <input id="bmi_height" type="number" step="any" style="width: 5em"> cm
+    体重: <input id="bmi_weight" type="number" step="any" style="width: 5em"> kg
+    <span class="result-display" id="bmi">BMI</span>
+  </div>
+</div>

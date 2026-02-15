@@ -13,6 +13,9 @@
   {% endif %}
 </head>
 <body>
+  <header class="site-header">
+    <a href="{{ site.baseurl }}/" class="site-header-link">Hideyuki Tachibana's Personal Web Page</a>
+  </header>
   <div class="container">
     {{ content }}
   </div>
@@ -31,7 +34,9 @@
     }
   </script>
   {% if page.custom_js %}
-  <script src="{{ site.baseurl }}/{{ page.custom_js }}?v={{ site.time | date: '%s' }}"></script>
+  {% for js in page.custom_js %}
+  <script src="{{ site.baseurl }}/{{ js }}?v={{ site.time | date: '%s' }}"></script>
+  {% endfor %}
   {% endif %}
 </body>
 </html>

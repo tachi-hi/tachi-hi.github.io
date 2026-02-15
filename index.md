@@ -3,8 +3,6 @@ layout: layout
 title: Hideyuki Tachibana's web
 ---
 
-# Hideyuki Tachibana's web page
-
 <div class="profile">
   <div class="profile-section">
     <div class="profile-label"><i class="fa-solid fa-user"></i> About</div>

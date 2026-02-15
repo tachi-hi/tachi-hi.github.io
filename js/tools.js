@@ -93,21 +93,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // 室町
     [1394, "応永"], [1390, "明徳"],
     // 南北朝（北朝）
-    [1389, "康応", 1390], [1387, "嘉慶", 1389],
-    [1384, "至徳", 1387], [1381, "永徳", 1384],
-    [1379, "康暦", 1381], [1375, "永和", 1379],
-    [1368, "応安", 1375], [1362, "貞治", 1368],
-    [1361, "康安", 1362], [1356, "延文", 1361],
-    [1352, "文和", 1356], [1350, "観応", 1352],
-    [1345, "貞和", 1350], [1342, "康永", 1345],
-    [1338, "暦応", 1342], [1332, "正慶", 1333],
+    [1389, "康応", 1390, "北朝"], [1387, "嘉慶", 1389, "北朝"],
+    [1384, "至徳", 1387, "北朝"], [1381, "永徳", 1384, "北朝"],
+    [1379, "康暦", 1381, "北朝"], [1375, "永和", 1379, "北朝"],
+    [1368, "応安", 1375, "北朝"], [1362, "貞治", 1368, "北朝"],
+    [1361, "康安", 1362, "北朝"], [1356, "延文", 1361, "北朝"],
+    [1352, "文和", 1356, "北朝"], [1350, "観応", 1352, "北朝"],
+    [1345, "貞和", 1350, "北朝"], [1342, "康永", 1345, "北朝"],
+    [1338, "暦応", 1342, "北朝"], [1332, "正慶", 1333, "北朝"],
     // 南北朝（南朝）
-    [1384, "元中", 1392], [1381, "弘和", 1384],
-    [1375, "天授", 1381], [1372, "文中", 1375],
-    [1370, "建徳", 1372], [1346, "正平", 1370],
-    [1340, "興国", 1346], [1336, "延元", 1340],
+    [1384, "元中", 1392, "南朝"], [1381, "弘和", 1384, "南朝"],
+    [1375, "天授", 1381, "南朝"], [1372, "文中", 1375, "南朝"],
+    [1370, "建徳", 1372, "南朝"], [1346, "正平", 1370, "南朝"],
+    [1340, "興国", 1346, "南朝"], [1336, "延元", 1340, "南朝"],
     // 建武・鎌倉
-    [1334, "建武"], [1331, "元弘"],
+    [1334, "建武", 1338], [1331, "元弘", 1334, "南朝"],
     [1329, "元徳"], [1326, "嘉暦"], [1324, "正中"],
     [1321, "元亨"], [1319, "元応"], [1317, "文保"],
     [1312, "正和"], [1311, "応長"], [1308, "延慶"],
@@ -176,8 +176,9 @@ document.addEventListener("DOMContentLoaded", function () {
         var eraStart = eraTable[i][0];
         var eraEnd = eraTable[i][2] || (i === 0 ? 2100 : eraTable[i - 1][0]);
         if (seireki >= eraStart && seireki <= eraEnd) {
+          var court = eraTable[i][3] ? "【" + eraTable[i][3] + "】" : "";
           warekiText +=
-            eraTable[i][1] +
+            court + eraTable[i][1] +
             (seireki === eraStart ? "元" : seireki - eraStart + 1) +
             "年 ";
         }
@@ -256,18 +257,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     var tw = wi * WW;
-    var s = '<svg viewBox="0 0 ' + tw + ' ' + WH + '" class="piano-svg">';
+    var s = '<svg viewBox="0 0 ' + tw + ' ' + WH + '" class="piano-svg" style="cursor:pointer">';
     for (var i = 0; i < whiteKeys.length; i++) {
       var m = whiteKeys[i];
       var fill = m === activeMidi ? "#0984e3" : "#fff";
-      s += '<rect x="' + whiteX[m] + '" y="0" width="' + (WW - 1) +
+      s += '<rect data-midi="' + m + '" x="' + whiteX[m] + '" y="0" width="' + (WW - 1) +
         '" height="' + WH + '" fill="' + fill +
         '" stroke="#aaa" stroke-width="0.5"/>';
     }
     for (var i = 0; i < blackKeys.length; i++) {
       var k = blackKeys[i];
       var fill = k.midi === activeMidi ? "#0984e3" : "#2d3436";
-      s += '<rect x="' + k.x + '" y="0" width="' + BW +
+      s += '<rect data-midi="' + k.midi + '" x="' + k.x + '" y="0" width="' + BW +
         '" height="' + BH + '" fill="' + fill + '" rx="1"/>';
     }
     s += '</svg>';
@@ -276,19 +277,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var midi2freqInput = document.getElementById("midi2freq");
   var pianoEl = document.getElementById("piano");
-  function updateMidi(midi) {
+  function updateMidi(midi, shouldPlay) {
     var notenames = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
     var freq = 440 * Math.pow(2, (midi - 69) / 12);
     var text =
       notenames[midi % 12] + (Math.floor(midi / 12) - 1) + ", " + freq.toFixed(2) + "Hz";
     document.getElementById("notefreq").textContent = text;
     if (pianoEl) pianoEl.innerHTML = buildPianoSVG(midi);
+    if (midi2freqInput) midi2freqInput.value = midi;
+    if (shouldPlay) PianoSound.play(midi);
+  }
+
+  if (pianoEl) {
+    pianoEl.addEventListener("click", function (e) {
+      var rect = e.target.closest("[data-midi]");
+      if (!rect) return;
+      var midi = parseInt(rect.getAttribute("data-midi"));
+      if (!isNaN(midi)) updateMidi(midi, true);
+    });
+  }
+
+  var soundToggle = document.getElementById("piano-sound-toggle");
+  if (soundToggle) {
+    soundToggle.addEventListener("click", function () {
+      PianoSound.setEnabled(!PianoSound.isEnabled());
+      var icon = this.querySelector("i");
+      if (PianoSound.isEnabled()) {
+        icon.className = "fa-solid fa-volume-high";
+        this.classList.add("active");
+      } else {
+        icon.className = "fa-solid fa-volume-xmark";
+        this.classList.remove("active");
+      }
+    });
   }
 
   if (midi2freqInput) {
-    updateMidi(parseInt(midi2freqInput.value) || 60);
+    updateMidi(parseInt(midi2freqInput.value) || 60, false);
     midi2freqInput.addEventListener("input", function () {
-      updateMidi(parseInt(this.value));
+      updateMidi(parseInt(this.value), true);
     });
   }
 
