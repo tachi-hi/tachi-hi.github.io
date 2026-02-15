@@ -715,13 +715,13 @@ textarea {
    ============================================ */
 .clock-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
-  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  gap: 0.4rem;
 }
 
 .clock-card {
-  border-radius: 8px;
-  padding: 0.7rem;
+  border-radius: 6px;
+  padding: 0.4rem;
   text-align: center;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -733,7 +733,18 @@ textarea {
 }
 
 .clock-card.night {
-  background: linear-gradient(135deg, #1e272e, #2d3436);
+  background:
+    radial-gradient(1px 1px at 10% 15%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.8) 50%, transparent 100%),
+    radial-gradient(1px 1px at 40% 30%, rgba(255,255,255,0.6) 50%, transparent 100%),
+    radial-gradient(1px 1px at 55% 75%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,0.7) 50%, transparent 100%),
+    radial-gradient(1px 1px at 85% 50%, rgba(255,255,255,0.9) 50%, transparent 100%),
+    radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.5) 50%, transparent 100%),
+    radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.6) 50%, transparent 100%),
+    radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.7) 50%, transparent 100%),
+    radial-gradient(1px 1px at 35% 90%, rgba(255,255,255,0.5) 50%, transparent 100%),
+    linear-gradient(135deg, #0a0e27, #1a1a3e 40%, #1e272e);
   color: #f5f6fa;
   border: 1px solid #485460;
 }
@@ -745,28 +756,28 @@ textarea {
 }
 
 .clock-card .clock-svg {
-  width: 80px;
-  height: 80px;
+  width: 56px;
+  height: 56px;
   display: block;
-  margin: 0 auto 0.3rem;
+  margin: 0 auto 0.2rem;
 }
 
 .clock-card .clock-date {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   opacity: 0.75;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.1rem;
 }
 
 .clock-card .clock-time {
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   line-height: 1.2;
 }
 
 .clock-card .clock-label {
-  font-size: 0.75rem;
-  margin-top: 0.2rem;
+  font-size: 0.65rem;
+  margin-top: 0.15rem;
   opacity: 0.85;
 }
 
