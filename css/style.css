@@ -539,11 +539,83 @@ textarea {
 /* ============================================
    Piano keyboard
    ============================================ */
+.piano-controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.piano-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.3rem;
+}
+
+.piano-input-row label {
+  font-size: 0.85rem;
+  color: #495057;
+}
+
+.piano-input-row .result-display {
+  font-size: 1.1rem;
+  padding: 0.15rem 0.5rem;
+}
+
+.sound-toggle {
+  background: none;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  color: #adb5bd;
+  font-size: 0.9rem;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+  margin-left: auto;
+}
+
+.sound-toggle:hover {
+  border-color: #0984e3;
+  color: #0984e3;
+}
+
+.sound-toggle.active {
+  color: #0984e3;
+  border-color: #0984e3;
+  background-color: #e8f4fd;
+}
+
 .piano-svg {
   width: 100%;
   max-width: 740px;
   display: block;
-  margin: 0.5rem 0;
+  margin: 0.3rem 0;
+}
+
+/* ============================================
+   Widget card
+   ============================================ */
+.widget {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.widget-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.widget-title i {
+  color: #0984e3;
+  margin-right: 0.3rem;
 }
 
 /* ============================================
@@ -551,9 +623,8 @@ textarea {
    ============================================ */
 .clock-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 0.6rem;
-  margin-top: 0.8rem;
 }
 
 .clock-card {
@@ -614,7 +685,7 @@ textarea {
   font-size: 1.2rem;
   font-weight: 700;
   color: #2c3e50;
-  margin: 1.5rem 0 0.6rem;
+  margin: 0.3rem 0 0.6rem;
   text-align: center;
 }
 

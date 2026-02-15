@@ -2,16 +2,37 @@
 layout: layout
 title: Tools and Memo
 mathjax: true
-custom_js: js/tools.js
+custom_js:
+  - js/sound.js
+  - js/tools.js
 ---
 
 <h1>公開簡易ツール</h1>
 
-<div id="timelist" class="clock-grid"></div>
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-clock"></i> 世界時計</div>
+  <div id="timelist" class="clock-grid"></div>
+</div>
 
-<div id="yearly-calendar"></div>
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-calendar-days"></i> カレンダー</div>
+  <div id="yearly-calendar"></div>
+  <div id="countdown-bar"></div>
+</div>
 
-<div id="countdown-bar"></div>
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-music"></i> MIDI / 周波数</div>
+  <div class="piano-controls">
+    <div class="piano-input-row">
+      <label>MIDI note: <input id="midi2freq" type="number" value="60" style="width: 4em"></label>
+      <span class="result-display" id="notefreq">音名・周波数</span>
+      <button id="piano-sound-toggle" class="sound-toggle" title="音声ON/OFF">
+        <i class="fa-solid fa-volume-xmark"></i>
+      </button>
+    </div>
+    <div id="piano"></div>
+  </div>
+</div>
 
 <div class="topic"><h2>文字数・単語数カウント + 改行削除</h2><div class="toggle-content hidden">
 <ul>
@@ -54,12 +75,6 @@ custom_js: js/tools.js
 
 </div></div>
 
-<div class="topic"><h2>MIDI to 周波数</h2><div class="toggle-content hidden">
-MIDI note number: <input id="midi2freq" type="number" value="60" style="width: 5em">
-<span class="result-display" id="notefreq">音名・周波数</span>
-<div id="piano"></div>
-
-</div></div>
 
 <div class="topic"><h2>$/h → ￥/mon</h2><div class="toggle-content hidden">
 <input id="cost_usd" type="number" step="any" style="width: 5em"> ドル/時間
