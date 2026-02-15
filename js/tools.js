@@ -256,18 +256,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     var tw = wi * WW;
-    var s = '<svg viewBox="0 0 ' + tw + ' ' + WH + '" class="piano-svg">';
+    var s = '<svg viewBox="0 0 ' + tw + ' ' + WH + '" class="piano-svg" style="cursor:pointer">';
     for (var i = 0; i < whiteKeys.length; i++) {
       var m = whiteKeys[i];
       var fill = m === activeMidi ? "#0984e3" : "#fff";
-      s += '<rect x="' + whiteX[m] + '" y="0" width="' + (WW - 1) +
+      s += '<rect data-midi="' + m + '" x="' + whiteX[m] + '" y="0" width="' + (WW - 1) +
         '" height="' + WH + '" fill="' + fill +
         '" stroke="#aaa" stroke-width="0.5"/>';
     }
     for (var i = 0; i < blackKeys.length; i++) {
       var k = blackKeys[i];
       var fill = k.midi === activeMidi ? "#0984e3" : "#2d3436";
-      s += '<rect x="' + k.x + '" y="0" width="' + BW +
+      s += '<rect data-midi="' + k.midi + '" x="' + k.x + '" y="0" width="' + BW +
         '" height="' + BH + '" fill="' + fill + '" rx="1"/>';
     }
     s += '</svg>';
@@ -276,19 +276,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var midi2freqInput = document.getElementById("midi2freq");
   var pianoEl = document.getElementById("piano");
-  function updateMidi(midi) {
+  function updateMidi(midi, shouldPlay) {
     var notenames = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
     var freq = 440 * Math.pow(2, (midi - 69) / 12);
     var text =
       notenames[midi % 12] + (Math.floor(midi / 12) - 1) + ", " + freq.toFixed(2) + "Hz";
     document.getElementById("notefreq").textContent = text;
     if (pianoEl) pianoEl.innerHTML = buildPianoSVG(midi);
+    if (midi2freqInput) midi2freqInput.value = midi;
+    if (shouldPlay) PianoSound.play(midi);
+  }
+
+  if (pianoEl) {
+    pianoEl.addEventListener("click", function (e) {
+      var rect = e.target.closest("[data-midi]");
+      if (!rect) return;
+      var midi = parseInt(rect.getAttribute("data-midi"));
+      if (!isNaN(midi)) updateMidi(midi, true);
+    });
+  }
+
+  var soundToggle = document.getElementById("piano-sound-toggle");
+  if (soundToggle) {
+    soundToggle.addEventListener("click", function () {
+      PianoSound.setEnabled(!PianoSound.isEnabled());
+      var icon = this.querySelector("i");
+      if (PianoSound.isEnabled()) {
+        icon.className = "fa-solid fa-volume-high";
+        this.classList.add("active");
+      } else {
+        icon.className = "fa-solid fa-volume-xmark";
+        this.classList.remove("active");
+      }
+    });
   }
 
   if (midi2freqInput) {
-    updateMidi(parseInt(midi2freqInput.value) || 60);
+    updateMidi(parseInt(midi2freqInput.value) || 60, false);
     midi2freqInput.addEventListener("input", function () {
-      updateMidi(parseInt(this.value));
+      updateMidi(parseInt(this.value), true);
     });
   }
 
