@@ -13,14 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // 改行削除 + 文字数・単語数カウント
   // ============================================
   function guessLang(text) {
-    var codes = text.split("").map(function (c) {
-      return c.charCodeAt(0);
-    });
-    var asciiCount = codes.filter(function (c) {
-      return c < 128;
-    }).length;
-    var ratio = (asciiCount + 1) / (codes.length + 1);
-    return ratio > 0.7 || codes.length < 20 ? "en" : "ja";
+    // CJK文字・ひらがな・カタカナが含まれていれば日本語
+    if (/[\u3000-\u9FFF\uF900-\uFAFF]/.test(text)) return "ja";
+    return "en";
   }
 
   function removeLinebreaks(text) {
@@ -39,6 +34,49 @@ document.addEventListener("DOMContentLoaded", function () {
     return text;
   }
 
+  // kuromoji tokenizer (初期化は非同期)
+  var kuromojiTokenizer = null;
+  var kuromojiReady = false;
+  var wordEl = document.getElementById("wordCount");
+  if (typeof kuromoji !== "undefined") {
+    if (wordEl) wordEl.textContent = "(形態素辞書を読込中…)";
+    kuromoji
+      .builder({
+        dicPath: "https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict/",
+      })
+      .build(function (err, tokenizer) {
+        if (err) {
+          if (wordEl) wordEl.textContent = "(辞書読込エラー)";
+          return;
+        }
+        kuromojiTokenizer = tokenizer;
+        kuromojiReady = true;
+        if (wordEl) wordEl.textContent = "0単語";
+        if (mojiCount && mojiCount.value) {
+          mojiCount.dispatchEvent(new Event("input"));
+        }
+      });
+  }
+
+  function countWords(text) {
+    if (!text.trim()) return { count: 0, segmented: "" };
+    if (guessLang(text) === "ja" && kuromojiReady) {
+      var tokens = kuromojiTokenizer.tokenize(text);
+      var meaningful = tokens.filter(function (t) {
+        return !/^記号/.test(t.pos) && t.surface_form.trim().length > 0;
+      });
+      var segmented = meaningful
+        .map(function (t) { return t.surface_form; })
+        .join("/");
+      return { count: meaningful.length, segmented: segmented };
+    }
+    // 英語 or 辞書未ロード: 従来の空白分割
+    var words = text.split(/[\s,]+/);
+    var wordLen = words.length;
+    if (wordLen > 0 && words[wordLen - 1].length === 0) wordLen--;
+    return { count: wordLen, segmented: "" };
+  }
+
   var mojiCount = document.getElementById("moji_count");
   if (mojiCount) {
     mojiCount.addEventListener("input", function () {
@@ -48,11 +86,21 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("wcharCount").textContent =
         (len || 0) + "文字";
 
-      var words = text.split(/[\s,]+/);
-      var wordLen = words.length;
-      if (wordLen > 0 && words[wordLen - 1].length === 0) wordLen--;
-      document.getElementById("wordCount").textContent =
-        (wordLen || 0) + "単語";
+      var wordEl = document.getElementById("wordCount");
+      var segEl = document.getElementById("wordSegment");
+      if (guessLang(text) === "ja" && !kuromojiReady && text.trim()) {
+        wordEl.textContent = "(辞書読込中…)";
+        segEl.style.display = "none";
+      } else {
+        var result = countWords(text);
+        wordEl.textContent = result.count + "単語";
+        if (result.segmented) {
+          segEl.textContent = result.segmented;
+          segEl.style.display = "";
+        } else {
+          segEl.style.display = "none";
+        }
+      }
     });
 
     mojiCount.addEventListener("blur", function () {

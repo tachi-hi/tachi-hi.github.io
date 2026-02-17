@@ -2,6 +2,7 @@
 layout: layout
 title: Tools and Memo
 mathjax: true
+kuromoji: true
 custom_js:
   - js/sound.js
   - js/tools.js
@@ -27,13 +28,14 @@ custom_js:
     <div class="widget-section-title">文字数・単語数カウント + 改行削除</div>
     <ul style="margin: 0.3rem 0; padding-left: 1.2em; font-size: 0.85rem">
       <li>複数行にまたがる単語の行末のハイフネーションは除去しません。</li>
-      <li>文字コードの統計に基づいて簡易的な言語判定を行い、非欧文と判定された場合はスペースを削除します。</li>
+      <li>日本語の単語数は kuromoji.js による形態素解析でカウントします。</li>
     </ul>
     <textarea id="moji_count" cols="100" rows="6"></textarea>
     <div>
       <span class="result-display" id="wcharCount">0文字</span>
       <span class="result-display" id="wordCount">0単語</span>
     </div>
+    <div class="kana-output" id="wordSegment" style="display:none"></div>
   </div>
 
   <div class="widget-section">
