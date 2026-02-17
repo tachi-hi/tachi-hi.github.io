@@ -12,8 +12,9 @@
   <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   {% endif %}
-  {% if page.kuromoji %}
-  <script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
+  {% if page.tinysegmenter %}
+  <script>if(typeof module==="undefined"){var module={};}</script>
+  <script src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/lib/index.js"></script>
   {% endif %}
 </head>
 <body>

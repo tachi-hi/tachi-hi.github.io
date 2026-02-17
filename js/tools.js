@@ -34,43 +34,22 @@ document.addEventListener("DOMContentLoaded", function () {
     return text;
   }
 
-  // kuromoji tokenizer (初期化は非同期)
-  var kuromojiTokenizer = null;
-  var kuromojiReady = false;
-  var wordEl = document.getElementById("wordCount");
-  if (typeof kuromoji !== "undefined") {
-    if (wordEl) wordEl.textContent = "(形態素辞書を読込中…)";
-    kuromoji
-      .builder({
-        dicPath: "https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict/",
-      })
-      .build(function (err, tokenizer) {
-        if (err) {
-          if (wordEl) wordEl.textContent = "(辞書読込エラー)";
-          return;
-        }
-        kuromojiTokenizer = tokenizer;
-        kuromojiReady = true;
-        if (wordEl) wordEl.textContent = "0単語";
-        if (mojiCount && mojiCount.value) {
-          mojiCount.dispatchEvent(new Event("input"));
-        }
-      });
+  // TinySegmenter (辞書不要・即座に利用可能)
+  var segmenter = (typeof TinySegmenter !== "undefined") ? new TinySegmenter() : null;
+  if (!segmenter) {
+    var errEl = document.getElementById("segmenterError");
+    if (errEl) errEl.style.display = "";
   }
 
   function countWords(text) {
     if (!text.trim()) return { count: 0, segmented: "" };
-    if (guessLang(text) === "ja" && kuromojiReady) {
-      var tokens = kuromojiTokenizer.tokenize(text);
-      var meaningful = tokens.filter(function (t) {
-        return !/^記号/.test(t.pos) && t.surface_form.trim().length > 0;
+    if (guessLang(text) === "ja" && segmenter) {
+      var tokens = segmenter.segment(text).filter(function (t) {
+        return t.trim().length > 0;
       });
-      var segmented = meaningful
-        .map(function (t) { return t.surface_form; })
-        .join("/");
-      return { count: meaningful.length, segmented: segmented };
+      return { count: tokens.length, segmented: tokens.join("/") };
     }
-    // 英語 or 辞書未ロード: 従来の空白分割
+    // 英語: 空白分割
     var words = text.split(/[\s,]+/);
     var wordLen = words.length;
     if (wordLen > 0 && words[wordLen - 1].length === 0) wordLen--;
@@ -88,18 +67,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       var wordEl = document.getElementById("wordCount");
       var segEl = document.getElementById("wordSegment");
-      if (guessLang(text) === "ja" && !kuromojiReady && text.trim()) {
-        wordEl.textContent = "(辞書読込中…)";
-        segEl.style.display = "none";
+      var result = countWords(text);
+      wordEl.textContent = result.count + "単語";
+      if (result.segmented) {
+        segEl.textContent = result.segmented;
+        segEl.style.display = "";
       } else {
-        var result = countWords(text);
-        wordEl.textContent = result.count + "単語";
-        if (result.segmented) {
-          segEl.textContent = result.segmented;
-          segEl.style.display = "";
-        } else {
-          segEl.style.display = "none";
-        }
+        segEl.style.display = "none";
       }
     });
 

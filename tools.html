@@ -2,7 +2,7 @@
 layout: layout
 title: Tools and Memo
 mathjax: true
-kuromoji: true
+tinysegmenter: true
 custom_js:
   - js/sound.js
   - js/tools.js
@@ -28,8 +28,9 @@ custom_js:
     <div class="widget-section-title">文字数・単語数カウント + 改行削除</div>
     <ul style="margin: 0.3rem 0; padding-left: 1.2em; font-size: 0.85rem">
       <li>複数行にまたがる単語の行末のハイフネーションは除去しません。</li>
-      <li>日本語の単語数は kuromoji.js による形態素解析でカウントします。</li>
+      <li>日本語の単語数は TinySegmenter による分かち書きでカウントします。</li>
     </ul>
+    <div id="segmenterError" style="display:none; color:#e74c3c; font-weight:600; font-size:0.85rem; margin-bottom:0.3rem;">Failed to load TinySegmenter</div>
     <textarea id="moji_count" cols="100" rows="6"></textarea>
     <div>
       <span class="result-display" id="wcharCount">0文字</span>
