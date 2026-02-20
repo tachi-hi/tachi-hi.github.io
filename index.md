@@ -8,6 +8,7 @@ title: Hideyuki Tachibana's web
     <div class="profile-label"><i class="fa-solid fa-user"></i> About</div>
     <p class="profile-en">Hideyuki Tachibana, Ph.D. in Information Science and Technology.</p>
     <p class="profile-ja">橘 秀幸, 博士（情報理工学）</p>
+    <p class="profile-en">For my full professional profile, please see <a href="https://jp.linkedin.com/in/hideyuki-tachibana-5a513451">LinkedIn</a>.</p>
   </div>
   <div class="profile-section">
     <div class="profile-label"><i class="fa-solid fa-lightbulb"></i> Academic Interests</div>
