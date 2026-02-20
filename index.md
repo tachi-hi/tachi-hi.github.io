@@ -111,6 +111,13 @@ title: Hideyuki Tachibana's web
           <span class="panel-desc">tachihi</span>
         </span>
       </a>
+      <a class="panel" href="https://note.com/tachi_hi">
+        <i class="fa-solid fa-pen-to-square panel-icon"></i>
+        <span class="panel-body">
+          <span class="panel-title">note</span>
+          <span class="panel-desc">tachi_hi</span>
+        </span>
+      </a>
     </div>
   </div>
 
