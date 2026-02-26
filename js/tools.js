@@ -415,12 +415,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function getLocalTime(date, tzName) {
     var s = date.toLocaleString("en-US", {
       timeZone: tzName,
-      hour: "numeric", minute: "numeric", hour12: false,
+      hour: "numeric", minute: "numeric", second: "numeric", hour12: false,
     });
     var parts = s.split(":");
     var h = parseInt(parts[0]) % 24;
     var m = parseInt(parts[1]);
-    return { hour: h, min: m };
+    var sec = parseInt(parts[2]);
+    return { hour: h, min: m, sec: sec };
   }
 
   function getTimeClass(hour) {
@@ -429,10 +430,11 @@ document.addEventListener("DOMContentLoaded", function () {
     return "night";
   }
 
-  function buildClockSVG(hour24, min) {
+  function buildClockSVG(hour24, min, sec) {
     var h12 = hour24 % 12;
     var hourAngle = (h12 + min / 60) * 30;
-    var minAngle = min * 6;
+    var minAngle = (min + sec / 60) * 6;
+    var secAngle = sec * 6;
     var isNight = getTimeClass(hour24) === "night";
     var isTwilight = getTimeClass(hour24) === "twilight";
     var faceFill = isNight ? "#1e272e" : isTwilight ? "#4a6fa5" : "#f8f9fa";
@@ -454,6 +456,7 @@ document.addEventListener("DOMContentLoaded", function () {
         '" stroke="' + tickColor +
         '" stroke-width="' + (isMain ? "2" : "1") + '"/>';
     }
+    var secRad = secAngle * Math.PI / 180;
     return (
       '<svg viewBox="0 0 100 100" class="clock-svg">' +
       '<circle cx="50" cy="50" r="46" fill="' + faceFill + '" stroke="' + borderColor + '" stroke-width="1.5"/>' +
@@ -464,7 +467,12 @@ document.addEventListener("DOMContentLoaded", function () {
       '<line x1="50" y1="50" x2="' + (50 + 36 * Math.sin(minAngle * Math.PI / 180)) +
       '" y2="' + (50 - 36 * Math.cos(minAngle * Math.PI / 180)) +
       '" stroke="' + handColor + '" stroke-width="1.5" stroke-linecap="round"/>' +
+      '<line x1="' + (50 - 8 * Math.sin(secRad)) + '" y1="' + (50 + 8 * Math.cos(secRad)) +
+      '" x2="' + (50 + 38 * Math.sin(secRad)) +
+      '" y2="' + (50 - 38 * Math.cos(secRad)) +
+      '" stroke="#e74c3c" stroke-width="0.8"/>' +
       '<circle cx="50" cy="50" r="2.5" fill="' + handColor + '"/>' +
+      '<circle cx="50" cy="50" r="1.2" fill="#e74c3c"/>' +
       "</svg>"
     );
   }
@@ -489,7 +497,7 @@ document.addEventListener("DOMContentLoaded", function () {
       html +=
         '<div class="clock-card ' + cls + '">' +
         '<div class="clock-date">' + dateStr + "</div>" +
-        buildClockSVG(t.hour, t.min) +
+        buildClockSVG(t.hour, t.min, t.sec) +
         '<div class="clock-time">' + timeStr + "</div>" +
         '<div class="clock-label">' + tz.label + "</div>" +
         "</div>";
