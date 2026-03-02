@@ -537,7 +537,17 @@ document.addEventListener("DOMContentLoaded", function () {
         holidayMap[normalized] = holidays[key];
       });
     }
-    var html = '<div class="cal-year-title">' + year + '</div><div class="cal-grid">';
+    // 和暦を求める（eraTable の先頭が最新の元号）
+    var warekiLabel = "";
+    if (eraTable.length > 0 && year >= eraTable[0][0]) {
+      var nen = year - eraTable[0][0] + 1;
+      warekiLabel = eraTable[0][1] + (nen === 1 ? "元" : nen) + "年";
+    }
+    // 十二支
+    var junishi = "子丑寅卯辰巳午未申酉戌亥";
+    var etoLabel = junishi[(year - 4) % 12];
+    var sub = [warekiLabel, etoLabel].filter(Boolean).join("・");
+    var html = '<div class="cal-year-title">' + year + "年" + (sub ? "（" + sub + "）" : "") + '</div><div class="cal-grid">';
     for (var m = 0; m < 12; m++) {
       html += '<div class="cal-month">';
       html += '<div class="cal-month-name">' + monthNames[m] + '</div>';
@@ -563,11 +573,11 @@ document.addEventListener("DOMContentLoaded", function () {
             if (key === todayKey) cls = " cal-today";
             if (holidayMap[key]) {
               cls += " cal-holiday";
-              title = ' title="' + holidayMap[key] + '"';
+              title = ' data-holiday="' + holidayMap[key] + '"';
             }
             if (col === 0) cls += " cal-sun";
             if (col === 6) cls += " cal-sat";
-            html += '<td class="' + cls.trim() + '"' + title + '>' + day + '</td>';
+            html += '<td class="' + cls.trim() + '"' + title + '><span>' + day + '</span></td>';
             day++;
           }
         }

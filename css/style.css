@@ -848,11 +848,54 @@ textarea {
 .cal-holiday {
   color: #e17055 !important;
   font-weight: 700;
+  position: relative;
+  cursor: default;
 }
 
 .cal-holiday:not(.cal-today) {
   background: rgba(225, 112, 85, 0.1);
   border-radius: 50%;
+}
+
+/* 祝日ツールチップ */
+.cal-holiday[data-holiday]::after {
+  content: attr(data-holiday);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  background: linear-gradient(135deg, #e17055, #d63031);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 0.25em 0.6em;
+  border-radius: 6px;
+  box-shadow: 0 3px 12px rgba(214, 48, 49, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+.cal-holiday[data-holiday]::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  border: 4px solid transparent;
+  border-top-color: #d63031;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+.cal-holiday[data-holiday]:hover::after,
+.cal-holiday[data-holiday]:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
 }
 
 .cal-sun {
