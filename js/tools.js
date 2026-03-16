@@ -379,6 +379,61 @@ document.addEventListener("DOMContentLoaded", function () {
   if (rateInput) rateInput.addEventListener("input", updateCost);
 
   // ============================================
+  // 英語の数値表記 → 日本語
+  // ============================================
+  var numEnInput = document.getElementById("num_en");
+  if (numEnInput) {
+    // 数値を日本語の単位付き文字列に変換
+    function numToJa(n) {
+      if (n === 0) return "0";
+      var negative = n < 0;
+      if (negative) n = -n;
+      // [閾値, 単位名]（大きい方から）
+      var units = [
+        [1e16, "京"], [1e12, "兆"], [1e8, "億"], [1e4, "万"]
+      ];
+      var parts = [];
+      for (var i = 0; i < units.length; i++) {
+        if (n >= units[i][0]) {
+          var count = Math.floor(n / units[i][0]);
+          parts.push(count + units[i][1]);
+          n = n % units[i][0];
+        }
+      }
+      // 端数が残っている場合
+      if (n >= 1) {
+        parts.push(Math.floor(n) + "");
+      } else if (n > 0 && parts.length > 0) {
+        // 小数の端数は無視（切り捨て済み）
+      }
+      return (negative ? "-" : "") + (parts.length > 0 ? parts.join("") : "0");
+    }
+
+    numEnInput.addEventListener("input", function () {
+      var raw = this.value.trim().toUpperCase().replace(/,/g, "");
+      if (!raw) {
+        document.getElementById("num_ja").textContent = "";
+        return;
+      }
+      // 複数の数値表記に対応（スペース区切り）
+      var tokens = raw.split(/\s+/);
+      var results = [];
+      var suffixes = { K: 1e3, M: 1e6, B: 1e9, T: 1e12 };
+      for (var i = 0; i < tokens.length; i++) {
+        var match = tokens[i].match(/^(-?[\d.]+)\s*([KMBT])?$/);
+        if (match) {
+          var num = parseFloat(match[1]);
+          var mul = match[2] ? suffixes[match[2]] : 1;
+          results.push(numToJa(num * mul));
+        } else {
+          results.push("?");
+        }
+      }
+      document.getElementById("num_ja").textContent = results.join("  ");
+    });
+  }
+
+  // ============================================
   // BMI
   // ============================================
   var bmiHeightInput = document.getElementById("bmi_height");
