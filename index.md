@@ -98,6 +98,13 @@ title: Hideyuki Tachibana's web
           <span class="panel-desc">Acquaintances only</span>
         </span>
       </span>
+      <span class="panel disabled">
+        <i class="fa-solid fa-m panel-icon"></i>
+        <span class="panel-body">
+          <span class="panel-title">mixi2</span>
+          <span class="panel-desc">Invite only</span>
+        </span>
+      </span>
       <a class="panel" href="https://jp.linkedin.com/in/hideyuki-tachibana-5a513451">
         <i class="fa-brands fa-linkedin panel-icon"></i>
         <span class="panel-body">
