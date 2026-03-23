@@ -706,6 +706,86 @@ document.addEventListener("DOMContentLoaded", function () {
   renderCountdownBar();
 
   // ============================================
+  // 西暦・和暦対照表 (1970–2040)
+  // ============================================
+  (function () {
+    var container = document.getElementById("wareki-table");
+    if (!container) return;
+    var startYear = 1970;
+    var endYear = 2049;
+    var thisYear = new Date().getFullYear();
+    // 近現代の元号（開始年, 名前, カラー）
+    var eras = [
+      { start: 1926, name: "昭和", abbr: "S", color: "#6c5ce7" },
+      { start: 1989, name: "平成", abbr: "H", color: "#00b894" },
+      { start: 2019, name: "令和", abbr: "R", color: "#e17055" }
+    ];
+    // 元号内の10年代ごとに濃淡を変える（0.06〜0.18）
+    function eraRgba(era, y) {
+      var n = y - era.start + 1;
+      var decade = Math.floor(n / 10);
+      var alpha = 0.08 + (decade % 4) * 0.10;
+      var hex = era.color;
+      var r = parseInt(hex.slice(1, 3), 16);
+      var g = parseInt(hex.slice(3, 5), 16);
+      var b = parseInt(hex.slice(5, 7), 16);
+      return "rgba(" + r + "," + g + "," + b + "," + alpha.toFixed(2) + ")";
+    }
+    function getEra(y) {
+      for (var i = eras.length - 1; i >= 0; i--) {
+        if (y >= eras[i].start) return eras[i];
+      }
+      return null;
+    }
+    function warekiNen(y, era) {
+      var n = y - era.start + 1;
+      return era.abbr + (n === 1 ? "元" : n);
+    }
+    // 10年ごとにグループ化
+    var html = '<div class="wareki-chart">';
+    for (var decade = startYear; decade <= endYear; decade += 10) {
+      var last = Math.min(decade + 9, endYear);
+      html += '<table class="wareki-decade"><tbody>';
+      // 上段：西暦
+      html += '<tr class="wareki-row-seireki">';
+      for (var y = decade; y <= last; y++) {
+        var era = getEra(y);
+        var isCurrent = (y === thisYear);
+        var style = "";
+        if (era) style += "border-bottom:2px solid " + era.color + ";";
+        if (isCurrent) style += "background:#0984e3;color:#fff;font-weight:700;";
+        html += '<td style="' + style + '">' + y + '</td>';
+      }
+      html += '</tr>';
+      // 下段：和暦
+      html += '<tr class="wareki-row-wareki">';
+      for (var y = decade; y <= last; y++) {
+        var era = getEra(y);
+        var isCurrent = (y === thisYear);
+        var style = "";
+        var label = "";
+        if (era) {
+          style += "background:" + eraRgba(era, y) + ";color:" + era.color + ";";
+          label = warekiNen(y, era);
+        }
+        if (isCurrent) style += "font-weight:700;";
+        html += '<td style="' + style + '">' + label + '</td>';
+      }
+      html += '</tr>';
+      html += '</tbody></table>';
+    }
+    // 凡例
+    html += '<div class="wareki-legend">';
+    for (var i = 0; i < eras.length; i++) {
+      html += '<span class="wareki-legend-item">' +
+        '<span class="wareki-legend-dot" style="background:' + eras[i].color + '"></span>' +
+        eras[i].name + '</span>';
+    }
+    html += '</div></div>';
+    container.innerHTML = html;
+  })();
+
+  // ============================================
   // ひらがな・カタカナ変換
   // ============================================
   function hiraganaToKatakana(str) {

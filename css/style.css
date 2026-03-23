@@ -963,6 +963,61 @@ textarea {
 }
 
 /* ============================================
+   西暦・和暦対照表
+   ============================================ */
+.wareki-chart {
+  margin: 1rem 0 0.5rem;
+}
+
+.wareki-decade {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 0.3rem;
+}
+
+.wareki-decade td {
+  text-align: center;
+  font-size: 0.65rem;
+  padding: 0.15em 0;
+  border: none;
+}
+
+.wareki-row-seireki td {
+  color: #495057;
+  font-weight: 500;
+  border-radius: 3px 3px 0 0;
+}
+
+.wareki-row-wareki td {
+  font-weight: 600;
+  font-size: 0.6rem;
+  border-radius: 0 0 3px 3px;
+}
+
+.wareki-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.4rem;
+  font-size: 0.65rem;
+  color: #868e96;
+}
+
+.wareki-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.wareki-legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* ============================================
    Responsive
    ============================================ */
 @media (max-width: 600px) {
