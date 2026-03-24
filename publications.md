@@ -9,7 +9,14 @@ title: Publications
 
 See also: [My Research Materials](https://tachi-hi.github.io/research/)
 
-External Links: [Google Scholar](https://scholar.google.co.jp/citations?user=wAXtttwAAAAJ) | [ORCID](https://orcid.org/0000-0001-5162-1294) | [Semantic Scholar](https://www.semanticscholar.org/author/Hideyuki-Tachibana/29876981) | [dblp](https://dblp.org/pid/20/8053.html) | [Researchmap](https://researchmap.jp/tachi-hi/)
+> **Note:**
+> This page is periodically updated using information retrieved by generative AI and may not reflect the most recent publications.
+> For the authoritative and up-to-date list, please refer to
+> [Google Scholar](https://scholar.google.co.jp/citations?user=wAXtttwAAAAJ),
+> [Researchmap](https://researchmap.jp/tachi-hi/),
+> [ORCID](https://orcid.org/0000-0001-5162-1294),
+> [Semantic Scholar](https://www.semanticscholar.org/author/Hideyuki-Tachibana/29876981), or
+> [dblp](https://dblp.org/pid/20/8053.html).
 
 ## Journal
 1. **Hideyuki Tachibana**, Yu Mizuno, Nobutaka Ono, Shigeki Sagayama,
@@ -38,8 +45,26 @@ Vol. 22, No. 1, pp. 228--237, Jan., 2014. *IF: 2.625*
 **"Estimating Isometric Tension of Finger Muscle Using Needle EMG Signals and the Twitch Contraction Model,"**
 *IEEJ Trans. Electronics, Information and Systems*,
 Vol. 130, No. 2, pp. 254-260, Feb., 2010. *IF: ---* *(in Japanese)*
-   + **橘 秀幸**, 鈴木 隆文, 満渕 邦彦, **"針筋電信号と単収縮畳み込みモデルによる手指筋の等尺性収縮時張力の推定"** *電気学会論文誌 C*, Vol. 130, No. 2, pp. 254-260, Feb., 2010.
+   + **橘秀幸**, 鈴木隆文, 満渕邦彦, **"針筋電信号と単収縮畳み込みモデルによる手指筋の等尺性収縮時張力の推定"** *電気学会論文誌 C*, Vol. 130, No. 2, pp. 254-260, Feb., 2010.
 ... [[Paper (J-Stage)](https://www.jstage.jst.go.jp/article/ieejeiss/130/2/130_2_254/_article/-char/ja/)]
+
+## Book
+1. **橘秀幸**, 稲原宗能, 髙﨑環, 福地成彦,
+**"LLMとハルシネーション ―基礎と対策―"**,
+オーム社, 2025年6月
+[[オーム社](https://www.ohmsha.co.jp/book/9784274233616/)]
+[[Amazon](https://www.amazon.co.jp/dp/4274233618)]
+
+## arXiv Preprints
+1. Ha-Thanh Nguyen, Chaoran Liu, Qianying Liu, **Hideyuki Tachibana**, Su Myat Noe, Yusuke Miyao, Koichi Takeda, Sadao Kurohashi,
+**"BIS Reasoning 1.0: The First Large-Scale Japanese Benchmark for Belief-Inconsistent Syllogistic Reasoning,"**
+arXiv:2506.06955, 2025
+[[arXiv](https://arxiv.org/abs/2506.06955)]
+
+1. Yuichiro Hoshino, **Hideyuki Tachibana**, Muneyoshi Inahara, Hiroto Takegawa,
+**"RAD: Redundancy-Aware Distillation for Hybrid Models via Self-Speculative Decoding,"**
+arXiv:2505.22135, 2025
+[[arXiv](https://arxiv.org/abs/2505.22135)]
 
 ## Refereed Conference Papers
 1. Chihiro Yano, Akihiko Fukuchi, Shoko Fukasawa, **Hideyuki Tachibana**, Yotaro Watanabe,
@@ -105,6 +130,15 @@ pp.3733-3736, Apr., 2009, Taipei.
 [[IEEEXplore](https://doi.org/10.1109/ICASSP.2009.4960438)]
 
 ## Non-refereed Articles/Presentations
+
+1. 星野悠一郎, **橘秀幸**, 稲原宗能, 竹川洋都, **"RAD: Redundancy-Aware Distillation for Hybrid Models via Self-Speculative Decoding,"**
+*第28回情報論的学習理論ワークショップ (IBIS 2025)* 2025年11月12日
+
+1. 政野美和, 欅リベカ, 欅惇志, 清丸寛一, 中山功太, 堀尾海斗, 源怜維, **橘秀幸**, 河原大輔, **"LLMの生成テキストの真偽検証のための日本語言説分解データセットの構築"**,
+*第265回 情報処理学会 自然言語処理研究会* 2025年9月21日
+
+1. 政野美和, 欅リベカ, 欅惇志, 清丸寛一, 中山功太, 堀尾海斗, 源怜維, **橘秀幸**, 河原大輔, **"LLMの生成テキストの真偽検証のための日本語言説分解データセットの構築"**,
+*第20回YANSシンポジウム* 2025年9月19日
 
 1. 矢野千紘, 呉孟超, **橘秀幸**, 竹川洋都, 渡邉陽太郎, **"大規模モデルの蒸留を用いた日本語文埋め込みモデル"**,
 *第19回YANSシンポジウム* 2024年9月5日
