@@ -189,26 +189,6 @@ document.addEventListener("DOMContentLoaded", function () {
     [645, "大化"],
   ];
 
-  var seirekiInput = document.getElementById("seireki");
-  if (seirekiInput) {
-    seirekiInput.addEventListener("input", function () {
-      var seireki = parseInt(this.value);
-      var warekiText = "";
-      for (var i = 0; i < eraTable.length; i++) {
-        var eraStart = eraTable[i][0];
-        var eraEnd = eraTable[i][2] || (i === 0 ? 2100 : eraTable[i - 1][0]);
-        if (seireki >= eraStart && seireki <= eraEnd) {
-          var court = eraTable[i][3] ? "【" + eraTable[i][3] + "】" : "";
-          warekiText +=
-            court + eraTable[i][1] +
-            (seireki === eraStart ? "元" : seireki - eraStart + 1) +
-            "年 ";
-        }
-      }
-      document.getElementById("wareki").textContent = warekiText || "（該当なし）";
-    });
-  }
-
   // ============================================
   // arXiv URL 変換
   // ============================================
