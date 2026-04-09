@@ -827,6 +827,8 @@ textarea {
   padding: 0.15em 0;
   border: none;
   background: transparent;
+  width: 14.2857%;
+  font-variant-numeric: tabular-nums;
 }
 
 .cal-table th {
@@ -981,6 +983,9 @@ textarea {
   font-size: 0.65rem;
   padding: 0.15em 0;
   border: none;
+  width: 10%;
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 .wareki-row-seireki td {
@@ -1021,17 +1026,9 @@ textarea {
    Responsive
    ============================================ */
 @media (max-width: 500px) {
-  .wareki-decade {
-    border-collapse: separate;
-    border-spacing: 2px 0;
-  }
   .wareki-decade td {
-    font-size: 0.5rem;
-    letter-spacing: -0.03em;
+    font-size: 0.55rem;
     padding: 0.1em 0;
-  }
-  .wareki-row-wareki td {
-    font-size: 0.48rem;
   }
 }
 
@@ -1053,7 +1050,7 @@ textarea {
     padding: 0.6em;
   }
 
-  table {
+  table:not(.cal-table):not(.wareki-decade) {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
