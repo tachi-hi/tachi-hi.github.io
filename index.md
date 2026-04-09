@@ -91,6 +91,20 @@ title: Hideyuki Tachibana's web
           <span class="panel-desc">@tachi_hi_</span>
         </span>
       </a>
+      <a class="panel" href="https://jp.linkedin.com/in/hideyuki-tachibana-5a513451">
+        <i class="fa-brands fa-linkedin panel-icon"></i>
+        <span class="panel-body">
+          <span class="panel-title">LinkedIn</span>
+          <span class="panel-desc">Hideyuki Tachibana</span>
+        </span>
+      </a>
+      <a class="panel" href="https://note.com/tachi_hi">
+        <i class="fa-solid fa-pen-to-square panel-icon"></i>
+        <span class="panel-body">
+          <span class="panel-title">note</span>
+          <span class="panel-desc">tachi_hi</span>
+        </span>
+      </a>
       <span class="panel disabled">
         <i class="fa-brands fa-facebook panel-icon"></i>
         <span class="panel-body">
@@ -105,25 +119,11 @@ title: Hideyuki Tachibana's web
           <span class="panel-desc">Invite only</span>
         </span>
       </span>
-      <a class="panel" href="https://jp.linkedin.com/in/hideyuki-tachibana-5a513451">
-        <i class="fa-brands fa-linkedin panel-icon"></i>
-        <span class="panel-body">
-          <span class="panel-title">LinkedIn</span>
-          <span class="panel-desc">Hideyuki Tachibana</span>
-        </span>
-      </a>
       <a class="panel" href="https://www.kaggle.com/tachihi">
         <i class="fa-brands fa-kaggle panel-icon"></i>
         <span class="panel-body">
           <span class="panel-title">Kaggle</span>
           <span class="panel-desc">tachihi</span>
-        </span>
-      </a>
-      <a class="panel" href="https://note.com/tachi_hi">
-        <i class="fa-solid fa-pen-to-square panel-icon"></i>
-        <span class="panel-body">
-          <span class="panel-title">note</span>
-          <span class="panel-desc">tachi_hi</span>
         </span>
       </a>
     </div>
@@ -142,6 +142,13 @@ title: Hideyuki Tachibana's web
           <span class="panel-desc">tachi-hi</span>
         </span>
       </a>
+      <a class="panel" href="https://huggingface.co/tachi-hi">
+        <i class="fa-solid fa-face-smile panel-icon"></i>
+        <span class="panel-body">
+          <span class="panel-title">HuggingFace</span>
+          <span class="panel-desc">tachi-hi</span>
+        </span>
+      </a>
       <a class="panel" href="https://pypi.org/user/tachi-hi">
         <i class="fa-brands fa-python panel-icon"></i>
         <span class="panel-body">
@@ -154,13 +161,6 @@ title: Hideyuki Tachibana's web
         <span class="panel-body">
           <span class="panel-title">SlideShare</span>
           <span class="panel-desc">HideyukiTachibana</span>
-        </span>
-      </a>
-      <a class="panel" href="https://huggingface.co/tachi-hi">
-        <i class="fa-solid fa-face-smile panel-icon"></i>
-        <span class="panel-body">
-          <span class="panel-title">HuggingFace</span>
-          <span class="panel-desc">tachi-hi</span>
         </span>
       </a>
     </div>
