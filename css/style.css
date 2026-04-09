@@ -1020,6 +1020,21 @@ textarea {
 /* ============================================
    Responsive
    ============================================ */
+@media (max-width: 500px) {
+  .wareki-decade {
+    border-collapse: separate;
+    border-spacing: 2px 0;
+  }
+  .wareki-decade td {
+    font-size: 0.5rem;
+    letter-spacing: -0.03em;
+    padding: 0.1em 0;
+  }
+  .wareki-row-wareki td {
+    font-size: 0.48rem;
+  }
+}
+
 @media (max-width: 600px) {
   .container {
     padding: 1rem 0.8rem;
