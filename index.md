@@ -33,17 +33,6 @@ title: Hideyuki Tachibana's web
       <span class="tag-etc">etc.</span>
     </div>
   </div>
-  <div class="profile-section">
-    <div class="profile-label"><i class="fa-solid fa-award"></i> Certifications</div>
-    <div class="profile-tags tags-cert">
-      <span class="tag"><span class="tag-en">Bookkeeping Grade 2</span><span class="tag-ja">簿記2級</span></span>
-      <span class="tag"><span class="tag-en">Driver's License</span><span class="tag-ja">普通自動車免許</span></span>
-      <span class="tag"><span class="tag-en">National Civil Service Exam</span><span class="tag-ja">国家公務員採用総合職試験（院卒）合格</span></span>
-      <span class="tag"><span class="tag-en">Amateur Radio Class 3</span><span class="tag-ja">アマチュア無線3級</span></span>
-      <span class="tag"><span class="tag-en">Mental Arithmetic 5-dan</span><span class="tag-ja">暗算五段</span></span>
-      <span class="tag-etc">etc.</span>
-    </div>
-  </div>
 </div>
 
 <div class="site-nav">
