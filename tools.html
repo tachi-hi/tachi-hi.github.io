@@ -3,12 +3,14 @@ layout: layout
 title: Tools and Memo
 mathjax: true
 tinysegmenter: true
+jsqr: true
 custom_js:
   - js/sound.js
   - js/tools.js
   - js/tools-text.js
   - js/tools-calc.js
   - js/tools-calendar.js
+  - js/tools-qr.js
 ---
 
 <h1>公開簡易ツール</h1>
@@ -57,6 +59,23 @@ custom_js:
     <textarea id="kana_input" cols="100" rows="4"></textarea>
     <div class="kana-output-row"><span class="kana-label">カタカナ</span><div class="kana-output" id="kana_to_katakana"></div></div>
     <div class="kana-output-row"><span class="kana-label">ひらがな</span><div class="kana-output" id="kana_to_hiragana"></div></div>
+  </div>
+</div>
+
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-qrcode"></i> QRコード読み取り</div>
+  <div class="widget-section">
+    <small>クリップボードに QR コード画像を入れた状態で下の領域をクリックしてください。</small>
+    <div id="qr-drop" class="qr-drop" tabindex="0" role="button" aria-label="クリップボードから画像を読み取る">
+      <i class="fa-regular fa-clipboard" style="font-size:2rem; color:#adb5bd"></i>
+      <div class="qr-drop-text">クリックしてクリップボードから読み取り</div>
+    </div>
+    <canvas id="qr-canvas" style="display:none"></canvas>
+    <div id="qr-preview" class="qr-preview" style="display:none">
+      <img id="qr-preview-img" alt="QR preview">
+    </div>
+    <div id="qr-result" class="qr-result" style="display:none"></div>
+    <div id="qr-error" class="qr-error" style="display:none"></div>
   </div>
 </div>
 

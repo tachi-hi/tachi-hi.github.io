@@ -1060,3 +1060,85 @@ textarea {
     font-size: 1.4rem;
   }
 }
+
+/* ============================================
+   QRコード読み取り
+   ============================================ */
+.qr-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.2rem;
+  margin: 0.5rem 0;
+  border: 2px dashed #ced4da;
+  border-radius: 10px;
+  background: #f8f9fa;
+  transition: border-color 0.15s, background 0.15s;
+  cursor: pointer;
+  outline: none;
+}
+
+.qr-drop:hover,
+.qr-drop:focus-visible {
+  border-color: #0984e3;
+  background: rgba(9, 132, 227, 0.05);
+}
+
+.qr-drop-text {
+  color: #868e96;
+  font-size: 0.9rem;
+}
+
+.qr-preview {
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.qr-preview img {
+  max-width: 200px;
+  max-height: 200px;
+  border: 1px solid #e9ecef;
+  border-radius: 5px;
+}
+
+.qr-result {
+  margin: 0.5rem 0;
+  padding: 0.7rem 0.9rem;
+  background: #e3fcec;
+  border-left: 4px solid #00b894;
+  border-radius: 4px;
+  word-break: break-all;
+  font-size: 0.95rem;
+}
+
+.qr-result a {
+  color: #0766b3;
+}
+
+.qr-copy-btn {
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  background: #fff;
+  border: 1px solid #00b894;
+  color: #00b894;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.qr-copy-btn:hover {
+  background: #00b894;
+  color: #fff;
+}
+
+.qr-error {
+  margin: 0.5rem 0;
+  padding: 0.7rem 0.9rem;
+  background: #ffeaea;
+  border-left: 4px solid #e74c3c;
+  border-radius: 4px;
+  color: #c0392b;
+  font-size: 0.9rem;
+}
