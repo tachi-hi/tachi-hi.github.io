@@ -784,6 +784,29 @@ textarea {
 /* ============================================
    Yearly Calendar
    ============================================ */
+.cal-year-block {
+  padding: 0.6rem 0.7rem 0.8rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+}
+
+.cal-year-current {
+  background: rgba(9, 132, 227, 0.10);
+  border-color: rgba(9, 132, 227, 0.25);
+}
+.cal-year-current .cal-year-title {
+  color: #0766b3;
+}
+
+.cal-year-next {
+  background: rgba(108, 92, 231, 0.10);
+  border-color: rgba(108, 92, 231, 0.25);
+}
+.cal-year-next .cal-year-title {
+  color: #5744c9;
+}
+
 .cal-year-title {
   font-size: 1.2rem;
   font-weight: 700;

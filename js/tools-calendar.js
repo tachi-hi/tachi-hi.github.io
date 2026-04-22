@@ -122,26 +122,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // ============================================
   // Yearly Calendar (with Japanese holidays)
   // ============================================
-  function renderYearlyCalendar(holidays) {
-    var container = document.getElementById("yearly-calendar");
-    if (!container) return;
-    var now = new Date();
-    var year = now.getFullYear();
-    var todayKey = year + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+  function buildYearBlockHtml(year, holidayMap, todayKey, extraClass) {
     var dayLabels = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
     var monthNames = [
       "January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
-    // Convert holidays from "YYYY-MM-DD" keys to "YYYY-M-D" for easy lookup
-    var holidayMap = {};
-    if (holidays) {
-      Object.keys(holidays).forEach(function (key) {
-        var parts = key.split("-");
-        var normalized = parseInt(parts[0]) + "-" + parseInt(parts[1]) + "-" + parseInt(parts[2]);
-        holidayMap[normalized] = holidays[key];
-      });
-    }
     // 和暦を求める（eraTable の先頭が最新の元号）
     var warekiLabel = "";
     if (typeof eraTable !== "undefined" && eraTable.length > 0 && year >= eraTable[0][0]) {
@@ -152,7 +138,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var junishi = "子丑寅卯辰巳午未申酉戌亥";
     var etoLabel = junishi[(year - 4) % 12];
     var sub = [warekiLabel, etoLabel].filter(Boolean).join("・");
-    var html = '<div class="cal-year-title">' + year + "年" + (sub ? "（" + sub + "）" : "") + '</div><div class="cal-grid">';
+    var html = '<div class="cal-year-block ' + (extraClass || "") + '">';
+    html += '<div class="cal-year-title">' + year + "年" + (sub ? "（" + sub + "）" : "") + '</div><div class="cal-grid">';
     for (var m = 0; m < 12; m++) {
       html += '<div class="cal-month">';
       html += '<div class="cal-month-name">' + monthNames[m] + '</div>';
@@ -190,20 +177,51 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       html += '</tbody></table></div>';
     }
-    html += '</div>';
+    html += '</div></div>';
+    return html;
+  }
+
+  function renderYearlyCalendar(holidaysByYear) {
+    var container = document.getElementById("yearly-calendar");
+    if (!container) return;
+    var now = new Date();
+    var year = now.getFullYear();
+    var todayKey = year + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+
+    var holidayMap = {};
+    if (holidaysByYear) {
+      Object.keys(holidaysByYear).forEach(function (y) {
+        var hs = holidaysByYear[y];
+        if (!hs) return;
+        Object.keys(hs).forEach(function (key) {
+          var parts = key.split("-");
+          var normalized = parseInt(parts[0]) + "-" + parseInt(parts[1]) + "-" + parseInt(parts[2]);
+          holidayMap[normalized] = hs[key];
+        });
+      });
+    }
+
+    var html = buildYearBlockHtml(year, holidayMap, todayKey, "cal-year-current");
+    html += buildYearBlockHtml(year + 1, holidayMap, todayKey, "cal-year-next");
     container.innerHTML = html;
   }
 
   if (document.getElementById("yearly-calendar")) {
     var now = new Date();
     var year = now.getFullYear();
-    var apiUrl = "https://holidays-jp.github.io/api/v1/" + year + "/date.json";
-    // Render immediately without holidays, then update with holidays
+    // まず祝日なしで描画
     renderYearlyCalendar(null);
-    fetch(apiUrl)
-      .then(function (res) { return res.json(); })
-      .then(function (holidays) { renderYearlyCalendar(holidays); })
-      .catch(function () { /* holidays unavailable, calendar already rendered */ });
+    // 今年と来年の祝日を並行取得
+    var years = [year, year + 1];
+    var results = {};
+    Promise.all(years.map(function (y) {
+      return fetch("https://holidays-jp.github.io/api/v1/" + y + "/date.json")
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (h) { results[y] = h; })
+        .catch(function () { results[y] = null; });
+    })).then(function () {
+      renderYearlyCalendar(results);
+    });
   }
 
   // ============================================
