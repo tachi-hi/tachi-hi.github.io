@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ============================================
   // Yearly Calendar (with Japanese holidays)
   // ============================================
-  function buildYearBlockHtml(year, holidayMap, todayKey, extraClass) {
+  function buildYearBlockHtml(year, holidayMap, usHolidayMap, todayKey, extraClass) {
     var dayLabels = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
     var monthNames = [
       "January", "February", "March", "April", "May", "June",
@@ -161,15 +161,19 @@ document.addEventListener("DOMContentLoaded", function () {
           } else {
             var key = year + "-" + (m + 1) + "-" + day;
             var cls = "";
-            var title = "";
+            var attrs = "";
             if (key === todayKey) cls = " cal-today";
-            if (holidayMap[key]) {
-              cls += " cal-holiday";
-              title = ' data-holiday="' + holidayMap[key] + '"';
+            var jpName = holidayMap[key];
+            var usName = usHolidayMap[key];
+            if (jpName) cls += " cal-holiday";
+            if (usName) cls += " cal-holiday-us";
+            if (jpName || usName) {
+              var label = [jpName && ("🇯🇵 " + jpName), usName && ("🇺🇸 " + usName)].filter(Boolean).join(" / ");
+              attrs = ' data-holiday="' + label.replace(/"/g, "&quot;") + '"';
             }
             if (col === 0) cls += " cal-sun";
             if (col === 6) cls += " cal-sat";
-            html += '<td class="' + cls.trim() + '"' + title + '><span>' + day + '</span></td>';
+            html += '<td class="' + cls.trim() + '"' + attrs + '><span>' + day + '</span></td>';
             day++;
           }
         }
@@ -181,17 +185,18 @@ document.addEventListener("DOMContentLoaded", function () {
     return html;
   }
 
-  function renderYearlyCalendar(holidaysByYear) {
+  function renderYearlyCalendar(jpByYear, usByYear) {
     var container = document.getElementById("yearly-calendar");
     if (!container) return;
     var now = new Date();
     var year = now.getFullYear();
     var todayKey = year + "-" + (now.getMonth() + 1) + "-" + now.getDate();
 
+    // 日本: {"YYYY-MM-DD": "元日", ...} の形式
     var holidayMap = {};
-    if (holidaysByYear) {
-      Object.keys(holidaysByYear).forEach(function (y) {
-        var hs = holidaysByYear[y];
+    if (jpByYear) {
+      Object.keys(jpByYear).forEach(function (y) {
+        var hs = jpByYear[y];
         if (!hs) return;
         Object.keys(hs).forEach(function (key) {
           var parts = key.split("-");
@@ -201,8 +206,25 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    var html = buildYearBlockHtml(year, holidayMap, todayKey, "cal-year-current");
-    html += buildYearBlockHtml(year + 1, holidayMap, todayKey, "cal-year-next");
+    // 米国: [{date:"YYYY-MM-DD", name:"...", global:true, types:[...]}] の配列形式
+    var usHolidayMap = {};
+    if (usByYear) {
+      Object.keys(usByYear).forEach(function (y) {
+        var arr = usByYear[y];
+        if (!Array.isArray(arr)) return;
+        arr.forEach(function (h) {
+          // 全国規模で祝日扱い（Public）のみ表示
+          if (!h.global) return;
+          if (!h.types || h.types.indexOf("Public") < 0) return;
+          var parts = h.date.split("-");
+          var normalized = parseInt(parts[0]) + "-" + parseInt(parts[1]) + "-" + parseInt(parts[2]);
+          usHolidayMap[normalized] = h.name;
+        });
+      });
+    }
+
+    var html = buildYearBlockHtml(year, holidayMap, usHolidayMap, todayKey, "cal-year-current");
+    html += buildYearBlockHtml(year + 1, holidayMap, usHolidayMap, todayKey, "cal-year-next");
     container.innerHTML = html;
   }
 
@@ -210,17 +232,28 @@ document.addEventListener("DOMContentLoaded", function () {
     var now = new Date();
     var year = now.getFullYear();
     // まず祝日なしで描画
-    renderYearlyCalendar(null);
-    // 今年と来年の祝日を並行取得
+    renderYearlyCalendar(null, null);
+    // 今年と来年の祝日を並行取得（日米）
     var years = [year, year + 1];
-    var results = {};
-    Promise.all(years.map(function (y) {
-      return fetch("https://holidays-jp.github.io/api/v1/" + y + "/date.json")
-        .then(function (res) { return res.ok ? res.json() : null; })
-        .then(function (h) { results[y] = h; })
-        .catch(function () { results[y] = null; });
-    })).then(function () {
-      renderYearlyCalendar(results);
+    var jpResults = {};
+    var usResults = {};
+    var fetches = [];
+    years.forEach(function (y) {
+      fetches.push(
+        fetch("https://holidays-jp.github.io/api/v1/" + y + "/date.json")
+          .then(function (res) { return res.ok ? res.json() : null; })
+          .then(function (h) { jpResults[y] = h; })
+          .catch(function () { jpResults[y] = null; })
+      );
+      fetches.push(
+        fetch("https://date.nager.at/api/v3/PublicHolidays/" + y + "/US")
+          .then(function (res) { return res.ok ? res.json() : null; })
+          .then(function (h) { usResults[y] = h; })
+          .catch(function () { usResults[y] = null; })
+      );
+    });
+    Promise.all(fetches).then(function () {
+      renderYearlyCalendar(jpResults, usResults);
     });
   }
 

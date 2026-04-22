@@ -882,8 +882,23 @@ textarea {
   border-radius: 50%;
 }
 
-/* 祝日ツールチップ */
-.cal-holiday[data-holiday]::after {
+/* 米国の祝日: 点線の丸囲み（日本祝日と共存可能） */
+.cal-holiday-us {
+  position: relative;
+  cursor: default;
+}
+.cal-holiday-us:not(.cal-today) {
+  outline: 1.5px dashed #2c5282;
+  outline-offset: -2px;
+  border-radius: 50%;
+}
+.cal-holiday-us:not(.cal-holiday):not(.cal-today) {
+  color: #2c5282 !important;
+  font-weight: 700;
+}
+
+/* 祝日ツールチップ（日本祝日 or 米国祝日のどちらにも適用） */
+[data-holiday]::after {
   content: attr(data-holiday);
   position: absolute;
   bottom: calc(100% + 6px);
@@ -903,7 +918,7 @@ textarea {
   z-index: 10;
 }
 
-.cal-holiday[data-holiday]::before {
+[data-holiday]::before {
   content: "";
   position: absolute;
   bottom: calc(100% + 2px);
@@ -917,8 +932,17 @@ textarea {
   z-index: 10;
 }
 
-.cal-holiday[data-holiday]:hover::after,
-.cal-holiday[data-holiday]:hover::before {
+/* 米国祝日単独なら青系ツールチップに */
+.cal-holiday-us:not(.cal-holiday)[data-holiday]::after {
+  background: linear-gradient(135deg, #4a6fa5, #2c5282);
+  box-shadow: 0 3px 12px rgba(44, 82, 130, 0.3);
+}
+.cal-holiday-us:not(.cal-holiday)[data-holiday]::before {
+  border-top-color: #2c5282;
+}
+
+[data-holiday]:hover::after,
+[data-holiday]:hover::before {
   opacity: 1;
   transform: translateX(-50%) scale(1);
 }
