@@ -1108,6 +1108,72 @@ textarea {
   }
 }
 
+/* 自動取得系セクション（為替レートなど） */
+.rate-section {
+  background: linear-gradient(135deg, rgba(9, 132, 227, 0.06), rgba(0, 184, 148, 0.06));
+  border-left: 3px solid #0984e3;
+  padding: 0.6rem 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+}
+.rate-section .widget-section-title {
+  color: #0766b3;
+}
+.rate-section .widget-section-title .fa-cloud-arrow-down {
+  margin-right: 0.3rem;
+}
+
+/* LLM 利用料テーブル */
+.llm-cost-table {
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+  width: auto;
+}
+.llm-cost-table th,
+.llm-cost-table td {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #e9ecef;
+  text-align: left;
+  background: transparent;
+}
+.llm-cost-table thead th {
+  background: #f1f3f5;
+  text-align: center;
+  font-weight: 600;
+  color: #495057;
+}
+.llm-cost-table tbody th {
+  background: #f8f9fa;
+  font-weight: 500;
+  color: #495057;
+  white-space: nowrap;
+}
+.llm-cost-table input {
+  width: 6em;
+}
+.llm-calls-row {
+  margin: 0.4rem 0;
+}
+.llm-result-row {
+  margin-top: 0.5rem;
+}
+
+/* 為替レート再取得ボタン */
+.rate-refresh {
+  padding: 0.15rem 0.5rem;
+  font-size: 0.9rem;
+  background: #fff;
+  border: 1px solid #0984e3;
+  color: #0984e3;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1;
+}
+.rate-refresh:hover {
+  background: #0984e3;
+  color: #fff;
+}
+
 /* ============================================
    QRコード読み取り
    ============================================ */

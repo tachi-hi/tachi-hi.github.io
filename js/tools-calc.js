@@ -128,6 +128,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // ============================================
   var costInput = document.getElementById("cost_usd");
   var rateInput = document.getElementById("exchange_rate");
+  var rateRefreshBtn = document.getElementById("rate_refresh");
+  var rateSource = document.getElementById("rate_source");
+  var userEditedRate = false;
 
   function updateCost() {
     var costUsd = parseFloat(costInput ? costInput.value : 0);
@@ -139,8 +142,70 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function fetchRate() {
+    if (!rateInput) return;
+    if (rateSource) rateSource.textContent = "為替レート取得中…";
+    fetch("https://api.frankfurter.dev/v1/latest?base=USD&symbols=JPY")
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+      .then(function (data) {
+        var jpy = data && data.rates && data.rates.JPY;
+        if (!jpy) throw new Error("no JPY rate");
+        // ユーザーが手動編集していない場合のみ上書き
+        if (!userEditedRate) {
+          rateInput.value = jpy.toFixed(2);
+          updateCost();
+        }
+        if (rateSource) {
+          rateSource.innerHTML = "為替レート: 1 USD = " + jpy.toFixed(2) +
+            " JPY (" + data.date + ") — 出典: " +
+            '<a href="https://frankfurter.dev" target="_blank" rel="noopener noreferrer">Frankfurter API</a>' +
+            " / 欧州中央銀行 (ECB)";
+        }
+      })
+      .catch(function () {
+        if (rateSource) rateSource.textContent =
+          "為替レート取得失敗（手動入力してください）";
+      });
+  }
+
+  // LLM 利用料概算
+  var llmIds = ["llm_tokens_in", "llm_tokens_out", "llm_price_in", "llm_price_out", "llm_calls"];
+  function updateLlmCost() {
+    var tokIn = parseFloat(document.getElementById("llm_tokens_in").value) || 0;
+    var tokOut = parseFloat(document.getElementById("llm_tokens_out").value) || 0;
+    var priceIn = parseFloat(document.getElementById("llm_price_in").value) || 0;
+    var priceOut = parseFloat(document.getElementById("llm_price_out").value) || 0;
+    var calls = parseFloat(document.getElementById("llm_calls").value) || 0;
+    var usd = ((tokIn * priceIn + tokOut * priceOut) / 1e6) * calls;
+    var rate = parseFloat(rateInput ? rateInput.value : 0) || 0;
+    var jpy = usd * rate;
+    var usdEl = document.getElementById("llm_cost_usd");
+    var jpyEl = document.getElementById("llm_cost_jpy");
+    if (usdEl) usdEl.textContent = "$" + (usd < 0.01 ? usd.toFixed(4) : usd.toFixed(2));
+    if (jpyEl) jpyEl.textContent = rate ? "≈ ¥" + Math.round(jpy).toLocaleString() : "";
+  }
+  llmIds.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener("input", updateLlmCost);
+  });
+  updateLlmCost();
+
   if (costInput) costInput.addEventListener("input", updateCost);
-  if (rateInput) rateInput.addEventListener("input", updateCost);
+  if (rateInput) {
+    rateInput.addEventListener("input", function () {
+      userEditedRate = true;
+      updateCost();
+      updateLlmCost();
+    });
+  }
+  if (rateRefreshBtn) {
+    rateRefreshBtn.addEventListener("click", function () {
+      userEditedRate = false;
+      fetchRate();
+    });
+  }
+  // 初回ロード時に自動取得
+  fetchRate();
 
   // ============================================
   // 英語の数値表記 → 日本語

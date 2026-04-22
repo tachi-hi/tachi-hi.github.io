@@ -106,14 +106,6 @@ custom_js:
   </div>
 
   <div class="widget-section">
-    <div class="widget-section-title">$/h → ￥/mon</div>
-    <input id="cost_usd" type="number" step="any" style="width: 5em"> ドル/時間
-    × 為替レート <input id="exchange_rate" type="number" value="150" style="width: 5em"> 円/ドル →
-    <span class="result-display" id="hourly_cost_2_monthly">料金</span>
-    <br><small>注：1セント/時 ≒ 1000円/月 (為替150円換算)</small>
-  </div>
-
-  <div class="widget-section">
     <div class="widget-section-title">BPS and Beats to Time</div>
     BPS (beats per second): <input id="bps" type="number" step="any" style="width: 5em">
     Beats: <input id="n_beats" type="number" style="width: 5em">
@@ -132,5 +124,51 @@ custom_js:
     身長: <input id="bmi_height" type="number" step="any" style="width: 5em"> cm
     体重: <input id="bmi_weight" type="number" step="any" style="width: 5em"> kg
     <span class="result-display" id="bmi">BMI</span>
+  </div>
+</div>
+
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-money-bill-wave"></i> 料金計算</div>
+
+  <div class="widget-section rate-section">
+    <div class="widget-section-title"><i class="fa-solid fa-cloud-arrow-down"></i> 為替レート（自動取得）</div>
+    1 USD = <input id="exchange_rate" type="number" value="150" style="width: 7em"> JPY
+    <button type="button" id="rate_refresh" class="rate-refresh" title="最新レートを取得">↻</button>
+    <br><small id="rate_source">注：1セント/時 ≒ 1000円/月 (為替150円換算)</small>
+  </div>
+
+  <div class="widget-section">
+    <div class="widget-section-title">$/h → ￥/月</div>
+    <input id="cost_usd" type="number" step="any" style="width: 6em"> ドル/時間 →
+    <span class="result-display" id="hourly_cost_2_monthly">料金</span>
+  </div>
+
+  <div class="widget-section">
+    <div class="widget-section-title">LLM 利用料概算</div>
+    <small>1M トークンあたりの USD 単価を入力してください。</small>
+    <table class="llm-cost-table">
+      <thead>
+        <tr><th></th><th>入力</th><th>出力</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>トークン数</th>
+          <td><input id="llm_tokens_in" type="number" step="any" value="10000"></td>
+          <td><input id="llm_tokens_out" type="number" step="any" value="2000"></td>
+        </tr>
+        <tr>
+          <th>単価 ($/1M)</th>
+          <td><input id="llm_price_in" type="number" step="any" value="3"></td>
+          <td><input id="llm_price_out" type="number" step="any" value="15"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="llm-calls-row">
+      呼び出し回数: <input id="llm_calls" type="number" step="1" value="1" style="width: 5em">
+    </div>
+    <div class="llm-result-row">
+      → <span class="result-display" id="llm_cost_usd">$0</span>
+      <span class="result-display" id="llm_cost_jpy">¥0</span>
+    </div>
   </div>
 </div>
