@@ -189,6 +189,13 @@ title: Hideyuki Tachibana's web
           <span class="panel-desc">Hideyuki Tachibana</span>
         </span>
       </a>
+      <a class="panel" href="https://dl.acm.org/profile/81440621138">
+        <i class="ai ai-acm panel-icon"></i>
+        <span class="panel-body">
+          <span class="panel-title">ACM DL</span>
+          <span class="panel-desc">Hideyuki Tachibana</span>
+        </span>
+      </a>
       <a class="panel" href="https://openreview.net/profile?id=~Hideyuki_Tachibana1">
         <i class="fa-solid fa-pen-nib panel-icon"></i>
         <span class="panel-body">
