@@ -12,26 +12,13 @@ title: Hideyuki Tachibana's web
   </div>
   <div class="profile-section">
     <div class="profile-label"><i class="fa-solid fa-lightbulb"></i> Academic Interests</div>
-    <div class="profile-tags tags-academic">
-      <span class="tag"><span class="tag-en">Machine Learning</span><span class="tag-ja">機械学習</span></span>
-      <span class="tag"><span class="tag-en">LLM</span><span class="tag-ja">大規模言語モデル</span></span>
-      <span class="tag"><span class="tag-en">AI Safety</span><span class="tag-ja">AI安全性</span></span>
-      <span class="tag"><span class="tag-en">Mis/Disinformation</span><span class="tag-ja">誤情報・偽情報</span></span>
-      <span class="tag"><span class="tag-en">Acoustic Signal Processing</span><span class="tag-ja">音響信号処理</span></span>
-      <span class="tag"><span class="tag-en">Speech Synthesis</span><span class="tag-ja">音声合成</span></span>
-      <span class="tag"><span class="tag-en">Music Information Processing</span><span class="tag-ja">音楽情報処理</span></span>
-      <span class="tag-etc">etc.</span>
-    </div>
+    <p class="profile-en">My current research interests center on machine learning, large language models, and AI safety — particularly the problem of mis- and disinformation. I also have a long-standing background in acoustic signal processing, speech synthesis, and music information processing, and remain broadly interested in adjacent areas.</p>
+    <p class="profile-ja">現在の研究的関心は、機械学習・大規模言語モデル・AI 安全性、とりわけ誤情報・偽情報の問題にあります。加えて、音響信号処理、音声合成、音楽情報処理など、長く取り組んできた分野にも引き続き関心を持っています。</p>
   </div>
   <div class="profile-section">
     <div class="profile-label"><i class="fa-solid fa-people-group"></i> Social Interests</div>
-    <div class="profile-tags tags-social">
-      <span class="tag"><span class="tag-en">AI Governance</span><span class="tag-ja">AIガバナンス</span></span>
-      <span class="tag"><span class="tag-en">AI &amp; Labor Market</span><span class="tag-ja">AI失業問題</span></span>
-      <span class="tag"><span class="tag-en">Labor Market: Ice Age &amp; After</span><span class="tag-ja">就職氷河期・ポスト氷河期の課題</span></span>
-      <span class="tag"><span class="tag-en">Traffic Safety</span><span class="tag-ja">交通安全</span></span>
-      <span class="tag-etc">etc.</span>
-    </div>
+    <p class="profile-en">Also, I am interested in AI governance and the impact of AI on the labor market, as well as the challenges facing the so-called "employment ice age" generation and those that followed. I am also concerned with improving social safety, including traffic safety.</p>
+    <p class="profile-ja">AI ガバナンスや AI が労働市場に与える影響、就職氷河期世代やポスト氷河期世代が抱える課題にも関心があります。また、交通安全など社会の安全性の向上にも関心を持っています。</p>
   </div>
 </div>
 
@@ -59,6 +46,10 @@ title: Hideyuki Tachibana's web
       <a class="panel" href="https://tachi-hi.github.io/auto-app-test/">
         <span class="panel-title"><i class="fa-solid fa-wand-magic-sparkles panel-icon"></i>Auto-Generated Apps</span>
         <span class="panel-desc">AI-generated web apps demo</span>
+      </a>
+      <a class="panel" href="https://tachi-hi.github.io/musicbook/">
+        <span class="panel-title"><i class="fa-solid fa-music panel-icon"></i>Music Book</span>
+        <span class="panel-desc">Music notes and scores</span>
       </a>
     </div>
   </div>
