@@ -491,6 +491,12 @@ a.panel:hover {
 .section-research .link-section-icon { background: #6c5ce7; }
 .section-research a.panel:hover { border-color: #6c5ce7; }
 
+.section-inactive .link-section-header { border-bottom-color: #adb5bd; }
+.section-inactive .link-section-icon { background: #adb5bd; }
+.section-inactive .link-section-title { color: #868e96; }
+.section-inactive a.panel { opacity: 0.6; }
+.section-inactive a.panel:hover { opacity: 1; border-color: #868e96; }
+
 /* ============================================
    Footer
    ============================================ */

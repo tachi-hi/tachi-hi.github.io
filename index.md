@@ -99,13 +99,6 @@ title: Hideyuki Tachibana's web
           <span class="panel-desc">Invite only</span>
         </span>
       </span>
-      <a class="panel" href="https://www.kaggle.com/tachihi">
-        <i class="fa-brands fa-kaggle panel-icon"></i>
-        <span class="panel-body">
-          <span class="panel-title">Kaggle</span>
-          <span class="panel-desc">tachihi</span>
-        </span>
-      </a>
     </div>
   </div>
 
@@ -206,6 +199,29 @@ title: Hideyuki Tachibana's web
         <span class="panel-body">
           <span class="panel-title">researchmap</span>
           <span class="panel-desc">tachi-hi</span>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <div class="link-section section-inactive">
+    <div class="link-section-header">
+      <span class="link-section-icon"><i class="fa-solid fa-box-archive"></i></span>
+      <span class="link-section-title">Inactive / 更新停止中</span>
+    </div>
+    <div class="panel-grid compact">
+      <a class="panel" href="https://www.kaggle.com/tachihi">
+        <i class="fa-brands fa-kaggle panel-icon"></i>
+        <span class="panel-body">
+          <span class="panel-title">Kaggle</span>
+          <span class="panel-desc">tachihi</span>
+        </span>
+      </a>
+      <a class="panel" href="https://www.wantedly.com/id/hideyuki_tachibana">
+        <i class="fa-solid fa-briefcase panel-icon"></i>
+        <span class="panel-body">
+          <span class="panel-title">Wantedly</span>
+          <span class="panel-desc">hideyuki_tachibana</span>
         </span>
       </a>
     </div>
