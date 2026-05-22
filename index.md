@@ -85,14 +85,14 @@ title: Hideyuki Tachibana's web
           <span class="panel-desc">tachi_hi</span>
         </span>
       </a>
-      <span class="panel disabled">
+      <span class="panel no-link">
         <i class="fa-brands fa-facebook panel-icon"></i>
         <span class="panel-body">
           <span class="panel-title">Facebook</span>
           <span class="panel-desc">Acquaintances only</span>
         </span>
       </span>
-      <span class="panel disabled">
+      <span class="panel no-link">
         <i class="fa-solid fa-m panel-icon"></i>
         <span class="panel-body">
           <span class="panel-title">mixi2</span>
@@ -224,6 +224,13 @@ title: Hideyuki Tachibana's web
           <span class="panel-desc">hideyuki_tachibana</span>
         </span>
       </a>
+      <span class="panel no-link">
+        <i class="fa-solid fa-people-arrows panel-icon"></i>
+        <span class="panel-body">
+          <span class="panel-title">IEEE Collabratec</span>
+          <span class="panel-desc">profile (login required)</span>
+        </span>
+      </span>
     </div>
   </div>
 </div>

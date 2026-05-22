@@ -323,7 +323,7 @@ a.panel:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.07);
 }
 
-.panel.disabled {
+.panel.no-link {
   opacity: 0.5;
   cursor: default;
   pointer-events: none;
