@@ -51,6 +51,10 @@ title: Hideyuki Tachibana's web
         <span class="panel-title"><i class="fa-solid fa-music panel-icon"></i>Music Book</span>
         <span class="panel-desc">Music notes and scores</span>
       </a>
+      <a class="panel" href="https://tachi-hi.github.io/kumquat-tikz/">
+        <span class="panel-title"><i class="fa-solid fa-shapes panel-icon"></i>TikZ Gallery</span>
+        <span class="panel-desc">Reusable TikZ figures for slides</span>
+      </a>
     </div>
   </div>
 </div>
