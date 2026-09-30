@@ -814,6 +814,10 @@ textarea {
 .hours-overlap { background: #18755c; color: #fff; font-weight: 700; }
 .hours-summary { color: #146950; white-space: nowrap; }
 .hours-summary small { color: #59636d; }
+.market-hours-title { font-size: 0.9rem; margin: 1.2rem 0 0.5rem; }
+.hours-market { background: #f5c779; }
+.market-hour { color: #493515; }
+.market-sessions { font-size: 0.65rem; color: #493515; white-space: nowrap; }
 
 /* ============================================
    Yearly Calendar

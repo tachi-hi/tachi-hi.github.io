@@ -165,6 +165,47 @@ document.addEventListener("DOMContentLoaded", function () {
       html += '<td class="hours-summary">' + (summary ? summary + ' <small>(' + overlaps.length + 'h)</small>' : 'なし') + '</td></tr>';
     });
     table.innerHTML = html + '</tbody>';
+    renderMarketHours(start);
+  }
+
+  function renderMarketHours(start) {
+    var table = document.getElementById("market-hours-table");
+    if (!table) return;
+    // 現物株の通常セッション。分単位で保持し、昼休みと30分境界を扱う。
+    // 休場日の判定ではなく、指定日の時差による通常スケジュールの比較。
+    var markets = [
+      { label: "東京 (東証)", tz: "Asia/Tokyo", sessions: [[540, 690], [750, 930]], url: "https://www.jpx.co.jp/equities/trading/domestic/01.html" },
+      { label: "香港 (HKEX)", tz: "Asia/Hong_Kong", sessions: [[570, 720], [780, 960]], url: "https://www.hkex.com.hk/Services/Trading-hours-and-Severe-Weather-Arrangements/Trading-Hours/Securities-Market" },
+      { label: "Singapore (SGX)", tz: "Asia/Singapore", sessions: [[540, 720], [780, 1020]], url: "https://rulebook.sgx.com/rulebook/practice-note-131-trading-halt-and-suspension" },
+      { label: "London (LSE)", tz: "Europe/London", sessions: [[480, 990]], url: "https://www.lseg.com/en/media-centre/press-releases/2026/london-stock-exchange-to-launch-lse-24" },
+      { label: "New York (NYSE)", tz: "America/New_York", sessions: [[570, 960]], url: "https://www.nyse.com/trade/trading-information" }
+    ];
+    function timeLabel(minutes) {
+      return Math.floor(minutes / 60) + ":" + ("0" + minutes % 60).slice(-2);
+    }
+    var html = '<caption class="world-hours-note">主要5市場・通常営業日の時間帯（当日の時差で換算）</caption><thead><tr><th scope="col">市場 / 日本時間</th>';
+    for (var h = 0; h < 24; h++) html += '<th scope="col">' + h + '</th>';
+    html += '<th scope="col">通常取引（現地）</th></tr></thead><tbody>';
+    markets.forEach(function (market) {
+      html += '<tr><th scope="row"><a href="' + market.url + '">' + market.label + '</a></th>';
+      for (var hour = 0; hour < 24; hour++) {
+        var colors = [];
+        var descriptions = [];
+        var localHour;
+        for (var half = 0; half < 2; half++) {
+          var instant = new Date(start + (hour * 60 + half * 30) * 60000);
+          var local = getLocalTime(instant, market.tz);
+          if (half === 0) localHour = local.hour;
+          var minutes = local.hour * 60 + local.min;
+          var trading = market.sessions.some(function (session) { return minutes >= session[0] && minutes < session[1]; });
+          colors.push(trading ? "#f5c779" : "#f0f2f5");
+          descriptions.push("JST " + timeLabel(hour * 60 + half * 30) + "〜" + timeLabel(hour * 60 + half * 30 + 30) + " / 現地 " + getLocalDateStr(instant, market.tz) + " " + timeLabel(minutes) + (trading ? "・通常取引時間" : "・通常取引時間外"));
+        }
+        html += '<td class="market-hour" style="background:linear-gradient(to right,' + colors[0] + ' 50%,' + colors[1] + ' 50%)" title="' + descriptions.join(" / ") + '">' + localHour + '</td>';
+      }
+      html += '<td class="market-sessions">' + market.sessions.map(function (session) { return timeLabel(session[0]) + "〜" + timeLabel(session[1]); }).join('<br>') + '</td></tr>';
+    });
+    table.innerHTML = html + '</tbody>';
   }
 
   function updateClockFromNow() {
