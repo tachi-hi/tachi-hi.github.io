@@ -18,6 +18,18 @@ custom_js:
 <div class="widget">
   <div class="widget-title"><i class="fa-solid fa-clock"></i> 世界時計</div>
   <div id="timelist" class="clock-grid"></div>
+  <section class="world-hours" aria-labelledby="world-hours-title">
+    <h2 id="world-hours-title">24時間の比較 <span id="world-hours-date"></span></h2>
+    <p class="world-hours-note">横軸は日本時間（JST）の0〜24時、帯の数字は各都市の現地時刻です。各マスは1時間を表します。</p>
+    <div class="world-hours-legend">
+      <span><i class="hours-work"></i>現地 9〜17時</span>
+      <span><i class="hours-overlap"></i>日本の9〜17時と重なる時間</span>
+    </div>
+    <div class="world-hours-scroll" tabindex="0" role="region" aria-label="各都市の24時間比較表（横にスクロールできます）">
+      <table id="world-hours-table" class="world-hours-table"></table>
+    </div>
+    <p class="world-hours-note">当日の夏時間を反映。土日・祝日も一律9〜17時で比較します。狭い画面では横にスクロールできます。</p>
+  </section>
 </div>
 
 <div class="widget">

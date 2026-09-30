@@ -787,6 +787,34 @@ textarea {
   opacity: 0.85;
 }
 
+.world-hours {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.world-hours h2 { font-size: 1rem; margin: 0 0 0.5rem; }
+.world-hours h2 span { font-size: 0.75rem; font-weight: 400; color: #59636d; margin-left: 0.5rem; }
+.world-hours-note { font-size: 0.75rem; color: #59636d; margin: 0.5rem 0; }
+.world-hours-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-size: 0.75rem; margin: 0.6rem 0; }
+.world-hours-legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.world-hours-legend i { display: inline-block; width: 1.2rem; height: 0.8rem; border-radius: 2px; }
+.world-hours-scroll { overflow-x: auto; padding-bottom: 0.3rem; }
+.world-hours-scroll:focus-visible { outline: 2px solid #0984e3; outline-offset: 2px; }
+.world-hours-table { width: 100%; min-width: 700px; border-collapse: separate; border-spacing: 0 5px; table-layout: fixed; font-size: 0.7rem; font-variant-numeric: tabular-nums; }
+.world-hours-table caption { text-align: left; }
+.world-hours-table th, .world-hours-table td { text-align: center; padding: 0.4rem 0; border: 0; }
+.world-hours-table th:first-child { width: 105px; text-align: left; position: sticky; left: 0; background: #fff; z-index: 1; }
+.world-hours-table th:last-child { width: 115px; }
+.world-hours-table thead th { color: #59636d; font-weight: 500; }
+.world-hours-table td:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.4); }
+.world-hours-table .hours-tokyo th { color: #146950; }
+.hours-off { background: #f0f2f5; color: #626c77; }
+.hours-work { background: #c9e2fa; color: #16466e; }
+.hours-overlap { background: #18755c; color: #fff; font-weight: 700; }
+.hours-summary { color: #146950; white-space: nowrap; }
+.hours-summary small { color: #59636d; }
+
 /* ============================================
    Yearly Calendar
    ============================================ */

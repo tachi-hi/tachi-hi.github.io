@@ -110,8 +110,67 @@ document.addEventListener("DOMContentLoaded", function () {
     container.innerHTML = html;
   }
 
+  var worldHoursDate = "";
+
+  function renderWorldHours(date) {
+    var table = document.getElementById("world-hours-table");
+    if (!table) return;
+    // ブラウザのタイムゾーンに依存せず、日本の当日0時を基準にする。
+    var parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit"
+    }).formatToParts(date);
+    var fields = {};
+    parts.forEach(function (part) { fields[part.type] = part.value; });
+    var dayKey = fields.year + "-" + fields.month + "-" + fields.day;
+    if (worldHoursDate === dayKey) return;
+    worldHoursDate = dayKey;
+    var start = new Date(dayKey + "T00:00:00+09:00").getTime();
+    document.getElementById("world-hours-date").textContent = dayKey + " JST";
+
+    var html = '<caption class="world-hours-note">各都市の現地時刻と9〜17時の重なり（右端は日本時間）</caption>';
+    html += '<thead><tr><th scope="col">都市 / 日本時間</th>';
+    for (var h = 0; h < 24; h++) {
+      html += '<th scope="col">' + h + '</th>';
+    }
+    html += '<th scope="col">日本と重なる時間</th></tr></thead><tbody>';
+    // 比較の基準となる東京を先頭に置く。
+    var rows = timezones.filter(function (tz) { return tz.tz === "Asia/Tokyo"; })
+      .concat(timezones.filter(function (tz) { return tz.tz !== "Asia/Tokyo"; }));
+    rows.forEach(function (tz) {
+      var formatter = new Intl.DateTimeFormat("ja-JP", {
+        timeZone: tz.tz, hour: "2-digit", hourCycle: "h23"
+      });
+      var overlaps = [];
+      html += '<tr' + (tz.tz === "Asia/Tokyo" ? ' class="hours-tokyo"' : '') + '><th scope="row">' + tz.label + '</th>';
+      for (var hour = 0; hour < 24; hour++) {
+        var instant = new Date(start + hour * 3600000);
+        var localHour = Number(formatter.formatToParts(instant).filter(function (p) { return p.type === "hour"; })[0].value);
+        var working = localHour >= 9 && localHour < 17;
+        var overlap = working && hour >= 9 && hour < 17;
+        if (overlap) overlaps.push(hour);
+        var cls = overlap ? "hours-overlap" : working ? "hours-work" : "hours-off";
+        var detail = tz.label + " " + getLocalDateStr(instant, tz.tz) + " " + localHour + ":00 / JST " + hour + ":00";
+        if (working) detail += "・現地9〜17時";
+        if (overlap) detail += "・日本の9〜17時と重複";
+        html += '<td class="' + cls + '" title="' + detail + '"><span>' + localHour + '</span></td>';
+      }
+      // 連続した区間をまとめ、日本時間で併記する。
+      var ranges = [];
+      overlaps.forEach(function (hour) {
+        var last = ranges[ranges.length - 1];
+        if (last && last[1] === hour) last[1] = hour + 1;
+        else ranges.push([hour, hour + 1]);
+      });
+      var summary = ranges.map(function (range) { return range[0] + "〜" + range[1] + "時"; }).join("、");
+      html += '<td class="hours-summary">' + (summary ? summary + ' <small>(' + overlaps.length + 'h)</small>' : 'なし') + '</td></tr>';
+    });
+    table.innerHTML = html + '</tbody>';
+  }
+
   function updateClockFromNow() {
-    renderWorldClock(new Date());
+    var now = new Date();
+    renderWorldClock(now);
+    renderWorldHours(now);
   }
 
   if (document.getElementById("timelist")) {
