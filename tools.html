@@ -11,6 +11,7 @@ custom_js:
   - js/tools-calc.js
   - js/tools-calendar.js
   - js/tools-qr.js
+  - js/tools-vision.js
 ---
 
 <h1>公開簡易ツール</h1>
@@ -188,5 +189,20 @@ custom_js:
       → <span class="result-display" id="llm_cost_usd">$0</span>
       <span class="result-display" id="llm_cost_jpy">¥0</span>
     </div>
+  </div>
+</div>
+
+<div class="widget">
+  <div class="widget-title"><i class="fa-solid fa-eye"></i> 視野セルフチェック</div>
+  <div class="widget-section">
+    <ul style="margin: 0.3rem 0; padding-left: 1.2em; font-size: 0.85rem">
+      <li>画面から 30〜40cm ほど離れ、片目を手で隠して中央の赤い点を見つめます。全画面にすると広い範囲を見られます（図をクリックか Esc で戻る）。</li>
+      <li>耳側（右目なら右、左目なら左）のやや下で点が消えるのは正常な盲点です。</li>
+      <li>医療用の検査の代わりにはなりません。</li>
+    </ul>
+    <div class="vf-controls">
+      <button type="button" id="vf-full" class="rate-refresh">全画面</button>
+    </div>
+    <div id="vf-stage" class="vf-stage"><canvas id="vf-canvas"></canvas></div>
   </div>
 </div>

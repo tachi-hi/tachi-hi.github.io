@@ -1293,3 +1293,34 @@ textarea {
   color: #c0392b;
   font-size: 0.9rem;
 }
+
+/* ============================================
+   視野セルフチェック
+   ============================================ */
+.vf-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.vf-stage {
+  height: 70vh;
+  min-height: 320px;
+  background: #111;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.vf-stage:fullscreen {
+  height: 100vh;
+  border-radius: 0;
+}
+
+.vf-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
