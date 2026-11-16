@@ -43,7 +43,7 @@ title: Hideyuki Tachibana's web
         <span class="panel-title"><i class="fa-solid fa-wrench panel-icon"></i>Tools</span>
         <span class="panel-desc">Web utilities &amp; converters</span>
       </a>
-      <a class="panel" href="https://tachi-hi.github.io/auto-app-test/">
+      <a class="panel" href="https://tachi-hi.github.io/app-collection/">
         <span class="panel-title"><i class="fa-solid fa-wand-magic-sparkles panel-icon"></i>Auto-Generated Apps</span>
         <span class="panel-desc">AI-generated web apps demo</span>
       </a>
